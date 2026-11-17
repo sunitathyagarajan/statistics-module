@@ -57,7 +57,24 @@ header .wrap{padding-block:36px 30px;display:grid;gap:12px}
 .back{font-weight:600;text-decoration:none;font-size:.95rem}
 .back:hover{text-decoration:underline}
 .lead{font-size:1.15rem;max-width:64ch;color:var(--muted)}
-.reading{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin-top:4px}
+.reading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:18px 32px;align-items:center;margin-top:4px}
+.reading > *{min-width:0}
+.rtext{display:grid;gap:8px;align-content:center}
+@media (max-width:640px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{justify-self:center;width:100%;max-width:360px}}
+.bfig{margin:0;display:grid;gap:6px}
+.bfig svg{width:100%;height:auto;display:block}
+.bfig text{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.bfig text.ink{fill:var(--ink);font-weight:600}
+.bfig text.acc{fill:var(--accent);font-weight:600}
+.bfig figcaption{font-size:.85rem;color:var(--muted);text-align:center}
+.bfig .glass{fill:none;stroke:var(--muted);stroke-width:1.3}
+.bfig .liq{fill:var(--data);fill-opacity:.13}
+.bfig .men{fill:none;stroke:var(--data)}
+.bfig .cock{fill:var(--surface-2);stroke:var(--muted);stroke-width:1.2}
+.bfig .tk line{stroke:var(--ink)}
+.bfig .zoom{fill:none;stroke:var(--accent);stroke-width:1.4}
+.bfig .panel{fill:var(--surface);stroke:var(--accent);stroke-width:1.4}
+.bfig .shine{stroke:var(--surface);stroke-opacity:.6;stroke-width:3}
 .reading .big{font-family:var(--f-mono);font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:600}
 .reading .cap{color:var(--muted);font-size:.95rem;max-width:46ch}
 nav.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
@@ -177,8 +194,45 @@ footer .wrap{padding-block:20px 48px}
     <h1>Significant Figures</h1>
     <p class="lead">The digits you write down are a claim about how well you measured. Significant figures are all the digits you know for certain plus the first one you had to estimate. This page covers which digits count, how to carry them through a calculation, and 20 problems to practice on.</p>
     <div class="reading">
-      <span class="big digits"><span class="s">2</span><span class="s">0</span><span class="p">.</span><span class="s">3</span><span class="s">6</span> mL</span>
-      <span class="cap">A burette reading: 20.3 is certain, the final 6 is your best estimate between two marks. Four significant figures.</span>
+      <div class="rtext">
+        <span class="big digits"><span class="s">2</span><span class="s">0</span><span class="p">.</span><span class="s">3</span><span class="s">6</span> mL</span>
+        <span class="cap">A burette reading: 20.3 is certain, the final 6 is your best estimate between two marks. Four significant figures.</span>
+      </div>
+      <figure class="bfig">
+        <svg viewBox="0 0 320 300" role="img" aria-label="A 50 mL burette filled with a clear liquid, with a close-up of the liquid level. The bottom of the curved surface sits a little past halfway between the 20.3 and 20.4 mL marks, read as 20.36 mL.">
+          <defs><clipPath id="zclip"><rect x="140" y="14" width="174" height="272" rx="12"/></clipPath></defs>
+          <!-- whole burette -->
+          <rect x="50.8" y="106.7" width="14.4" height="139.3" class="liq"/>
+          <path d="M54,256 L57,292 L59,292 L62,256 Z" class="liq"/>
+          <path d="M50.8,105.6 Q58,109.4 65.2,105.6" class="men" stroke-width="1.4"/>
+          <rect x="50" y="12" width="16" height="234" rx="2" class="glass"/>
+          <path d="M47,12 L69,12" class="glass"/>
+          <path d="M54,256 L57,292 L59,292 L62,256" class="glass"/>
+          <rect x="53" y="246" width="10" height="10" rx="1.5" class="cock"/>
+          <rect x="40" y="248.5" width="36" height="5" rx="2.5" class="cock"/>
+          <g id="bTicks" class="tk"></g>
+          <!-- zoom box and connectors -->
+          <rect x="45" y="97" width="26" height="20" rx="2" class="zoom"/>
+          <line x1="71" y1="97" x2="140" y2="30" class="zoom" stroke-dasharray="3 3"/>
+          <line x1="71" y1="117" x2="140" y2="270" class="zoom" stroke-dasharray="3 3"/>
+          <!-- close-up -->
+          <rect x="140" y="14" width="174" height="272" rx="12" class="panel"/>
+          <g clip-path="url(#zclip)">
+            <path d="M185,146 Q222.5,164.4 260,146 L260,290 L185,290 Z" class="liq"/>
+            <line x1="185" y1="10" x2="185" y2="290" class="glass" stroke-width="2"/>
+            <line x1="260" y1="10" x2="260" y2="290" class="glass" stroke-width="2"/>
+            <line x1="250" y1="10" x2="250" y2="290" class="shine"/>
+            <g id="zTicks" class="tk"></g>
+            <path d="M185,146 Q222.5,164.4 260,146" class="men" stroke-width="2.5"/>
+          </g>
+          <text x="216" y="44" class="ink">20</text>
+          <text x="180" y="140" text-anchor="end">20.3</text>
+          <text x="180" y="172" text-anchor="end">20.4</text>
+          <line x1="222.5" y1="155.2" x2="268" y2="155.2" class="zoom" stroke-dasharray="4 3"/>
+          <text x="270" y="159" class="acc">20.36</text>
+        </svg>
+        <figcaption>Read at eye level, at the bottom of the curved surface (the meniscus).</figcaption>
+      </figure>
     </div>
   </div>
 </header>
@@ -476,6 +530,23 @@ function renderCounter(){
   out.innerHTML = `<div class="bigd digits">${digitsHTML(r)}</div><p class="count">${count}</p><ul>${why.map(w => `<li>${w}</li>`).join('')}</ul>`;
 }
 renderCounter();
+
+/* ---------- header burette: whole scale 0–50 mL, and the 20.0–20.7 close-up ---------- */
+(() => {
+  let b = '';
+  for (let v = 0; v <= 50; v++) {
+    const y = 22 + v * 4.16, len = v % 10 === 0 ? 10 : v % 5 === 0 ? 7 : 4;
+    b += `<line x1="50" y1="${y.toFixed(1)}" x2="${50 + len}" y2="${y.toFixed(1)}" stroke-width="0.6"/>`;
+    if (v % 10 === 0) b += `<text x="46" y="${(y + 3).toFixed(1)}" text-anchor="end" style="font-size:9px">${v}</text>`;
+  }
+  $('#bTicks').innerHTML = b;
+  let z = '';
+  for (let i = 0; i <= 7; i++) {
+    const y = 40 + i * 32, len = i === 0 ? 28 : i === 5 ? 21 : 14;
+    z += `<line x1="185" y1="${y}" x2="${185 + len}" y2="${y}" stroke-width="1.4"/>`;
+  }
+  $('#zTicks').innerHTML = z;
+})();
 
 /* ---------- burette ticks ---------- */
 (() => {
