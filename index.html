@@ -170,6 +170,21 @@ button.link{background:none;border:none;color:var(--data);padding:0;text-decorat
 .bar .pc{font-family:var(--f-mono);text-align:right}
 
 /* tests */
+/* real-data cases */
+.cases{display:grid;gap:18px;margin-top:28px;scroll-margin-top:60px}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px;min-width:0}
+.case > *{min-width:0}
+.case-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:22px;align-items:start}
+@media (max-width:820px){.case-grid{grid-template-columns:minmax(0,1fr)}}
+.facts{display:grid;gap:12px;margin:0}
+.facts dt{font-family:var(--f-mono);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.facts dd{margin:2px 0 0;font-size:.95rem}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;border:1px solid var(--line);border-radius:12px;padding:3px;background:var(--surface-2);justify-self:start;max-width:100%}
+.seg button{border:none;background:none;border-radius:9px;padding:6px 12px;font-size:.86rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.callout{font-size:.93rem;background:var(--accent-soft);border-radius:8px;padding:8px 12px}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.src-line{font-size:.86rem;color:var(--muted)}
 .steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;counter-reset:s}
 .step3{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:4px;counter-increment:s}
 .step3 h4::before{content:counter(s) ". ";color:var(--accent)}
@@ -227,6 +242,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
   <div class="wrap">
     <a href="#terms">Key terms</a>
     <a href="#examples">Examples</a>
+    <a href="#cases">Real cases</a>
     <a href="#explorer">Data explorer</a>
     <a href="#gaussian">Normal curve &amp; CI</a>
     <a href="#propagation">Propagation</a>
@@ -235,6 +251,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <a href="#ftest">F test</a>
     <a href="#ttest">t test</a>
     <a href="#tables">Tables</a>
+    <a href="references.html">References</a>
   </div>
 </nav>
 
@@ -432,6 +449,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p class="use"><b>Where it matters:</b> Drinking-water testing: deciding whether arsenic is truly absent or only below what the method can detect.</p>
         <p class="lab"><b>At the bench:</b> deciding whether trace lead in a water sample is “not detected” or “detected but below LOQ”.</p></div>
     </div>
+    <p class="src-line">Definitions and formulas follow standard analytical chemistry texts and measurement guides. <a href="references.html#textbooks">See references 1–7.</a></p>
   </div>
 </section>
 
@@ -441,9 +459,64 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <div class="sechead">
       <span class="eyebrow">Part 2</span>
       <h2>Six worked examples</h2>
-      <p class="prose muted">Three from medicine and three from the chemistry lab. The statistics in each card are calculated live from the data shown. Use “Explore these numbers” to load a data set into the explorer and drag the points around.</p>
+      <p class="prose muted">Three from medicine and three from the chemistry lab. The statistics in each card are calculated live from the data shown. Use “Explore these numbers” to load a data set into the explorer and drag the points around. These data are realistic but made up for teaching. The two real cases that follow use published data.</p>
     </div>
     <div class="examples" id="exampleCards"></div>
+
+    <div class="cases" id="cases">
+      <div class="sechead">
+        <span class="eyebrow">Real published data</span>
+        <h2>When interpretation goes wrong</h2>
+        <p class="prose muted">In both cases the right numbers existed. The damage came from which numbers were used and how they were read. Use the buttons to switch between the two views of each data set.</p>
+      </div>
+
+      <article class="case">
+        <div><span class="chip chem">Materials &amp; engineering</span></div>
+        <h3>Case 1 · Challenger: the flights left off the chart</h3>
+        <div class="case-grid">
+          <dl class="facts">
+            <div><dt>The data</dt><dd>Damage to the rubber O-rings that seal the shuttle’s booster joints, for all 23 flights before January 1986, with the launch temperature of each. Rubber stiffens and seals poorly in the cold.</dd></div>
+            <div><dt>The mistake</dt><dd>The night before launch, the review looked only at the 7 flights that had O-ring damage. Damage showed up at 53 °F and at 75 °F, so temperature seemed not to matter. The 16 flights with no damage were left out as carrying no information.</dd></div>
+            <div><dt>The outcome</dt><dd>Challenger launched on 28 January 1986 with a forecast of 31 °F, 22 °F colder than any earlier flight. An O-ring seal failed and the shuttle broke apart 73 seconds after liftoff. All seven crew members died.</dd></div>
+            <div><dt>The lesson</dt><dd>Results that show “no effect” are still data. With all 23 flights plotted, the trend is clear.</dd></div>
+          </dl>
+          <div style="display:grid;gap:10px;min-width:0">
+            <div class="seg" role="group" aria-label="Flights to plot">
+              <button type="button" data-ch="dmg" aria-pressed="true">Damaged flights only</button>
+              <button type="button" data-ch="all" aria-pressed="false">All 23 flights</button>
+            </div>
+            <svg class="plot" id="chPlot" viewBox="0 0 640 300" role="img" aria-label="O-ring damage versus launch temperature for shuttle flights before Challenger"></svg>
+            <p class="callout" id="chNote"></p>
+          </div>
+        </div>
+        <p class="src-line">Data: O-rings with erosion or blow-by on each flight, from Dalal, Fowlkes and Hoadley (1989) as archived by UCI. Account of the decision: Rogers Commission report (1986). <a href="references.html#r13">References 13–16.</a></p>
+      </article>
+
+      <article class="case">
+        <div><span class="chip med">Medical</span></div>
+        <h3>Case 2 · Vioxx: a missing control and three missing heart attacks</h3>
+        <div class="case-grid">
+          <dl class="facts">
+            <div><dt>The data</dt><dd>The VIGOR trial randomly assigned 8,076 patients with rheumatoid arthritis to the painkiller rofecoxib (Vioxx) or to naproxen. It compared stomach side effects and also recorded heart attacks.</dd></div>
+            <div><dt>The mistake</dt><dd>The 2000 paper reported heart attacks in 0.4% of rofecoxib patients and 0.1% of naproxen patients, and presented this as naproxen <em>lowering</em> the risk. With no placebo group, the trial could not show which drug caused the difference. Three more heart attacks on rofecoxib, known to at least two authors before publication, were left out.</dd></div>
+            <div><dt>The outcome</dt><dd>Vioxx stayed on the market until a placebo-controlled trial (APPROVe) found that it nearly doubled the rate of heart attacks and strokes. Merck withdrew it in September 2004. A study of over 2 million person-years later found that naproxen does not protect the heart.</dd></div>
+            <div><dt>The lesson</dt><dd>A difference between two treatments does not tell you which one changed. That takes a control: a placebo in medicine, a blank in chemistry. And no result may be dropped because it is inconvenient.</dd></div>
+          </dl>
+          <div style="display:grid;gap:10px;min-width:0">
+            <div class="seg" role="group" aria-label="VIGOR data to show">
+              <button type="button" data-vx="pub" aria-pressed="true">As published (2000)</button>
+              <button type="button" data-vx="all" aria-pressed="false">With the 3 omitted heart attacks</button>
+            </div>
+            <div class="panels">
+              <svg class="plot" id="vxPlot1" viewBox="0 0 320 270" role="img" aria-label="Heart attacks in the VIGOR trial, rofecoxib versus naproxen"></svg>
+              <svg class="plot" id="vxPlot2" viewBox="0 0 320 270" role="img" aria-label="Clotting events in the APPROVe trial, rofecoxib versus placebo"></svg>
+            </div>
+            <p class="callout" id="vxNote"></p>
+          </div>
+        </div>
+        <p class="src-line">Data: VIGOR heart-attack counts from the journal editors’ 2005 expression of concern (the 2000 paper gave only percentages); APPROVe rates from Bresalier et al. (2005). <a href="references.html#r17">References 17–21.</a></p>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -581,6 +654,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>Use the Q test when one result in a small set (3 to 10 values) looks suspiciously far from the rest. Sort the data, then compare the <b>gap</b> between the suspect value and its nearest neighbour with the <b>range</b> of all the data.</p>
         <div class="formula multi"><div class="eq wrap"><span>Q<sub>calc</sub> = <span class="frac"><span>gap</span><span>range</span></span></span> <span>= <span class="frac"><span>|x<sub>suspect</sub> − x<sub>nearest</sub>|</span><span>x<sub>max</sub> − x<sub>min</sub></span></span></span></div></div>
         <p>If Q<sub>calc</sub> &gt; Q<sub>crit</sub> for your n and confidence level, the suspect value may be rejected. Otherwise it must be kept. Apply the test once. Never reject a value just because it spoils your precision, and never test again after removing one point. Some textbooks use the Grubbs test instead; the reasoning is the same.</p>
+        <p class="src-line">Sources: Dean and Dixon (1951); critical values from Rorabacher (1991). <a href="references.html#r9">References 9–10.</a></p>
       </div>
     </div>
     <div class="worked">
@@ -616,6 +690,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>Use the F test to decide whether two sets of results have significantly different variances: two instruments, two analysts, an old and a new method. It also tells you which form of the two-mean t test to use.</p>
         <div class="formula multi"><div class="eq">F<sub>calc</sub> = <span class="frac"><span>s<sub>1</sub>²</span><span>s<sub>2</sub>²</span></span></div><div class="eqlbl">Put the larger variance on top, so F ≥ 1</div></div>
         <p>Degrees of freedom are ν<sub>1</sub> = n<sub>1</sub> − 1 for the numerator and ν<sub>2</sub> = n<sub>2</sub> − 1 for the denominator. If F<sub>calc</sub> &gt; F<sub>crit</sub>, the precisions are significantly different. Following most analytical chemistry textbooks, this page uses F<sub>crit</sub> at the 95% level from a one-tailed table.</p>
+        <p class="src-line">Sources: Harris and Lucy; Miller and Miller; NIST/SEMATECH e-Handbook. <a href="references.html#textbooks">References 1, 3, 6.</a></p>
       </div>
     </div>
     <div class="worked">
@@ -649,6 +724,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <span class="eyebrow">Test 3</span>
       <h2>The t test (comparing means)</h2>
       <p class="prose">Student’s t test asks whether a difference between means is larger than random error can explain. There are three situations, each with its own formula. In every case, if t<sub>calc</sub> &gt; t<sub>crit</sub> (two-tailed, at your confidence level and degrees of freedom), the difference is significant.</p>
+      <p class="src-line">Sources: Student (1908); Harris and Lucy; Skoog et al. <a href="references.html#r8">References 1, 2, 8.</a></p>
     </div>
 
     <div class="testcase">
@@ -726,7 +802,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <div class="sechead">
       <span class="eyebrow">Reference</span>
       <h2>Critical value tables</h2>
-      <p class="prose muted">t and F values are calculated on this page from their distributions, so they match printed tables to the digits shown. Q values are Dixon’s published critical values.</p>
+      <p class="prose muted">t and F values are calculated on this page from their distributions, so they match printed tables to the digits shown. Q values are Dixon’s critical values as tabulated by Rorabacher (1991). <a href="references.html">All references</a></p>
     </div>
     <div class="tables">
       <div><h4>Student’s t (two-tailed)</h4><div class="tbl" id="tabT"></div></div>
@@ -737,7 +813,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 </section>
 </main>
 
-<footer><div class="wrap">Every problem generated on this page uses random numbers, so each set is new. Calculated answers are rounded only for display; check answers allow for small rounding differences.</div></footer>
+<footer><div class="wrap">Every problem generated on this page uses random numbers, so each set is new. Calculated answers are rounded only for display; check answers allow for small rounding differences. · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
 
 <script>
 /*CORE-START*/
@@ -1318,8 +1394,61 @@ function renderTables(){
   $('#tabF').innerHTML=`<table><tr><th>ν<sub>den</sub> \\ ν<sub>num</sub></th>${cols.map(c=>`<th>${c}</th>`).join('')}</tr>${rows.map(r=>`<tr><td>${r}</td>${cols.map(c=>`<td>${fcrit(95,c,r).toFixed(2)}</td>`).join('')}</tr>`).join('')}</table>`;
 }
 
+/* ================= REAL CASES ================= */
+// Challenger: [launch temperature °F, O-rings with erosion or blow-by (of 6)] for the 23 flights before 51-L (UCI / Dalal et al. 1989)
+const CHALLENGER=[[66,0],[70,1],[69,0],[68,0],[67,0],[72,0],[73,0],[70,0],[57,1],[63,1],[70,1],[78,0],[67,0],[53,2],[67,0],[75,0],[70,0],[81,0],[76,0],[79,0],[75,2],[76,0],[58,1]];
+function renderChallenger(view){
+  const W=640,H=300,m={l:52,r:18,t:22,b:52}, X=lin(25,85,m.l,W-m.r), Y=lin(-0.35,2.5,H-m.b,m.t);
+  let s=`<rect x="${X(25)}" y="${m.t}" width="${X(53)-X(25)}" height="${H-m.b-m.t}" fill="var(--surface-2)"/>`;
+  s+=`<text x="${(X(25)+X(53))/2}" y="${m.t+16}" text-anchor="middle">colder than any earlier launch</text>`;
+  for(const k of [0,1,2]){ s+=`<line class="gridl" x1="${m.l}" x2="${W-m.r}" y1="${Y(k)}" y2="${Y(k)}"/><text x="${m.l-10}" y="${Y(k)+4}" text-anchor="end">${k}</text>`; }
+  s+=xAxis(X,niceTicks(25,85,6),H-m.b,m.l,W-m.r);
+  s+=`<line x1="${X(31)}" x2="${X(31)}" y1="${m.t+24}" y2="${H-m.b}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 4"/>`;
+  s+=`<text class="t-acc" x="${X(31)+7}" y="${Y(2.05)}" font-weight="600">launch day</text><text class="t-acc" x="${X(31)+7}" y="${Y(2.05)+15}" font-weight="600">31 °F</text>`;
+  const pts = view==='all' ? CHALLENGER : CHALLENGER.filter(d=>d[1]>0);
+  const groups={}; pts.forEach(d=>{ (groups[d[0]+','+d[1]] ||= []).push(d); });
+  for(const key in groups){ const g=groups[key]; g.forEach((d,i)=>{ const cx=X(d[0]), cy=Y(d[1])-i*13;  // repeated temperatures stack upward like a dot plot
+    s+= d[1]>0 ? `<circle cx="${cx}" cy="${cy}" r="6" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"><title>${d[0]} °F: ${d[1]} O-rings damaged</title></circle>`
+               : `<circle cx="${cx}" cy="${cy}" r="6" fill="var(--data)" stroke="var(--surface)" stroke-width="1.5"><title>${d[0]} °F: no damage</title></circle>`; }); }
+  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-8}" text-anchor="middle">launch temperature (°F)</text>`;
+  s+=`<text transform="rotate(-90)" x="${-(m.t+H-m.b)/2}" y="16" text-anchor="middle">O-rings damaged</text>`;
+  $('#chPlot').innerHTML=s;
+  const cold=CHALLENGER.filter(d=>d[0]<65), warm=CHALLENGER.filter(d=>d[0]>=65);
+  $('#chNote').innerHTML = view==='all'
+    ? `<b>All 23 flights:</b> below 65 °F, ${cold.filter(d=>d[1]>0).length} of ${cold.length} flights had damage. At 65 °F or warmer, ${warm.filter(d=>d[1]>0).length} of ${warm.length} did. Launch day was far outside the tested range.`
+    : `<b>Damaged flights only:</b> damage appears at both 53 °F and 75 °F, so temperature looks unimportant. This is the view the decision was based on.`;
+}
+function barPanel({title,bars,ymax,ticks,ylabel,fmtv,tickf=fmtv}){
+  const W=320,H=270,m={l:50,r:12,t:46,b:40}, Y=lin(0,ymax,H-m.b,m.t), bw=72, gap=(W-m.l-m.r-bars.length*bw)/(bars.length+1);
+  let s=`<text class="t-ink" x="${m.l-38}" y="18" font-weight="600">${title}</text>`;
+  for(const t of ticks){ s+=`<line class="gridl" x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end">${tickf(t)}</text>`; }
+  s+=`<line class="axis" x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}"/>`;
+  bars.forEach((b,i)=>{ const x=m.l+gap*(i+1)+bw*i, top=Y(b.value);
+    s+=`<rect x="${x}" y="${top}" width="${bw}" height="${Y(0)-top}" fill="${b.color}" rx="3"/>`;
+    let labelY=top-8, label=fmtv(b.value);
+    if(b.extra){ const t2=Y(b.value+b.extra); s+=`<rect x="${x}" y="${t2}" width="${bw}" height="${top-t2}" fill="var(--accent)" rx="3"/><text class="t-acc" x="${x+bw+4}" y="${(t2+top)/2+4}" font-weight="600">+${b.extra}</text>`; labelY=t2-8; label=`${fmtv(b.value)} + ${b.extra}`; }
+    s+=`<text class="t-ink" x="${x+bw/2}" y="${labelY}" text-anchor="middle" font-weight="600">${label}</text>`;
+    s+=`<text x="${x+bw/2}" y="${H-m.b+18}" text-anchor="middle">${b.label}</text>`; });
+  s+=`<text transform="rotate(-90)" x="${-(m.t+H-m.b)/2}" y="12" text-anchor="middle" font-size="11">${ylabel}</text>`;
+  return s;
+}
+function renderVioxx(view){
+  const all = view==='all';
+  $('#vxPlot1').innerHTML=barPanel({title:'VIGOR: vs naproxen (no placebo)',ymax:24,ticks:[0,5,10,15,20],ylabel:'heart attacks',fmtv:v=>String(v),
+    bars:[{label:'rofecoxib',value:17,extra:all?3:0,color:'var(--data)'},{label:'naproxen',value:4,color:'var(--muted)'}]});
+  $('#vxPlot2').innerHTML=barPanel({title:'APPROVe: vs placebo (2005)',ymax:2,ticks:[0,0.5,1,1.5,2],ylabel:'events / 100 patient-yr',fmtv:v=>v.toFixed(2),tickf:v=>String(v),
+    bars:[{label:'rofecoxib',value:1.50,color:'var(--data)'},{label:'placebo',value:0.78,color:'var(--muted)'}]});
+  $('#vxNote').innerHTML = all
+    ? `<b>With all events:</b> 20 vs 4 heart attacks, relative risk for rofecoxib 5.00 (95% CI 1.68 to 20.13). The placebo trial on the right settles which drug was responsible: rofecoxib, relative risk 1.92 (95% CI 1.19 to 3.11).`
+    : `<b>As published:</b> 17 vs 4 heart attacks, reported as 0.4% vs 0.1% with naproxen’s relative risk “0.2”, which reads as naproxen protecting the heart.`;
+}
+function setupCases(){
+  const seg=(attr,fn)=>{ const btns=[...document.querySelectorAll(`[data-${attr}]`)]; btns.forEach(b=>b.addEventListener('click',()=>{ btns.forEach(x=>x.setAttribute('aria-pressed',String(x===b))); fn(b.dataset[attr]); })); };
+  seg('ch',renderChallenger); seg('vx',renderVioxx); renderChallenger('dmg'); renderVioxx('pub');
+}
+
 /* ================= BOOT ================= */
-renderExamples(); setupExplorer(); setupG(); setupProp(); setupQ(); setupF(); setupT();
+renderExamples(); setupCases(); setupExplorer(); setupG(); setupProp(); setupQ(); setupF(); setupT();
 buildGen($('#genQ'),{title:'Q test problem generator',blurb:'Each problem uses a new random data set from a clinical or chemistry setting. Work it on paper, enter your Q and your decision, then check.',make:genQ});
 buildGen($('#genF'),{title:'F test problem generator',blurb:'Compute both standard deviations, put the larger variance on top, and compare with F at 95%.',make:genF});
 buildGen($('#genT'),{title:'t test problem generator',blurb:'Choose one case or mix all three. Two-mean problems include the F test step for deciding whether to pool.',make:genT,typeSelect:true});
