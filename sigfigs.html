@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Significant Figures · Replicates and Uncertainty</title>
-<meta name="description" content="The rules for significant figures in measurements and calculations, with a digit counter and 20 practice problems: calculations, a titration case study, and reflection problems.">
+<meta name="description" content="The rules for significant figures in measurements and calculations, with a digit counter and 20 practice problems: calculations, a titration case study and reflection problems.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c2185b'/%3E%3Cpath d='M5 25 C11 25 12 7 16 7 S21 25 27 25' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -282,7 +282,7 @@ footer .wrap{padding-block:20px 48px}
         <p class="why">They only locate the decimal point. 0.0052 g is 5.2 mg: same measurement, two digits.</p>
       </div>
       <div class="card">
-        <h4>4 · Trailing zeros after a decimal point count</h4>
+        <h4>4 · Trailing zeros count when there is a decimal point</h4>
         <div class="ex"><span><span class="digits" data-num="2.50"></span> <span class="cnt">3</span></span><span><span class="digits" data-num="100.0"></span> <span class="cnt">4</span></span></div>
         <p class="why">Writing 2.50 says you measured the hundredths place and found 0. Dropping it to 2.5 throws away information.</p>
       </div>
@@ -313,8 +313,8 @@ footer .wrap{padding-block:20px 48px}
             <text x="200" y="162" class="t-acc">20.36</text>
           </svg>
           <div class="prose">
-            <p>A 50-mL burette is marked every 0.1 mL. The bottom of the meniscus is past 20.3 but not at 20.4, a little more than halfway. You read <b class="mono">20.36 mL</b>: three certain digits and one estimated digit.</p>
-            <p>The same idea sets the digits for every instrument. An analytical balance that displays 0.0001 g gives four decimal places; a 25-mL Class A pipette is written 25.00 mL; a top-loading balance that reads to 0.1 g gives one decimal place.</p>
+            <p>A 50 mL burette is marked every 0.1 mL. The bottom of the meniscus is past 20.3 but not at 20.4, a little more than halfway. You read <b class="mono">20.36 mL</b>: three certain digits and one estimated digit.</p>
+            <p>The same idea sets the digits for every instrument. An analytical balance that displays 0.0001 g gives four decimal places; a 25 mL Class A pipette is written 25.00 mL; a top-loading balance that reads to 0.1 g gives one decimal place.</p>
             <p class="muted">Writing 20.4 throws away a digit you could estimate. Writing 20.362 claims a digit no one can see.</p>
           </div>
         </div>
@@ -336,7 +336,7 @@ footer .wrap{padding-block:20px 48px}
         <label class="ctl">Number
           <input type="text" id="cIn" value="0.004050" inputmode="decimal" autocomplete="off" spellcheck="false"></label>
       </div>
-      <div class="chips" id="cChips" aria-label="Examples to try"></div>
+      <div class="chips" id="cChips" role="group" aria-label="Examples to try"></div>
       <div class="cout" id="cOut" aria-live="polite"></div>
     </div>
   </div>
@@ -354,12 +354,12 @@ footer .wrap{padding-block:20px 48px}
       <div class="card">
         <h4>Adding and subtracting: count decimal places</h4>
         <p>Keep the decimal place of the <b>least precise</b> number. Line the numbers up; the first column with an unknown digit ends the answer.</p>
-<div class="calcbox" aria-label="12.11 plus 18.0 plus 1.013 equals 31.123, rounded to 31.1">   12.11
+<div class="calcbox" role="img" aria-label="12.11 plus 18.0 plus 1.013 equals 31.123, rounded to 31.1">   12.11
    18.0<span class="u">?</span>
  +  1.013
  ────────
    31.1<span class="g">23</span>  →  <span class="r">31.1</span></div>
-        <p class="why">18.0 says nothing about the hundredths place, so the sum cannot either. Subtraction can lose figures: 47.632 − 46.1 = 1.5, four and three figures in, two out.</p>
+        <p class="why">18.0 says nothing about the hundredths place, so the sum cannot either. Subtraction can lose figures: 47.632 − 46.1 = 1.5, five and three figures in, two out.</p>
       </div>
       <div class="card">
         <h4>Multiplying and dividing: count significant figures</h4>
@@ -369,7 +369,7 @@ footer .wrap{padding-block:20px 48px}
       </div>
       <div class="card">
         <h4>Logarithms and antilogarithms</h4>
-        <p>Digits <b>after the decimal point</b> in a log equal the significant figures in the number. The digit before the point only sets the power of ten.</p>
+        <p>Digits <b>after the decimal point</b> in a log equal the significant figures in the number. The digits before the point only set the power of ten.</p>
         <div class="calcbox">[H⁺] = 2.0 × 10⁻³ M  (2 s.f.)
 pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
 10<sup>−2.70</sup> = <span class="r">2.0 × 10⁻³</span>  (2 s.f.)</div>
@@ -385,7 +385,7 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
       <div class="card">
         <h4>Rounding</h4>
         <p>Look at the first digit you drop. Below 5, leave the last kept digit alone. Above 5, or 5 followed by other nonzero digits, round up.</p>
-        <p class="why"><b>Exactly 5:</b> Harris recommends rounding to the nearest even digit (2.45 → 2.4, 2.35 → 2.4), so that rounding up and down balance over many results. Many general chemistry courses always round up. None of the problems on this page depend on that choice.</p>
+        <p class="why"><b>Exactly 5:</b> Harris and Lucy recommend rounding to the nearest even digit (2.45 → 2.4, 2.35 → 2.4), so that rounding up and down balance over many results. Many general chemistry courses always round up. None of the problems on this page depend on that choice.</p>
       </div>
       <div class="card">
         <h4>When you know the uncertainty, it decides</h4>
@@ -394,7 +394,7 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
         <p class="why">Significant figure rules are a quick estimate. A real uncertainty, from a standard deviation or from <a href="./#propagation">propagation of uncertainty</a>, always wins.</p>
       </div>
     </div>
-    <p class="src-line">Rules follow Harris and Lucy (ch. 3) and Skoog et al. (ch. 6); writing numbers and rounding follows NIST SP 811. <a href="references.html#sigfigs">References 1, 2 and 22.</a></p>
+    <p class="src-line">Rules follow Harris and Lucy (ch. 3) and Skoog et al. (ch. 6); writing numbers and rounding follows NIST SP 811. <a href="references.html">References 1, 2 and 22.</a></p>
   </div>
 </section>
 
@@ -405,7 +405,7 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
       <span class="eyebrow">Practice · Problems 1–10</span>
       <h2>Calculations</h2>
       <p class="prose muted">Each problem tests one rule. Calculate, round, and type the answer the way you would report it.</p>
-      <p class="tip"><b>How to enter answers:</b> numbers only, since the units are shown. Type powers of ten as <span class="mono">4.3e2</span> or <span class="mono">4.3x10^2</span>. The checker tells you whether your value is right and, separately, whether you kept the right number of figures.</p>
+      <p class="tip"><b>How to enter answers:</b> type the number; units are optional because they are already shown. Type powers of ten as <span class="mono">4.3e2</span> or <span class="mono">4.3x10^2</span>. The checker tells you whether your value is right and, separately, whether you kept the right number of figures.</p>
       <div class="scorebar"><span class="score">Correct: <b data-score="calc">0</b> / 10</span></div>
     </div>
     <div class="problems" data-sec="calc"></div>
@@ -430,8 +430,8 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
           <tr><td>Weighing bottle + KHP, before transfer</td><td class="v">18.4372 g</td><td class="i">analytical balance, 0.0001 g</td></tr>
           <tr><td>Weighing bottle + KHP, after transfer</td><td class="v">17.9261 g</td><td class="i">same balance</td></tr>
           <tr><td>Molar mass of KHP</td><td class="v">204.22 g/mol</td><td class="i">from atomic masses</td></tr>
-          <tr><td>NaOH burette, KHP titration: initial / final</td><td class="v">0.42 / 25.47 mL</td><td class="i">50-mL burette</td></tr>
-          <tr><td>Vinegar sample</td><td class="v">5.00 mL</td><td class="i">5-mL volumetric pipette</td></tr>
+          <tr><td>NaOH burette, KHP titration: initial / final</td><td class="v">0.42 / 25.47 mL</td><td class="i">50 mL burette</td></tr>
+          <tr><td>Vinegar sample</td><td class="v">5.00 mL</td><td class="i">5 mL volumetric pipette</td></tr>
           <tr><td>NaOH burette, vinegar titration: initial / final</td><td class="v">1.06 / 42.71 mL</td><td class="i">same burette</td></tr>
           <tr><td>Molar mass of acetic acid</td><td class="v">60.052 g/mol</td><td class="i">from atomic masses</td></tr>
         </tbody>
@@ -467,6 +467,8 @@ const $$ = s => [...document.querySelectorAll(s)];
 const SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-','⁺':'+'};
 function parseNum(raw){
   let s = String(raw).trim()
+    .replace(/\s*(±|\+\/-|\+-).*$/, '')            // "5.00 ± 0.04": judge the value only
+    .replace(/(?:\s+[^\d\s][^\d]*|%)$/, '')        // a trailing unit: "31.1 g", "5.00%", "24 kg/m²"
     .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/g, m => '^' + [...m].map(c => SUP[c]).join(''))
     .replace(/[−–]/g, '-').replace(/\s+/g, '');
   const m = s.match(/^([+-]?)(\d+\.?\d*|\.\d+)(?:[eE]([+-]?\d+)|[x×X*·]10\^?\(?([+-]?\d+)\)?)?$/);
@@ -522,7 +524,7 @@ function renderCounter(){
   if (kinds.has('nz')) why.push('Nonzero digits always count.');
   if (kinds.has('cap')) why.push('Zeros between nonzero digits count.');
   if (kinds.has('lead')) why.push('Leading zeros do not count; they only place the decimal point.');
-  if (kinds.has('trail')) why.push('Trailing zeros after a decimal point count: someone measured them.');
+  if (kinds.has('trail')) why.push('Trailing zeros count when the number has a decimal point: someone measured them.');
   if (kinds.has('amb')) why.push(`Trailing zeros in a whole number are ambiguous. Write it in scientific notation to show which you measured, or end it with a decimal point (${r.mant}.) if all of them were.`);
   if (r.sci) why.push('The power of ten never counts; it only sets the size.');
   const count = r.sfMin === r.sfMax ? `<b>${r.sfMax}</b> significant figure${r.sfMax > 1 ? 's' : ''}`
@@ -570,7 +572,7 @@ const PROBLEMS = [
   {sec:'calc', title:'Subtraction loses figures', tag:'Subtraction',
    q:'A beaker weighs 47.632 g with a sample in it. On a less precise balance the empty beaker weighed 46.1 g. What is the mass of the sample?', unit:'g', exact:47.632-46.1, sf:2, ans:'1.5 g',
    why:'46.1 g is known only to the tenths place, so the difference stops there.',
-   steps:['Subtract: 47.632 − 46.1 = 1.532.','46.1 is known only to tenths, so round to tenths: 1.5 g.','Four and three significant figures went in; two came out. Subtracting two similar numbers loses figures, which is why both masses should come from the same precise balance.']},
+   steps:['Subtract: 47.632 − 46.1 = 1.532.','46.1 is known only to tenths, so round to tenths: 1.5 g.','Five and three significant figures went in; two came out. Subtracting two similar numbers loses figures, which is why both masses should come from the same precise balance.']},
   {sec:'calc', title:'Multiplying', tag:'Multiplication',
    q:'Calculate 4.56 × 1.4.', unit:'', exact:4.56*1.4, sf:2, ans:'6.4',
    why:'1.4 has only two significant figures.',
@@ -620,13 +622,13 @@ const PROBLEMS = [
    why:'0.09991 M and 41.65 mL both have four significant figures.',
    steps:['Volume of NaOH: 42.71 − 1.06 = 41.65 mL = 0.04165 L (4 figures).','Moles NaOH = 0.09991 mol/L × 0.04165 L = 4.1613 × 10<sup>−3</sup> mol.','Acetic acid reacts 1 : 1 with NaOH, so moles of acetic acid = 4.161 × 10<sup>−3</sup> mol (4 figures).']},
   {sec:'case', title:'Percent acidity', tag:'Final result',
-   q:'Use 4.161 × 10<sup>−3</sup> mol acetic acid (from Problem 13). What is the acidity of the vinegar, in grams of acetic acid per 100 mL? Does it match the label?', unit:'% (g per 100 mL)', exact:4.161e-3*60.052/5.00*100, sf:3, ans:'5.00 %',
+   q:'Use 4.161 × 10<sup>−3</sup> mol acetic acid (from Problem 13). What is the acidity of the vinegar, in grams of acetic acid per 100 mL? Does it match the label?', unit:'% (g per 100 mL)', exact:4.161e-3*60.052/5.00*100, sf:3, ans:'5.00%',
    why:'The pipette volume, 5.00 mL, has three significant figures. The 100 in “per 100 mL” is exact.',
-   steps:['Mass of acetic acid: 4.161 × 10<sup>−3</sup> mol × 60.052 g/mol = 0.24988 g.','Per 100 mL: 0.24988 g ÷ 5.00 mL × 100 mL = 4.9975 g per 100 mL.','The 5.00 mL volume has 3 figures and the 100 is exact, so round to 3: 5.00 %.','The zeros matter. “5.00 %” says the result is good to the hundredths place and matches the label; “5 %” would say only that it is somewhere between about 4.5 % and 5.5 %.']},
+   steps:['Mass of acetic acid: 4.161 × 10<sup>−3</sup> mol × 60.052 g/mol = 0.24988 g.','Per 100 mL: 0.24988 g ÷ 5.00 mL × 100 mL = 4.9975 g per 100 mL.','The 5.00 mL volume has 3 figures and the 100 is exact, so round to 3: 5.00%.','The zeros matter. “5.00%” says the result is good to the hundredths place and matches the label; “5%” would say only that it is somewhere between about 4.5% and 5.5%.']},
   {sec:'case', title:'Reporting replicate results', tag:'Mean and standard deviation',
-   q:'The student repeats the vinegar titration twice more. The three results, straight from the calculator, are 4.998, 5.041 and 4.962 % (g per 100 mL). Find the mean and the standard deviation, then report the mean with the decimal places that the standard deviation supports.', unit:'%', exact:(4.998+5.041+4.962)/3, dp:2, ans:'5.00 % (reported as 5.00 ± 0.04 %)',
+   q:'The student repeats the vinegar titration twice more. The three results, straight from the calculator, are 4.998, 5.041 and 4.962% (g per 100 mL). Find the mean and the standard deviation, then report the mean with the decimal places that the standard deviation supports. Enter the mean in the box.', unit:'%', exact:(4.998+5.041+4.962)/3, dp:2, ans:'5.00% (reported as 5.00 ± 0.04%)',
    why:'The standard deviation, 0.04, is in the hundredths place, so the mean stops at the hundredths place.',
-   steps:['Mean: (4.998 + 5.041 + 4.962) ÷ 3 = 5.0003 %.','Standard deviation (n − 1 in the denominator): s = 0.0396 %, which rounds to 0.04 % (one significant figure).','The uncertainty is in the hundredths place, so round the mean to hundredths: 5.00 %.','Report 5.00 ± 0.04 % (mean ± s, n = 3). <a href="./#terms">Mean and standard deviation in the module.</a>']},
+   steps:['Mean: (4.998 + 5.041 + 4.962) ÷ 3 = 5.0003%.','Standard deviation (n − 1 in the denominator): s = 0.0396%, which rounds to 0.04% (one significant figure).','The uncertainty is in the hundredths place, so round the mean to hundredths: 5.00%.','Report 5.00 ± 0.04% (mean ± s, n = 3). <a href="./#terms">Mean and standard deviation in the module.</a>']},
 
   // ---- reflect 16-20 ----
   {sec:'reflect', field:'med', title:'Blood glucose: mmol/L to mg/dL', tag:'Unit conversion',
@@ -635,7 +637,7 @@ const PROBLEMS = [
    steps:['Multiply: 5.6 × 18.016 = 100.89 mg/dL.','5.6 has 2 significant figures; 18.016 has 5. Keep 2.','Two figures gives 100, but “100” hides whether the zeros are significant. Write 1.0 × 10<sup>2</sup> mg/dL.'],
    reflect:[
      {q:'The clinic’s software converts the reading and prints “100.89 mg/dL”. What does that number claim about the measurement, and is the claim true?',
-      a:'It claims the meter can tell 100.89 from 100.88, a precision of about 0.01 %. The reading of 5.6 only places the glucose between about 5.55 and 5.65 mmol/L, which is roughly 100 to 102 mg/dL. The extra digits were made by the calculator, not measured.'},
+      a:'It claims the meter can tell 100.89 from 100.88, a precision of about 0.01%. The reading of 5.6 only places the glucose between about 5.55 and 5.65 mmol/L, which is roughly 100 to 102 mg/dL. The extra digits were made by the calculator, not measured.'},
      {q:'A fasting glucose of 100 mg/dL (5.6 mmol/L) or higher is the cutoff for prediabetes. Can this single reading tell you which side of the cutoff the patient is on?',
       a:'No. The cutoff sits inside the range the reading allows, so the result is on the line. Home meters also carry an uncertainty of several percent. Diagnosis is based on laboratory plasma glucose, confirmed by a repeat test. The honest conclusion is “borderline, retest”, not “prediabetes”.'}]},
   {sec:'reflect', field:'chem', title:'Arsenic in well water', tag:'Dilution',
@@ -645,8 +647,8 @@ const PROBLEMS = [
    reflect:[
      {q:'A summary report lists the result as “0.01 mg/L”. How many significant figures is that, and why is it misleading next to the U.S. limit for arsenic of 0.010 mg/L (10 µg/L)?',
       a:'One significant figure. “0.01 mg/L” could mean anything from 0.005 to 0.015 mg/L, from half the limit to one and a half times it. It reads as “at the limit” even though the measurement was 9.70 µg/L. Write 0.00970 mg/L or 9.70 µg/L.'},
-     {q:'The laboratory states an uncertainty of ±0.5 µg/L (95 % confidence). How should the result be reported, and can you say the water is below the limit?',
-      a:'The uncertainty is in the tenths place, so report 9.7 ± 0.5 µg/L; the hundredths digit is not supported. The range 9.2 to 10.2 µg/L includes 10, so from this one measurement you cannot say with 95 % confidence that the water is below the limit, and you cannot say it is above. Replicate samples would narrow the range.'}]},
+     {q:'The laboratory states an uncertainty of ±0.5 µg/L (95% confidence). How should the result be reported, and can you say the water is below the limit?',
+      a:'The uncertainty is in the tenths place, so report 9.7 ± 0.5 µg/L; the hundredths digit is not supported. The range 9.2 to 10.2 µg/L includes 10, so from this one measurement you cannot say with 95% confidence that the water is below the limit, and you cannot say it is above. Replicate samples would narrow the range.'}]},
   {sec:'reflect', field:'chem', title:'Beer’s law with a handbook value', tag:'Division',
    q:'A dye solution in a 1.00 cm cuvette has an absorbance of 0.432. A handbook gives the molar absorptivity as ε = 1.1 × 10<sup>4</sup> L mol<sup>−1</sup> cm<sup>−1</sup>. Use Beer’s law, A = εbc, to find the concentration.', unit:'M', exact:0.432/(1.1e4*1.00), sf:2, ans:sci('3.9',-5) + ' M',
    why:'ε = 1.1 × 10<sup>4</sup> has only two significant figures.',
@@ -671,7 +673,7 @@ const PROBLEMS = [
    steps:['Moles: 1.2 g ÷ 58.44 g/mol = 0.020534 mol (2 figures, keep guard digits).','Volume: 250.0 mL = 0.2500 L (4 figures).','Molarity: 0.020534 ÷ 0.2500 = 0.082136 M → 0.082 M (2 figures).'],
    reflect:[
      {q:'The Class A flask is good to ±0.12 mL. Did using such a precise flask improve the answer?',
-      a:'No. The flask’s relative uncertainty is 0.12 ÷ 250 ≈ 0.05 %. The balance’s is 0.1 ÷ 1.2 ≈ 8 %, more than 100 times larger. The answer has two significant figures either way: a result is only as good as its weakest measurement.'},
+      a:'No. The flask’s relative uncertainty is 0.12 ÷ 250 ≈ 0.05%. The balance’s is 0.1 ÷ 1.2 ≈ 8%, more than 100 times larger. The answer has two significant figures either way: a result is only as good as its weakest measurement.'},
      {q:'What would you change so the concentration could be reported to four significant figures?',
       a:'Weigh the NaCl on an analytical balance that reads to 0.0001 g, for example 1.2047 g (5 figures). The result would then be limited by the molar mass (58.44) and the volume (250.0), both 4 figures. Drying the NaCl before weighing would also make the extra digits trustworthy.'}]}
 ];

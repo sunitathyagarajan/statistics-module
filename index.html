@@ -322,7 +322,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <div class="def"><h4>Standard error of the mean <span class="sym">s<sub><span class="ov">x</span></sub></span></h4>
         <div class="formula">s<sub><span class="ov">x</span></sub> = s / √n</div>
         <p>The uncertainty in the <em>mean</em>, which is smaller than the scatter of single results. Four times as many replicates halves it.</p>
-        <p class="use"><b>Where it matters:</b> Planning how many replicates to run: four times as many replicates halves the uncertainty of the mean.</p>
+        <p class="use"><b>Where it matters:</b> Planning how many replicates to run: going from 3 to 12 titrations cuts the uncertainty of the mean in half.</p>
         <p class="lab"><b>At the bench:</b> why you run triplicates rather than a single titration.</p></div>
     </div>
 
@@ -347,7 +347,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p class="use"><b>Where it matters:</b> Checking that a tablet’s measured drug content is within the allowed percentage of its label claim.</p>
         <p class="lab"><b>At the bench:</b> “% error” on a graded unknown.</p></div>
       <div class="def"><h4>Systematic (determinate) error</h4>
-        <p>A reproducible bias in one direction with a cause you can find and fix: an uncalibrated pipet, an impure standard, a wrong indicator, a drifting baseline.</p>
+        <p>A reproducible bias in one direction with a cause you can find and fix: an uncalibrated pipette, an impure standard, a wrong indicator, a drifting baseline.</p>
         <p class="use"><b>Where it matters:</b> A balance that reads 2 mg low makes every weighing in the lab wrong until someone checks it with standard weights.</p>
         <p class="lab"><b>At the bench:</b> hurts accuracy. Repeating the measurement does not average it away. The t test against a known value detects it.</p></div>
       <div class="def"><h4>Random (indeterminate) error</h4>
@@ -375,7 +375,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         </div>
         <p>A range that probably contains the true value. <b>Absolute uncertainty</b> has units (± 0.02 mL); <b>relative uncertainty</b> is a fraction or percentage (± 0.08%). It comes from instrument tolerances (Type B) or from the scatter of replicates (Type A).</p>
         <p class="use"><b>Where it matters:</b> A blood alcohol result near the 0.08 g/dL legal limit is judged together with its uncertainty.</p>
-        <p class="lab"><b>At the bench:</b> a Class A 25 mL pipet is 25.00 ± 0.03 mL.</p></div>
+        <p class="lab"><b>At the bench:</b> a Class A 25 mL pipette is 25.00 ± 0.03 mL.</p></div>
       <div class="def"><h4>Propagation of uncertainty</h4>
         <div class="formula multi">
           <div class="eqlbl">Addition or subtraction: y = a + b or y = a − b</div>
@@ -401,7 +401,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p class="lab"><b>At the bench:</b> t = 2.776 for 5 replicates at 95% instead of z = 1.960.</p></div>
       <div class="def"><h4>Confidence interval (CI)</h4>
         <div class="formula">μ = <span class="ov">x</span> ± t·s / √n</div>
-        <p>A range around <span class="ov">x</span> expected to contain μ with a stated probability. A 95% CI built this way captures μ in 95 out of 100 repeated experiments.</p>
+        <p>A range around <span class="ov">x</span> expected to contain μ with a stated probability. In the long run, about 95 of every 100 intervals built this way contain μ.</p>
         <p class="use"><b>Where it matters:</b> Drug trials report a 95% CI for the treatment effect. If the interval includes zero, the benefit is not established.</p>
         <p class="lab"><b>At the bench:</b> the “± 0.04 mL” at the top of this page.</p></div>
       <div class="def"><h4>Confidence level and significance level <span class="sym">α</span></h4>
@@ -610,7 +610,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <div class="controls">
             <label class="ctl" for="pM">Mass of KHP (g)<input type="number" id="pM" value="0.5106" step="0.0001"></label>
             <label class="ctl" for="pUM">Balance uncertainty (± g)
-              <select id="pUM"><option value="0.0002" selected>Analytical, ± 0.0002</option><option value="0.001">Semi-micro misuse, ± 0.001</option><option value="0.01">Top-loading, ± 0.01</option></select></label>
+              <select id="pUM"><option value="0.0002" selected>Analytical balance, ± 0.0002</option><option value="0.001">Milligram balance, ± 0.001</option><option value="0.01">Top-loading balance, ± 0.01</option></select></label>
             <label class="ctl" for="pMW">Molar mass (g/mol)<input type="number" id="pMW" value="204.22" step="0.01"></label>
           </div>
           <div class="controls">
@@ -995,7 +995,7 @@ const EXAMPLES = [
  {f:'chem',key:'c2a',key2:'c2b',title:'C2 · Accuracy versus precision on a reference material',
   scene:'Two students analyze a copper certified reference material (10.00 mg/L) by atomic absorption, four replicates each.',
   data:[9.62,9.65,9.60,9.64],data2:[9.85,10.21,9.92,10.15],unit:'mg/L',known:10.00,
-  read:'Student A is very precise (RSD 0.23%) but 3.7% low, the signature of a systematic error such as a miscalibrated pipet or wrongly made standards. Student B is accurate on average (+0.3%) but much less precise (RSD 1.7%), the signature of random error. Averaging more replicates would help B; it would not help A.',
+  read:'Student A is very precise (RSD 0.23%) but 3.7% low, the signature of a systematic error such as a miscalibrated pipette or wrongly made standards. Student B is accurate on average (+0.3%) but much less precise (RSD 1.7%), the signature of random error. Averaging more replicates would help B; it would not help A.',
   tags:['accuracy','precision','systematic error','random error','% error']},
  {f:'med',key:'m3',title:'M3 · Is the blood pressure really above 130?',
   scene:'A patient’s systolic pressure is measured five times. Stage 1 hypertension in US guidelines starts at 130 mmHg.',
