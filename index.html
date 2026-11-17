@@ -1,10 +1,21 @@
-<title>Replicates and Uncertainty</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="claude:viewport-fit-sides" content="cover">
+<title>Replicates and Uncertainty</title>
+<meta name="description" content="An interactive statistics module for quantitative analytical chemistry: key terms, medical and chemistry examples, live plots, propagation of uncertainty, and Q, F and t test problem generators.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c2185b'/%3E%3Cpath d='M5 25 C11 25 12 7 16 7 S21 25 27 25' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
+/* Base reset */
+html{color-scheme:light;-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
 /* Layout: one reading column (max 1000px) under a sticky section index; definitions in a responsive card grid; every interactive is a "bench" panel with controls beside or above its plot. */
 :root{
   --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0; --grid:#e4ebee;
@@ -197,6 +208,8 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 @media (max-width:520px){ body{font-size:16px} .bench,.gen,.ex{padding:14px} .statgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
 </style>
+</head>
+<body>
 
 <header class="hero">
   <div class="wrap">
@@ -1312,3 +1325,5 @@ buildGen($('#genF'),{title:'F test problem generator',blurb:'Compute both standa
 buildGen($('#genT'),{title:'t test problem generator',blurb:'Choose one case or mix all three. Two-mean problems include the F test step for deciding whether to pool.',make:genT,typeSelect:true});
 renderTables();
 </script>
+</body>
+</html>
