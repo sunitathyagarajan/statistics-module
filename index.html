@@ -475,7 +475,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <h3>Case 1 · Challenger: the flights left off the chart</h3>
         <div class="case-grid">
           <dl class="facts">
-            <div><dt>The data</dt><dd>Damage to the rubber O-rings that seal the shuttle’s booster joints, for all 23 flights before January 1986, with the launch temperature of each. Rubber stiffens and seals poorly in the cold.</dd></div>
+            <div><dt>The data</dt><dd>Damage to the rubber O-rings that seal the shuttle’s booster joints, on the 23 earlier flights whose boosters were recovered, with the launch temperature of each. Rubber stiffens and seals poorly in the cold.</dd></div>
             <div><dt>The mistake</dt><dd>The night before launch, the review looked only at the 7 flights that had O-ring damage. Damage showed up at 53 °F and at 75 °F, so temperature seemed not to matter. The 16 flights with no damage were left out as carrying no information.</dd></div>
             <div><dt>The outcome</dt><dd>Challenger launched on 28 January 1986 with a forecast of 31 °F, 22 °F colder than any earlier flight. An O-ring seal failed and the shuttle broke apart 73 seconds after liftoff. All seven crew members died.</dd></div>
             <div><dt>The lesson</dt><dd>Results that show “no effect” are still data. With all 23 flights plotted, the trend is clear.</dd></div>
@@ -651,7 +651,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <span class="eyebrow">Test 1</span>
       <h2>The Q test (Dixon’s test for outliers)</h2>
       <div class="prose">
-        <p>Use the Q test when one result in a small set (3 to 10 values) looks suspiciously far from the rest. Sort the data, then compare the <b>gap</b> between the suspect value and its nearest neighbour with the <b>range</b> of all the data.</p>
+        <p>Use the Q test when one result in a small set (3 to 10 values) looks suspiciously far from the rest. Sort the data, then compare the <b>gap</b> between the suspect value and its nearest neighbor with the <b>range</b> of all the data.</p>
         <div class="formula multi"><div class="eq wrap"><span>Q<sub>calc</sub> = <span class="frac"><span>gap</span><span>range</span></span></span> <span>= <span class="frac"><span>|x<sub>suspect</sub> − x<sub>nearest</sub>|</span><span>x<sub>max</sub> − x<sub>min</sub></span></span></span></div></div>
         <p>If Q<sub>calc</sub> &gt; Q<sub>crit</sub> for your n and confidence level, the suspect value may be rejected. Otherwise it must be kept. Apply the test once. Never reject a value just because it spoils your precision, and never test again after removing one point. Some textbooks use the Grubbs test instead; the reasoning is the same.</p>
         <p class="src-line">Sources: Dean and Dixon (1951); critical values from Rorabacher (1991). <a href="references.html#r9">References 9–10.</a></p>
@@ -733,9 +733,9 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <p class="prose">Use it to check a method for systematic error by analyzing a certified reference material or standard.</p>
       <div class="worked">
         <span class="chip chem">Chemistry example</span>
-        <p>A CRM is certified at 10.00 mg/L Cu. Student A finds 9.62, 9.65, 9.60, 9.64 (<span class="ov">x</span> = 9.628, s = 0.0222, n = 4).</p>
-        <div class="calcline">t<sub>calc</sub> = |9.628 − 10.00| × √4 / 0.0222 = 0.3725 × 2 / 0.0222 = 33.6<br>t<sub>crit</sub> (ν = 3, 95%) = 3.182</div>
-        <p>33.6 &gt; 3.182, so <b>Student A has a systematic error</b>. Student B (<span class="ov">x</span> = 10.03, s = 0.174) gets t = 0.37, which is not significant.</p>
+        <p>A CRM is certified at 10.00 mg/L Cu. Student A finds 9.62, 9.65, 9.60, 9.64 (<span class="ov">x</span> = 9.6275, s = 0.0222, n = 4).</p>
+        <div class="calcline">t<sub>calc</sub> = |9.6275 − 10.00| × √4 / 0.0222 = 0.3725 × 2 / 0.0222 = 33.6<br>t<sub>crit</sub> (ν = 3, 95%) = 3.182</div>
+        <p>33.6 &gt; 3.182, so <b>Student A has a systematic error</b>. Student B (<span class="ov">x</span> = 10.0325, s = 0.174) gets t = 0.37, which is not significant.</p>
       </div>
     </div>
 
@@ -759,7 +759,8 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <div class="testcase">
       <h3>Case 3 · Paired t test</h3>
       <div class="formula multi">
-        <div class="eq">d<sub>i</sub> = x<sub>A,i</sub> − x<sub>B,i</sub></div>
+        <div class="eq">d<sub>i</sub> = x<sub>B,i</sub> − x<sub>A,i</sub></div>
+        <div class="eqlbl">Subtract in the same order (method B minus method A) for every specimen</div>
         <div class="eq">t<sub>calc</sub> = <span class="frac"><span>|<span class="ov">d</span>| · √n</span><span>s<sub>d</sub></span></span></div>
         <div class="eq">ν = n − 1</div>
       </div>
@@ -770,7 +771,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <tr><td>Patient</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
           <tr><td>Lab analyzer (mg/dL)</td><td>92</td><td>145</td><td>178</td><td>110</td><td>231</td><td>64</td></tr>
           <tr><td>Glucometer (mg/dL)</td><td>96</td><td>149</td><td>175</td><td>117</td><td>240</td><td>69</td></tr>
-          <tr><td>Difference d</td><td>4</td><td>4</td><td>−3</td><td>7</td><td>9</td><td>5</td></tr>
+          <tr><td>d = glucometer − lab</td><td>4</td><td>4</td><td>−3</td><td>7</td><td>9</td><td>5</td></tr>
         </table></div>
         <div class="calcline"><span class="ov">d</span> = 4.33   s<sub>d</sub> = 4.08   n = 6<br>t<sub>calc</sub> = 4.33 × √6 / 4.08 = 2.60   t<sub>crit</sub> (ν = 5, 95%) = 2.571</div>
         <p>2.60 &gt; 2.571, so <b>the glucometer reads significantly high</b>, by about 4 mg/dL on average. Treating these as two independent sets would hide the bias, because patient glucose ranges from 64 to 240 mg/dL.</p>
@@ -988,7 +989,7 @@ const EXAMPLES = [
  {f:'med',key:'m2',title:'M2 · When the mean misleads: hospital length of stay',
   scene:'Days in hospital for eight patients after the same surgery. One patient developed a complication.',
   data:[2,3,3,4,4,5,6,21],unit:'days',
-  read:'The mean (6.0 days) is higher than seven of the eight stays. The median (4.0 days) describes a typical patient far better. The single long stay also makes s (6.2 days) larger than the median itself. Skewed data like this call for the median; in the lab, the same effect comes from a gross error, which the Q test addresses.',
+  read:'The mean (6.0 days) is longer than six of the eight stays. The median (4.0 days) describes a typical patient far better. The single long stay also makes s (6.2 days) larger than the median itself. Skewed data like this call for the median; in the lab, the same effect comes from a gross error, which the Q test addresses.',
   tags:['median vs. mean','range','outlier','skewed data']},
  {f:'chem',key:'c2a',key2:'c2b',title:'C2 · Accuracy versus precision on a reference material',
   scene:'Two students analyze a copper certified reference material (10.00 mg/L) by atomic absorption, four replicates each.',
@@ -1099,7 +1100,7 @@ function parseText(){
   const bad=vals.some(v=>!isFinite(v)); const good=vals.filter(v=>isFinite(v));
   if(good.length<2){ $('#exMsg').textContent='Enter at least two numbers.'; return; }
   $('#exMsg').textContent = bad?'Some entries were not numbers and were skipped.':'';
-  EX.data=good; EX.dec=decimalsOf(good); EX.domain=null; EX.preset='own'; $('#exPreset').value='own'; if(!PRESETS[EX.preset]) EX.unit=''; renderExplorer();
+  EX.data=good; EX.dec=decimalsOf(good); EX.domain=null; EX.preset='own'; $('#exPreset').value='own'; EX.unit=''; renderExplorer();
 }
 function setupExplorer(){
   $('#exPreset').innerHTML=Object.entries(PRESETS).map(([k,p])=>`<option value="${k}">${p.label}</option>`).join('');
@@ -1252,14 +1253,14 @@ const CTX=[
  {f:'med',what:'blood lead in a reference sample',unit:'µg/dL',mu:4.80,sd:0.12,d:2},
  {f:'med',what:'cholesterol in a control serum',unit:'mg/dL',mu:192,sd:3,d:0},
  {f:'med',what:'hemoglobin in a quality-control blood',unit:'g/dL',mu:14.20,sd:0.08,d:2},
- {f:'chem',what:'the NaOH titrant volume at the endpoint',unit:'mL',mu:24.15,sd:0.03,d:2},
+ {f:'chem',what:'the NaOH titrant volume at the endpoint',unit:'mL',mu:24.15,sd:0.03,d:2,noKnown:true,noPair:true},
  {f:'chem',what:'iron in an ore sample',unit:'% w/w',mu:12.47,sd:0.05,d:2},
- {f:'chem',what:'absorbance of a standard at 525 nm',unit:'AU',mu:0.452,sd:0.004,d:3},
+ {f:'chem',what:'absorbance of a standard at 525 nm',unit:'AU',mu:0.452,sd:0.004,d:3,noPair:true},
  {f:'chem',what:'copper in a brass sample',unit:'% w/w',mu:63.42,sd:0.07,d:2},
  {f:'chem',what:'chloride in tap water',unit:'mg/L',mu:24.6,sd:0.3,d:1},
  {f:'chem',what:'acetaminophen per tablet',unit:'mg',mu:325.0,sd:1.1,d:1}
 ];
-const PAIRS={med:[['Analyzer A','Analyzer B'],['Lab 1','Lab 2'],['Glucometer A','Glucometer B'],['Day shift','Night shift']],chem:[['Analyst 1','Analyst 2'],['Method A (titration)','Method B (instrumental)'],['Instrument 1','Instrument 2'],['Old procedure','New procedure']]};
+const PAIRS={med:[['Analyzer A','Analyzer B'],['Lab 1','Lab 2'],['Hospital lab','Reference lab'],['Day shift','Night shift']],chem:[['Analyst 1','Analyst 2'],['Method A (titration)','Method B (instrumental)'],['Instrument 1','Instrument 2'],['Old procedure','New procedure']]};
 const chip = f => `<span class="chip ${f}">${f==='med'?'Medical':'Chemistry'}</span>`;
 const dataRow = (lbl,a,d) => `<div class="datarow"><span class="lbl">${lbl}</span>${a.map(v=>`<span>${v.toFixed(d)}</span>`).join('')}</div>`;
 const sample = (n,mu,sd,d) => Array.from({length:n},()=>rnd(mu+randn()*sd,d));
@@ -1275,7 +1276,7 @@ function genQ(){
     const keep=data.filter((v,i)=>i!==data.indexOf(q.suspect)), dk=describe(keep), da=describe(data);
     const prompt=`${chip(c.f)}<p>A technician makes ${n} replicate measurements of ${c.what} (${c.unit}). One value looks suspicious. Use the Q test at ${conf}% confidence to decide whether it can be rejected.</p>${dataRow('Data:',data,c.d)}`;
     const sol=`<ol><li>Sort the data: ${q.sorted.map(v=>v.toFixed(c.d)).join(', ')}.</li>
-      <li>The suspect value is the one with the larger gap at either end: <b>${q.suspect.toFixed(c.d)}</b> (nearest neighbour ${q.neighbor.toFixed(c.d)}).</li>
+      <li>The suspect value is the one with the larger gap at either end: <b>${q.suspect.toFixed(c.d)}</b> (nearest neighbor ${q.neighbor.toFixed(c.d)}).</li>
       <li>gap = |${q.suspect.toFixed(c.d)} − ${q.neighbor.toFixed(c.d)}| = ${q.gap.toFixed(c.d)};  range = ${q.sorted[n-1].toFixed(c.d)} − ${q.sorted[0].toFixed(c.d)} = ${q.range.toFixed(c.d)}.</li>
       <li>Q<sub>calc</sub> = ${q.gap.toFixed(c.d)} / ${q.range.toFixed(c.d)} = <b>${q.Q.toFixed(3)}</b>.</li>
       <li>Q<sub>crit</sub> for n = ${n} at ${conf}% = ${qc.toFixed(3)}.</li>
@@ -1302,7 +1303,7 @@ function genF(){
 }
 function genT(kind){
   const type = kind==='mixed'? pick(['known','two','paired']) : kind;
-  const c=pick(CTX), conf=95;
+  const c=pick(CTX.filter(x=> type==='known' ? !x.noKnown : type==='paired' ? !x.noPair : true)), conf=95;
   if(type==='known'){
     const n=randint(3,7), known=c.mu, shift=Math.random()<0.3?0:(Math.random()<0.5?-1:1)*(0.5+Math.random()*3)*c.sd/Math.sqrt(n)*1.6;
     const a=sample(n,known+shift,c.sd,c.d), d=describe(a); if(!(d.s>0)) return genT(kind);
@@ -1341,12 +1342,12 @@ function genT(kind){
   }
   // paired
   const n=randint(5,8), pr=pick(PAIRS[c.f]), bias=Math.random()<0.3?0:(0.3+Math.random()*1.6)*c.sd*(Math.random()<0.5?-1:1);
-  const spec=Array.from({length:n},()=>c.mu*(0.5+Math.random()*1.1));
+  const spec=Array.from({length:n},()=>c.mu*(c.f==='med'?0.8+Math.random()*0.4:0.5+Math.random()*1.1));  // patient values stay in a plausible range
   const A=spec.map(v=>rnd(v+randn()*c.sd*0.7,c.d)), B=spec.map(v=>rnd(v+bias+randn()*c.sd*0.7,c.d));
   const dvals=A.map((v,i)=>rnd(B[i]-v,c.d)), dd=describe(dvals); if(!(dd.s>0)) return genT(kind);
   const t=Math.abs(dd.mean)*Math.sqrt(n)/dd.s, df=n-1, tc=tcrit(conf,df), sigd=t>tc;
   const unitName = c.f==='med'?'Patient':'Sample';
-  const prompt=`${chip(c.f)}<p><b>Paired comparison.</b> ${n} different ${c.f==='med'?'patient specimens':'samples'} are each analyzed once by ${pr[0]} and once by ${pr[1]} for ${c.what.replace(/ in (a|an|the) .*$/,'').replace(/^the /,'')} (${c.unit}). Do the two give significantly different results at 95% confidence?</p>
+  const prompt=`${chip(c.f)}<p><b>Paired comparison.</b> ${n} different ${c.f==='med'?'patient specimens':'samples'} are each analyzed twice, once in each of two ways (${pr[0]} and ${pr[1]}), for ${c.what.replace(/ in (a|an|the) .*$/,'').replace(/^the /,'')} (${c.unit}). Do the two give significantly different results at 95% confidence?</p>
     <div class="ptable"><table><tr><th>${unitName}</th>${A.map((_,i)=>`<th>${i+1}</th>`).join('')}</tr><tr><td>${pr[0]}</td>${A.map(v=>`<td>${v.toFixed(c.d)}</td>`).join('')}</tr><tr><td>${pr[1]}</td>${B.map(v=>`<td>${v.toFixed(c.d)}</td>`).join('')}</tr></table></div>`;
   const sol=`<ol><li>Differences d = ${pr[1]} − ${pr[0]}: ${dvals.map(v=>minus(v.toFixed(c.d))).join(', ')}.</li>
     <li><span class="ov">d</span> = ${minus(dd.mean.toFixed(c.d+2))}, s<sub>d</sub> = ${sig(dd.s,4)}, n = ${n}, ν = ${df}.</li>
