@@ -16,7 +16,7 @@ html{color-scheme:light;-webkit-text-size-adjust:100%}
 body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
-/* Layout: one reading column (max 1000px) under a sticky section index; definitions in a responsive card grid; every interactive is a "bench" panel with controls beside or above its plot. */
+/* Layout: one reading column (max 1000px) under a sticky section index; definitions as full-width rows stacked in one column; every interactive is a "bench" panel with controls beside or above its plot. */
 :root{
   --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0; --grid:#e4ebee;
   --accent:#c2185b; --accent-soft:#fbe3ed;        /* phenolphthalein endpoint pink */
@@ -81,8 +81,10 @@ section.block > .wrap{display:grid;gap:22px}
 
 /* definition cards */
 .groupname{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
-.defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}
-.def{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
+.defs{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.def{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:10px 28px;align-items:start;min-width:0}
+.def-head,.def-body{display:grid;gap:8px;align-content:start;min-width:0}
+@media (max-width:720px){.def{grid-template-columns:minmax(0,1fr)}}
 .def h4 .sym{font-family:var(--f-mono);font-weight:400;color:var(--accent);font-size:.9em;margin-left:6px}
 .formula{font-family:var(--f-mono);font-size:.9rem;background:var(--surface-2);border-radius:6px;padding:9px 12px;overflow-x:auto;line-height:1.5}
 .formula.multi{display:grid;gap:4px}
@@ -269,115 +271,134 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 
     <div class="groupname">Describing a set of replicates</div>
     <div class="defs">
-      <div class="def"><h4>Population and sample</h4>
+      <div class="def"><div class="def-head"><h4>Population and sample</h4></div>
+        <div class="def-body">
         <p>The <b>population</b> is every measurement you could ever make on the material; its true mean is μ and its standard deviation is σ. A <b>sample</b> is the handful of replicates you actually made, described by <span class="ov">x</span> and s.</p>
         <p class="use"><b>Where it matters:</b> A few tablets tested from a batch of millions decide whether the whole batch can be sold.</p>
-        <p class="lab"><b>At the bench:</b> your five titrations are a sample. μ is the concentration you are trying to find.</p></div>
-      <div class="def"><h4>Mean <span class="sym"><span class="ov">x</span></span></h4>
-        <div class="formula"><span class="ov">x</span> = Σx<sub>i</sub> / n</div>
+        <p class="lab"><b>At the bench:</b> your five titrations are a sample. μ is the concentration you are trying to find.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Mean <span class="sym"><span class="ov">x</span></span></h4>
+        <div class="formula"><span class="ov">x</span> = Σx<sub>i</sub> / n</div></div>
+        <div class="def-body">
         <p>The arithmetic average. It is the best single estimate of μ when errors are random.</p>
         <p class="use"><b>Where it matters:</b> Doctors average several blood pressure readings rather than trusting a single one.</p>
-        <p class="lab"><b>At the bench:</b> the value you report for a set of replicate titrations or absorbance readings.</p></div>
-      <div class="def"><h4>Median</h4>
-        <div class="formula">middle value of the ordered data</div>
+        <p class="lab"><b>At the bench:</b> the value you report for a set of replicate titrations or absorbance readings.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Median</h4>
+        <div class="formula">middle value of the ordered data</div></div>
+        <div class="def-body">
         <p>Sort the data and take the middle value; with an even n, average the two middle values. One wild value barely moves it.</p>
         <p class="use"><b>Where it matters:</b> Reporting typical lead levels across city water taps, where a few very high taps would inflate the mean.</p>
-        <p class="lab"><b>At the bench:</b> a quick check. If mean and median differ a lot, look for an outlier.</p></div>
-      <div class="def"><h4>Mode</h4>
+        <p class="lab"><b>At the bench:</b> a quick check. If mean and median differ a lot, look for an outlier.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Mode</h4></div>
+        <div class="def-body">
         <p>The value that occurs most often. It is rarely useful for continuous lab data, where exact repeats are uncommon, but appears with counted or rounded data.</p>
         <p class="use"><b>Where it matters:</b> Finding the most common particle size in a pharmaceutical powder, which affects how fast a tablet dissolves.</p>
-        <p class="lab"><b>At the bench:</b> the most common reading on a digital meter that only shows whole units.</p></div>
-      <div class="def"><h4>Range <span class="sym">w</span></h4>
-        <div class="formula">w = x<sub>max</sub> − x<sub>min</sub></div>
+        <p class="lab"><b>At the bench:</b> the most common reading on a digital meter that only shows whole units.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Range <span class="sym">w</span></h4>
+        <div class="formula">w = x<sub>max</sub> − x<sub>min</sub></div></div>
+        <div class="def-body">
         <p>The simplest measure of spread. It depends only on the two extreme values.</p>
         <p class="use"><b>Where it matters:</b> A quick check on duplicate analyses: a large range between the two flags a problem at once.</p>
-        <p class="lab"><b>At the bench:</b> the denominator of the Q test for outliers.</p></div>
-      <div class="def"><h4>Deviation from the mean <span class="sym">d<sub>i</sub></span></h4>
-        <div class="formula">d<sub>i</sub> = x<sub>i</sub> − <span class="ov">x</span></div>
+        <p class="lab"><b>At the bench:</b> the denominator of the Q test for outliers.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Deviation from the mean <span class="sym">d<sub>i</sub></span></h4>
+        <div class="formula">d<sub>i</sub> = x<sub>i</sub> − <span class="ov">x</span></div></div>
+        <div class="def-body">
         <p>How far one result sits from the mean. Deviations always sum to zero, which is why they are squared before averaging.</p>
         <p class="use"><b>Where it matters:</b> Showing which replicate pulls a result away from the rest before you investigate it.</p>
-        <p class="lab"><b>At the bench:</b> the building block of variance and standard deviation.</p></div>
-      <div class="def"><h4>Variance <span class="sym">s²</span></h4>
-        <div class="formula">s² = Σ(x<sub>i</sub> − <span class="ov">x</span>)² / (n − 1)</div>
+        <p class="lab"><b>At the bench:</b> the building block of variance and standard deviation.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Variance <span class="sym">s²</span></h4>
+        <div class="formula">s² = Σ(x<sub>i</sub> − <span class="ov">x</span>)² / (n − 1)</div></div>
+        <div class="def-body">
         <p>The average squared deviation, using n − 1. Variances add when independent errors combine, which makes them central to propagation and to the F test.</p>
         <p class="use"><b>Where it matters:</b> Combining the uncertainty from weighing, diluting and reading an instrument, because variances add.</p>
-        <p class="lab"><b>At the bench:</b> the F test compares the variances of two methods.</p></div>
-      <div class="def"><h4>Standard deviation <span class="sym">s, σ</span></h4>
-        <div class="formula">s = √[ Σ(x<sub>i</sub> − <span class="ov">x</span>)² / (n − 1) ]</div>
+        <p class="lab"><b>At the bench:</b> the F test compares the variances of two methods.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Standard deviation <span class="sym">s, σ</span></h4>
+        <div class="formula">s = √[ Σ(x<sub>i</sub> − <span class="ov">x</span>)² / (n − 1) ]</div></div>
+        <div class="def-body">
         <p>The square root of the variance, in the same units as the data. It describes how much a single measurement typically scatters. σ (dividing by N) is the population value; s estimates it from a sample.</p>
         <p class="use"><b>Where it matters:</b> Clinical labs run control samples daily and flag a run when a control falls outside mean ± 2s.</p>
-        <p class="lab"><b>At the bench:</b> the main number for <b>precision</b>. Calculators label it s, s<sub>x</sub> or σ<sub>n−1</sub>.</p></div>
-      <div class="def"><h4>Degrees of freedom <span class="sym">ν</span></h4>
-        <div class="formula">ν = n − 1 for one data set</div>
+        <p class="lab"><b>At the bench:</b> the main number for <b>precision</b>. Calculators label it s, s<sub>x</sub> or σ<sub>n−1</sub>.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Degrees of freedom <span class="sym">ν</span></h4>
+        <div class="formula">ν = n − 1 for one data set</div></div>
+        <div class="def-body">
         <p>The number of independent deviations. Once <span class="ov">x</span> is fixed, only n − 1 of the deviations are free to vary. Critical values of t and F depend on ν.</p>
         <p class="use"><b>Where it matters:</b> Choosing the right t value: duplicates (ν = 1) need t = 12.7, so they give very wide intervals.</p>
-        <p class="lab"><b>At the bench:</b> 4 titrations give ν = 3 when you look up t.</p></div>
-      <div class="def"><h4>Relative standard deviation <span class="sym">RSD, CV</span></h4>
+        <p class="lab"><b>At the bench:</b> 4 titrations give ν = 3 when you look up t.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Relative standard deviation <span class="sym">RSD, CV</span></h4>
         <div class="formula multi">
           <div class="eq">RSD (%) = <span class="frac"><span>s</span><span><span class="ov">x</span></span></span> × 100</div>
           <div class="eq">RSD (ppt) = <span class="frac"><span>s</span><span><span class="ov">x</span></span></span> × 1000</div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>The standard deviation as a fraction of the mean, so precision can be compared across very different magnitudes. In clinical labs it is called the <b>coefficient of variation (CV)</b>.</p>
         <p class="use"><b>Where it matters:</b> Method validation: drug assays are often required to show an RSD of 2% or less on replicates.</p>
-        <p class="lab"><b>At the bench:</b> a good titration has an RSD of a few parts per thousand (ppt).</p></div>
-      <div class="def"><h4>Standard error of the mean <span class="sym">s<sub><span class="ov">x</span></sub></span></h4>
-        <div class="formula">s<sub><span class="ov">x</span></sub> = s / √n</div>
+        <p class="lab"><b>At the bench:</b> a good titration has an RSD of a few parts per thousand (ppt).</p></div></div>
+      <div class="def"><div class="def-head"><h4>Standard error of the mean <span class="sym">s<sub><span class="ov">x</span></sub></span></h4>
+        <div class="formula">s<sub><span class="ov">x</span></sub> = s / √n</div></div>
+        <div class="def-body">
         <p>The uncertainty in the <em>mean</em>, which is smaller than the scatter of single results. Four times as many replicates halves it.</p>
         <p class="use"><b>Where it matters:</b> Planning how many replicates to run: going from 3 to 12 titrations cuts the uncertainty of the mean in half.</p>
-        <p class="lab"><b>At the bench:</b> why you run triplicates rather than a single titration.</p></div>
+        <p class="lab"><b>At the bench:</b> why you run triplicates rather than a single titration.</p></div></div>
     </div>
 
     <div class="groupname">Error, accuracy and precision</div>
     <div class="defs">
-      <div class="def"><h4>Accuracy</h4>
+      <div class="def"><div class="def-head"><h4>Accuracy</h4></div>
+        <div class="def-body">
         <p>How close a result is to the true or accepted value. It is checked against a certified reference material (CRM) or a standard.</p>
         <p class="use"><b>Where it matters:</b> Clinical labs must analyze outside proficiency-test samples correctly to keep their accreditation.</p>
-        <p class="lab"><b>At the bench:</b> analyzing a CRM and comparing your mean with its certificate.</p></div>
-      <div class="def"><h4>Precision</h4>
+        <p class="lab"><b>At the bench:</b> analyzing a CRM and comparing your mean with its certificate.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Precision</h4></div>
+        <div class="def-body">
         <p>How close replicate results are to each other, measured by s or RSD. <b>Repeatability</b> is precision under the same conditions; <b>reproducibility</b> is precision across analysts, days or labs.</p>
         <p class="use"><b>Where it matters:</b> Transferring a method to another lab: reproducibility shows the method works outside the lab that developed it.</p>
-        <p class="lab"><b>At the bench:</b> you can be precise and still wrong. See Example C2.</p></div>
-      <div class="def"><h4>Absolute and relative error</h4>
+        <p class="lab"><b>At the bench:</b> you can be precise and still wrong. See Example C2.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Absolute and relative error</h4>
         <div class="formula multi">
           <div class="eqlbl">Absolute error</div>
           <div class="eq">E = <span class="ov">x</span> − x<sub>true</sub></div>
           <div class="eqlbl">Relative error</div>
           <div class="eq">E<sub>rel</sub> = <span class="frac"><span><span class="ov">x</span> − x<sub>true</sub></span><span>x<sub>true</sub></span></span> × 100%</div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>Error has a sign: a negative error means the result is low.</p>
         <p class="use"><b>Where it matters:</b> Checking that a tablet’s measured drug content is within the allowed percentage of its label claim.</p>
-        <p class="lab"><b>At the bench:</b> “% error” on a graded unknown.</p></div>
-      <div class="def"><h4>Systematic (determinate) error</h4>
+        <p class="lab"><b>At the bench:</b> “% error” on a graded unknown.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Systematic (determinate) error</h4></div>
+        <div class="def-body">
         <p>A reproducible bias in one direction with a cause you can find and fix: an uncalibrated pipette, an impure standard, a wrong indicator, a drifting baseline.</p>
         <p class="use"><b>Where it matters:</b> A balance that reads 2 mg low makes every weighing in the lab wrong until someone checks it with standard weights.</p>
-        <p class="lab"><b>At the bench:</b> hurts accuracy. Repeating the measurement does not average it away. The t test against a known value detects it.</p></div>
-      <div class="def"><h4>Random (indeterminate) error</h4>
+        <p class="lab"><b>At the bench:</b> hurts accuracy. Repeating the measurement does not average it away. The t test against a known value detects it.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Random (indeterminate) error</h4></div>
+        <div class="def-body">
         <p>Unpredictable scatter from many small sources: reading a meniscus, electrical noise, temperature fluctuation. It is equally likely to be high or low.</p>
         <p class="use"><b>Where it matters:</b> Explains why two glucose readings from the same finger stick differ by a few mg/dL.</p>
-        <p class="lab"><b>At the bench:</b> hurts precision. Averaging more replicates reduces its effect on the mean.</p></div>
-      <div class="def"><h4>Gross error and outliers</h4>
+        <p class="lab"><b>At the bench:</b> hurts precision. Averaging more replicates reduces its effect on the mean.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Gross error and outliers</h4></div>
+        <div class="def-body">
         <p>A large, one-off mistake such as a spilled sample or a misread burette. The result is an <b>outlier</b>: a value far from the rest. Use a test, not a hunch, to discard it.</p>
         <p class="use"><b>Where it matters:</b> Environmental labs must justify any discarded result before reporting contaminant levels to regulators.</p>
-        <p class="lab"><b>At the bench:</b> the Q test decides whether a suspect value may be rejected.</p></div>
-      <div class="def"><h4>Significant figures</h4>
+        <p class="lab"><b>At the bench:</b> the Q test decides whether a suspect value may be rejected.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Significant figures</h4></div>
+        <div class="def-body">
         <p>The digits you know for certain plus the first uncertain digit. Uncertainty sets them: round the uncertainty to 1 (or 2) significant figures, then round the result to the same decimal place.</p>
         <p class="use"><b>Where it matters:</b> Forensic and clinical reports must not claim more digits than the instrument can support.</p>
-        <p class="lab"><b>At the bench:</b> a burette read to 0.01 mL gives 24.13 mL, not 24.1 or 24.130.</p></div>
+        <p class="lab"><b>At the bench:</b> a burette read to 0.01 mL gives 24.13 mL, not 24.1 or 24.130.</p></div></div>
     </div>
 
     <div class="groupname">Uncertainty and confidence</div>
     <div class="defs">
-      <div class="def"><h4>Uncertainty <span class="sym">u</span></h4>
+      <div class="def"><div class="def-head"><h4>Uncertainty <span class="sym">u</span></h4>
         <div class="formula multi">
           <div class="eqlbl">Absolute uncertainty (same units as x)</div>
           <div class="eq">x ± u</div>
           <div class="eqlbl">Relative uncertainty (no units)</div>
           <div class="eq"><span class="frac"><span>u</span><span>x</span></span>   or   <span class="frac"><span>u</span><span>x</span></span> × 100%</div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>A range that probably contains the true value. <b>Absolute uncertainty</b> has units (± 0.02 mL); <b>relative uncertainty</b> is a fraction or percentage (± 0.08%). It comes from instrument tolerances (Type B) or from the scatter of replicates (Type A).</p>
         <p class="use"><b>Where it matters:</b> A blood alcohol result near the 0.08 g/dL legal limit is judged together with its uncertainty.</p>
-        <p class="lab"><b>At the bench:</b> a Class A 25 mL pipette is 25.00 ± 0.03 mL.</p></div>
-      <div class="def"><h4>Propagation of uncertainty</h4>
+        <p class="lab"><b>At the bench:</b> a Class A 25 mL pipette is 25.00 ± 0.03 mL.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Propagation of uncertainty</h4>
         <div class="formula multi">
           <div class="eqlbl">Addition or subtraction: y = a + b or y = a − b</div>
           <div class="eq">u<sub>y</sub> = √( u<sub>a</sub>² + u<sub>b</sub>² )</div>
@@ -387,69 +408,80 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <div class="eq">u<sub>y</sub> = 0.434 × <span class="frac"><span>u<sub>x</sub></span><span>x</span></span></div>
           <div class="eqlbl">Antilogarithm: y = 10<sup>x</sup></div>
           <div class="eq"><span class="frac"><span>u<sub>y</sub></span><span>y</span></span> = 2.303 × u<sub>x</sub></div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>How the uncertainties of the inputs combine into the uncertainty of a calculated result. Add absolute uncertainties for sums and differences; add relative uncertainties for products and quotients. Always add in quadrature (squared).</p>
         <p class="use"><b>Where it matters:</b> Preparing drug dilutions or standards: it shows which step limits the accuracy of the final concentration.</p>
-        <p class="lab"><b>At the bench:</b> the uncertainty in a molarity from mass and volume. Try the calculator in Part 5.</p></div>
-      <div class="def"><h4>Normal (Gaussian) distribution and z</h4>
-        <div class="formula">z = (x − μ) / σ</div>
+        <p class="lab"><b>At the bench:</b> the uncertainty in a molarity from mass and volume. Try the calculator in Part 5.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Normal (Gaussian) distribution and z</h4>
+        <div class="formula">z = (x − μ) / σ</div></div>
+        <div class="def-body">
         <p>The bell-shaped curve followed by random errors. 68.3% of results fall within ±1σ, 95.4% within ±2σ and 99.7% within ±3σ. z says how many σ a value lies from μ.</p>
         <p class="use"><b>Where it matters:</b> Many clinical reference ranges, such as for serum potassium, cover the central 95% (about ±2σ) of healthy people.</p>
-        <p class="lab"><b>At the bench:</b> quality-control charts in clinical labs flag a control outside ±2σ.</p></div>
-      <div class="def"><h4>Student’s t</h4>
+        <p class="lab"><b>At the bench:</b> quality-control charts in clinical labs flag a control outside ±2σ.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Student’s t</h4></div>
+        <div class="def-body">
         <p>When σ is unknown and estimated by s from a few replicates, the bell curve is replaced by the wider t distribution. t shrinks toward z as ν grows.</p>
         <p class="use"><b>Where it matters:</b> Any check based on a handful of replicates, where σ is unknown, relies on t instead of z.</p>
-        <p class="lab"><b>At the bench:</b> t = 2.776 for 5 replicates at 95% instead of z = 1.960.</p></div>
-      <div class="def"><h4>Confidence interval (CI)</h4>
-        <div class="formula">μ = <span class="ov">x</span> ± t·s / √n</div>
+        <p class="lab"><b>At the bench:</b> t = 2.776 for 5 replicates at 95% instead of z = 1.960.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Confidence interval (CI)</h4>
+        <div class="formula">μ = <span class="ov">x</span> ± t·s / √n</div></div>
+        <div class="def-body">
         <p>A range around <span class="ov">x</span> expected to contain μ with a stated probability. In the long run, about 95 of every 100 intervals built this way contain μ.</p>
         <p class="use"><b>Where it matters:</b> Drug trials report a 95% CI for the treatment effect. If the interval includes zero, the benefit is not established.</p>
-        <p class="lab"><b>At the bench:</b> the “± 0.04 mL” at the top of this page.</p></div>
-      <div class="def"><h4>Confidence level and significance level <span class="sym">α</span></h4>
-        <div class="formula">α = 1 − confidence level</div>
+        <p class="lab"><b>At the bench:</b> the “± 0.04 mL” at the top of this page.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Confidence level and significance level <span class="sym">α</span></h4>
+        <div class="formula">α = 1 − confidence level</div></div>
+        <div class="def-body">
         <p>A 95% confidence level means a 5% chance (α = 0.05) of declaring a difference that is really just random error.</p>
         <p class="use"><b>Where it matters:</b> A factory may choose 99% confidence before rejecting an expensive batch, to reduce false alarms.</p>
-        <p class="lab"><b>At the bench:</b> most lab reports use 95%. Clinical decisions sometimes demand 99%.</p></div>
+        <p class="lab"><b>At the bench:</b> most lab reports use 95%. Clinical decisions sometimes demand 99%.</p></div></div>
     </div>
 
     <div class="groupname">Hypothesis tests and calibration</div>
     <div class="defs">
-      <div class="def"><h4>Null hypothesis <span class="sym">H₀</span></h4>
+      <div class="def"><div class="def-head"><h4>Null hypothesis <span class="sym">H₀</span></h4></div>
+        <div class="def-body">
         <p>The assumption that there is no real difference: the two means are equal, the variances are equal, the suspect point belongs. A test asks whether the data give strong enough evidence to reject H₀.</p>
         <p class="use"><b>Where it matters:</b> Quality control assumes a batch meets its label claim until the data show strong evidence that it does not.</p>
-        <p class="lab"><b>At the bench:</b> “My method has no systematic error.”</p></div>
-      <div class="def"><h4>Test statistic and critical value</h4>
+        <p class="lab"><b>At the bench:</b> “My method has no systematic error.”</p></div></div>
+      <div class="def"><div class="def-head"><h4>Test statistic and critical value</h4></div>
+        <div class="def-body">
         <p>The test statistic (t, F or Q) is computed from your data. The critical value comes from a table for your confidence level and n. If the calculated value is greater than the critical value, reject H₀.</p>
         <p class="use"><b>Where it matters:</b> Deciding whether a cheaper, faster method gives the same results as the official method.</p>
-        <p class="lab"><b>At the bench:</b> t<sub>calc</sub> = 4.50 &gt; t<sub>crit</sub> = 2.262 means the difference is significant.</p></div>
-      <div class="def"><h4>p-value</h4>
+        <p class="lab"><b>At the bench:</b> t<sub>calc</sub> = 4.50 &gt; t<sub>crit</sub> = 2.262 means the difference is significant.</p></div></div>
+      <div class="def"><div class="def-head"><h4>p-value</h4></div>
+        <div class="def-body">
         <p>The probability of getting a difference at least this large by random error alone if H₀ were true. A p-value below α (for example 0.05) means a significant difference.</p>
         <p class="use"><b>Where it matters:</b> Clinical trials use p-values to show that a drug’s effect on patients is larger than chance alone would produce.</p>
-        <p class="lab"><b>At the bench:</b> spreadsheet t-test functions return p rather than t<sub>crit</sub>.</p></div>
-      <div class="def"><h4>Calibration curve</h4>
+        <p class="lab"><b>At the bench:</b> spreadsheet t-test functions return p rather than t<sub>crit</sub>.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Calibration curve</h4>
         <div class="formula multi">
           <div class="eqlbl">Least-squares line</div>
           <div class="eq">y = m·x + b</div>
           <div class="eqlbl">Concentration of an unknown</div>
           <div class="eq">x = <span class="frac"><span>y − b</span><span>m</span></span></div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>Instrument response (absorbance, peak area, emission) plotted against standard concentrations. The least-squares line gives slope m and intercept b; an unknown is found from x = (y − b)/m. R² near 1 shows linearity but does not prove accuracy.</p>
         <p class="use"><b>Where it matters:</b> Blood glucose analyzers and breathalyzers are calibrated against known standards before their results are trusted.</p>
-        <p class="lab"><b>At the bench:</b> Beer’s law plots in UV-vis and AAS.</p></div>
-      <div class="def"><h4>Blank</h4>
+        <p class="lab"><b>At the bench:</b> Beer’s law plots in UV-vis and AAS.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Blank</h4></div>
+        <div class="def-body">
         <p>A sample containing everything except the analyte. Its signal is subtracted from samples and standards to correct for reagents, the cuvette or the matrix.</p>
         <p class="use"><b>Where it matters:</b> In trace-metal analysis, impurities in the acid or glassware can exceed the analyte unless a blank is subtracted.</p>
-        <p class="lab"><b>At the bench:</b> zeroing a spectrophotometer with a reagent blank.</p></div>
-      <div class="def"><h4>Limit of detection and quantitation <span class="sym">LOD, LOQ</span></h4>
+        <p class="lab"><b>At the bench:</b> zeroing a spectrophotometer with a reagent blank.</p></div></div>
+      <div class="def"><div class="def-head"><h4>Limit of detection and quantitation <span class="sym">LOD, LOQ</span></h4>
         <div class="formula multi">
           <div class="eqlbl">Limit of detection</div>
           <div class="eq">LOD = <span class="frac"><span>3 · s<sub>blank</sub></span><span>m</span></span></div>
           <div class="eqlbl">Limit of quantitation</div>
           <div class="eq">LOQ = <span class="frac"><span>10 · s<sub>blank</sub></span><span>m</span></span></div>
-        </div>
+        </div></div>
+        <div class="def-body">
         <p>The lowest concentration that can be told apart from the blank (LOD), and the lowest that can be measured with acceptable precision (LOQ). s<sub>blank</sub> is the standard deviation of blank replicates; m is the calibration slope.</p>
         <p class="use"><b>Where it matters:</b> Drinking-water testing: deciding whether arsenic is truly absent or only below what the method can detect.</p>
-        <p class="lab"><b>At the bench:</b> deciding whether trace lead in a water sample is “not detected” or “detected but below LOQ”.</p></div>
+        <p class="lab"><b>At the bench:</b> deciding whether trace lead in a water sample is “not detected” or “detected but below LOQ”.</p></div></div>
     </div>
     <p class="src-line">Definitions and formulas follow standard analytical chemistry texts and measurement guides. <a href="references.html#textbooks">See references 1–7.</a></p>
   </div>
