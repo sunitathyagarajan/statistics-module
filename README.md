@@ -18,7 +18,6 @@ A module teaching the basics of statistics to Quant lab students.
 
 - `index.html`: the module itself, one self-contained page
 - `sigfigs.html`: significant figures rules and practice problems
-- `em-radiation.html`: electromagnetic radiation for chemists: the spectrum with wavelength, frequency and energy of each region, then radio through gamma rays (what each reveals about structure, how each is made), with interactive diagrams and balanced equations
-- `references.html`: sources for the definitions, tests, real cases, practice problems and the electromagnetic radiation page
+- `references.html`: sources for the definitions, tests, real cases and practice problems
 
 To change the site, edit these files and push to `main`; GitHub Pages republishes automatically.
