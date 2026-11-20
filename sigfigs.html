@@ -8,7 +8,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c2185b'/%3E%3Cpath d='M5 25 C11 25 12 7 16 7 S21 25 27 25' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <style>
 /* Same tokens as the module page, so all pages read as one site. */
 :root{
@@ -16,8 +19,8 @@
   --accent:#c2185b; --accent-soft:#fbe3ed; --data:#1d6a94; --data-soft:#d8e9f3;
   --med:#0b7869; --med-soft:#d4efe9; --chem:#6a48ad; --chem-soft:#e8e1f6;
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1; --warn:#8a5a00; --warn-soft:#fbefd5;
-  --f-body:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-mono:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
@@ -183,6 +186,13 @@ footer .wrap{padding-block:20px 48px}
 @media (max-width:520px){ body{font-size:16px} .bench,.prob,.casebox{padding:14px} .card{padding:14px}
   .tbl tr{display:grid;grid-template-columns:minmax(0,1fr) auto;border-bottom:1px solid var(--line)} .tbl tr:last-child{border-bottom:none}
   .tbl th,.tbl td{border-bottom:none} .tbl th:nth-child(3){display:none} .tbl td.i{grid-column:1/-1;padding-top:0;font-size:.85rem} }
+/* Math: KaTeX typesets formulas in textbook style; panels keep equations left-aligned and scroll sideways on narrow screens instead of overflowing. */
+.katex{font-size:1.1em}
+.katex-display{margin:.5em 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
+.formula .katex-display{margin:.15em 0}
+.formula .katex-display>.katex{text-align:left;font-size:1.3em}
+.eqlbl .katex{white-space:nowrap}
+.calcline .katex,.calcbox .katex{font-size:1.08em}
 </style>
 </head>
 <body>
@@ -460,6 +470,17 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
 <footer><div class="wrap">Your typed answers stay on this page only and are cleared when you reload. · <a href="./">Back to the module</a> · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
 
 <script>
+/* Math typesetting: KaTeX renders any \( \) or \[ \] LaTeX on the page, including problem text the script adds later. */
+(function(){
+  if(typeof renderMathInElement!=='function') return;
+  const opts={delimiters:[{left:'\[',right:'\]',display:true},{left:'\(',right:'\)',display:false}],throwOnError:false,ignoredTags:['script','noscript','style','textarea','pre','code','option','svg']};
+  const hasTex=el=>{ const t=el.textContent; return t.includes('\(')||t.includes('\['); };
+  const pending=new Set(); let queued=false;
+  const flush=()=>{ queued=false; const els=[...pending]; pending.clear(); for(const el of els) if(el.isConnected&&hasTex(el)) renderMathInElement(el,opts); };
+  new MutationObserver(ms=>{ for(const m of ms){ const el=m.type==='characterData'?m.target.parentElement:m.target; if(el&&el.nodeType===1&&!el.closest('.katex')) pending.add(el); } if(pending.size&&!queued){ queued=true; queueMicrotask(flush); } })
+    .observe(document.body,{childList:true,subtree:true,characterData:true});
+  renderMathInElement(document.body,opts);
+})();
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
@@ -603,7 +624,7 @@ const PROBLEMS = [
    why:'10.73 has two digits after the decimal point, so the concentration has two significant figures.',
    steps:['[H<sup>+</sup>] = 10<sup>−10.73</sup> = 1.862 × 10<sup>−11</sup> M.','The pH has 2 digits after the decimal point, so the concentration has 2 significant figures.','[H<sup>+</sup>] = 1.9 × 10<sup>−11</sup> M.']},
   {sec:'calc', title:'Energy of a photon', tag:'Mixed operations',
-   q:'Sodium emits yellow light at 5.89 × 10<sup>−7</sup> m. Find the energy of one photon with E = hc/λ, using h = 6.626 × 10<sup>−34</sup> J s and c = 2.998 × 10<sup>8</sup> m/s.', unit:'J', exact:6.626e-34*2.998e8/5.89e-7, sf:3, ans:sci('3.37',-19) + ' J',
+   q:'Sodium emits yellow light at 5.89 × 10<sup>−7</sup> m. Find the energy of one photon with \\(E = \\dfrac{hc}{\\lambda}\\), using h = 6.626 × 10<sup>−34</sup> J s and c = 2.998 × 10<sup>8</sup> m/s.', unit:'J', exact:6.626e-34*2.998e8/5.89e-7, sf:3, ans:sci('3.37',-19) + ' J',
    why:'The wavelength, 5.89 × 10<sup>−7</sup> m, has only three significant figures.',
    steps:['Numerator: 6.626 × 10<sup>−34</sup> × 2.998 × 10<sup>8</sup> = 1.9865 × 10<sup>−25</sup> J m (keep guard digits).','Divide: 1.9865 × 10<sup>−25</sup> ÷ 5.89 × 10<sup>−7</sup> = 3.3726 × 10<sup>−19</sup> J.','Figures: h has 4, c has 4, λ has 3. Round to 3: 3.37 × 10<sup>−19</sup> J.']},
 
@@ -650,16 +671,16 @@ const PROBLEMS = [
      {q:'The laboratory states an uncertainty of ±0.5 µg/L (95% confidence). How should the result be reported, and can you say the water is below the limit?',
       a:'The uncertainty is in the tenths place, so report 9.7 ± 0.5 µg/L; the hundredths digit is not supported. The range 9.2 to 10.2 µg/L includes 10, so from this one measurement you cannot say with 95% confidence that the water is below the limit, and you cannot say it is above. Replicate samples would narrow the range.'}]},
   {sec:'reflect', field:'chem', title:'Beer’s law with a handbook value', tag:'Division',
-   q:'A dye solution in a 1.00 cm cuvette has an absorbance of 0.432. A handbook gives the molar absorptivity as ε = 1.1 × 10<sup>4</sup> L mol<sup>−1</sup> cm<sup>−1</sup>. Use Beer’s law, A = εbc, to find the concentration.', unit:'M', exact:0.432/(1.1e4*1.00), sf:2, ans:sci('3.9',-5) + ' M',
+   q:'A dye solution in a 1.00 cm cuvette has an absorbance of 0.432. A handbook gives the molar absorptivity as ε = 1.1 × 10<sup>4</sup> L mol<sup>−1</sup> cm<sup>−1</sup>. Use Beer’s law, \\(A = \\varepsilon b c\\), to find the concentration.', unit:'M', exact:0.432/(1.1e4*1.00), sf:2, ans:sci('3.9',-5) + ' M',
    why:'ε = 1.1 × 10<sup>4</sup> has only two significant figures.',
-   steps:['Rearrange: c = A ÷ (εb).','c = 0.432 ÷ (1.1 × 10<sup>4</sup> × 1.00) = 3.927 × 10<sup>−5</sup> M.','A has 3 figures, b has 3, ε has 2. Keep 2: 3.9 × 10<sup>−5</sup> M.'],
+   steps:['Rearrange: \\(c = \\dfrac{A}{\\varepsilon b}\\).','\\(c = \\dfrac{0.432}{\\left(1.1 \\times 10^{4}\\right)(1.00)} = 3.927 \\times 10^{-5}\\) M.','A has 3 figures, b has 3, ε has 2. Keep 2: 3.9 × 10<sup>−5</sup> M.'],
    reflect:[
      {q:'Your lab partner reports 3.927 × 10<sup>−5</sup> M “because that is what the calculator shows”. Which of those digits are actually known?',
       a:'Only the 3 is certain, and the 9 is the estimated digit. ε = 1.1 × 10<sup>4</sup> could be anything from 1.05 to 1.15 × 10<sup>4</sup>, which puts c anywhere from 3.76 to 4.11 × 10<sup>−5</sup> M. The 2 and 7 are noise.'},
      {q:'Which input limits the answer, and what one change would let you report three significant figures?',
       a:'The molar absorptivity (2 figures), not the absorbance or the path length (3 each). Measure ε yourself: prepare standards of known concentration, make a calibration curve, and use its slope. A more expensive spectrometer would not help, because the absorbance is not the weak link.'}]},
   {sec:'reflect', field:'med', title:'Body mass index from a self-reported height', tag:'Powers',
-   q:'At a health fair, a person’s mass is measured as 68.2 kg on a calibrated scale, but the height is self-reported as “1.7 m”. Calculate the body mass index, BMI = mass ÷ height<sup>2</sup>, in kg/m<sup>2</sup>.', unit:'kg/m²', exact:68.2/(1.7*1.7), sf:2, ans:'24 kg/m²',
+   q:'At a health fair, a person’s mass is measured as 68.2 kg on a calibrated scale, but the height is self-reported as “1.7 m”. Calculate the body mass index, \\(\\text{BMI} = \\dfrac{\\text{mass}}{\\text{height}^2}\\), in kg/m<sup>2</sup>.', unit:'kg/m²', exact:68.2/(1.7*1.7), sf:2, ans:'24 kg/m²',
    why:'The height, 1.7 m, has only two significant figures. The exponent 2 is exact.',
    steps:['Square the height: 1.7<sup>2</sup> = 2.89 m<sup>2</sup> (still 2 figures; the exponent is exact).','Divide: 68.2 ÷ 2.89 = 23.599 kg/m<sup>2</sup>.','68.2 has 3 figures, 1.7 has 2. Keep 2: 24 kg/m<sup>2</sup>.'],
    reflect:[
