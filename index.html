@@ -167,6 +167,7 @@ button.primary:hover{filter:brightness(1.08)}
 button.link{background:none;border:none;color:var(--data);padding:0;text-decoration:underline;text-underline-offset:3px}
 .plot{width:100%;height:auto;display:block;touch-action:none;user-select:none;-webkit-user-select:none}
 .plot text{font-family:var(--f-body);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums} /* graphs use Calibri, like the page text */
+#chPlot text{font-size:15px} /* the Challenger plot is drawn at twice the width of the Vioxx panels, so its text needs a larger size to read the same */
 .plot .t-ink{fill:var(--ink)}
 .plot .t-acc{fill:var(--accent)}
 .plot .t-bad{fill:var(--bad)}
@@ -214,9 +215,35 @@ button.link{background:none;border:none;color:var(--data);padding:0;text-decorat
 .callout{font-size:.93rem;background:var(--accent-soft);border-radius:8px;padding:8px 12px}
 .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
 .src-line{font-size:.86rem;color:var(--muted)}
-.steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;counter-reset:s}
-.step3{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:4px;counter-increment:s}
-.step3 h4::before{content:counter(s) ". ";color:var(--accent)}
+/* Part 6 flowchart: a spine of yes/no questions down the left; "Yes" arrows point right to the test, "No" arrows lead down. */
+.flow{list-style:none;margin:0;padding:0}
+.frow{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);align-items:center}
+.fq{background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:600;display:flex;gap:10px;align-items:baseline}
+.fqn{flex:none;display:inline-grid;place-items:center;width:1.6em;height:1.6em;border-radius:50%;background:var(--accent);color:#fff;font-size:.85rem;font-weight:700}
+.fyes{position:relative;height:2px;background:var(--muted);margin:0 10px 0 6px}
+.fyes::after{content:"";position:absolute;right:-2px;top:-5px;border-style:solid;border-width:6px 0 6px 9px;border-color:transparent transparent transparent var(--muted)}
+.fyes span,.fdown span{font-size:.85rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.fyes span{position:absolute;left:50%;bottom:6px;transform:translateX(-50%)}
+a.fres{display:grid;gap:3px;background:var(--accent-soft);border:2px solid var(--accent);border-radius:12px;padding:12px 16px;color:var(--ink);text-decoration:none}
+a.fres b{color:var(--accent);font-size:1.05rem}
+a.fres .fex{font-size:.88rem;color:var(--muted)}
+a.fres:hover,a.fres:focus-visible{box-shadow:0 0 0 3px var(--accent-soft),0 4px 14px rgba(0,0,0,.12)}
+a.fres.fspine{grid-column:1}
+.fdown{grid-column:1;position:relative;height:46px;display:flex;align-items:center}
+.fdown::before{content:"";position:absolute;left:calc(50% - 1px);top:0;bottom:8px;width:2px;background:var(--muted)}
+.fdown::after{content:"";position:absolute;left:calc(50% - 6px);bottom:0;border-style:solid;border-width:9px 6px 0 6px;border-color:var(--muted) transparent transparent transparent}
+.fdown span{margin-left:calc(50% + 12px)}
+@media (max-width:700px){
+  .frow{grid-template-columns:minmax(0,1fr)}
+  .fyes{height:28px;width:2px;margin:0 0 0 36px}
+  .fyes::after{right:auto;top:auto;bottom:-2px;left:-5px;border-width:9px 6px 0 6px;border-color:var(--muted) transparent transparent transparent}
+  .fyes span{left:12px;bottom:auto;top:50%;transform:translateY(-50%)}
+  a.fres{margin-left:24px}
+  a.fres.fspine{margin-left:0}
+  .fdown::before{left:16px}.fdown::after{left:11px}
+  .fdown span{margin-left:30px;white-space:normal}
+}
+.testcase{scroll-margin-top:60px}
 .testcase{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:16px}
 .worked{background:var(--surface-2);border-radius:10px;padding:14px 16px;display:grid;gap:8px;font-size:.96rem}
 .worked .calcline{background:var(--surface)}
@@ -691,14 +718,42 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
   <div class="wrap">
     <div class="sechead">
       <span class="eyebrow">Part 6</span>
-      <h2>Which test, and in what order?</h2>
-      <p class="prose muted">Every test below follows the same logic: assume there is no real difference (H₀), compute a statistic from your data, and compare it with a critical value from a table. If the calculated value is larger, the difference is too big to blame on random error at your chosen confidence level. When you compare two data sets, run the tests in this order:</p>
+      <h2>Which test should I use?</h2>
+      <p class="prose muted">Every test below follows the same logic: assume there is no real difference (\(H_0\)), compute a statistic from your data, and compare it with a critical value from a table. If the calculated value is larger, the difference is too big to blame on random error at your chosen confidence level. Start at the top of the chart and answer each question about your measurements. <b>Yes</b> leads to the test to use; <b>No</b> leads down to the next question. Click a test to go to it.</p>
     </div>
-    <div class="steps3">
-      <div class="step3"><h4>Q test</h4><p class="muted">Is one value in a set so far from the others that it may be discarded?</p><button class="link" data-go="qtest" type="button">Go to Q test</button></div>
-      <div class="step3"><h4>F test</h4><p class="muted">Do two data sets have significantly different precision (variance)?</p><button class="link" data-go="ftest" type="button">Go to F test</button></div>
-      <div class="step3"><h4>t test</h4><p class="muted">Is a mean different from a known value, or are two means different from each other?</p><button class="link" data-go="ttest" type="button">Go to t test</button></div>
-    </div>
+    <ol class="flow" aria-label="Choosing a test for your measurements">
+      <li class="frow">
+        <div class="fq"><span class="fqn">1</span><span>Does one result in a set of 3 to 10 replicates look far from the others?</span></div>
+        <div class="fyes" aria-hidden="true"><span>Yes</span></div>
+        <a class="fres" href="#qtest"><b>Q test</b><span>Decide whether the suspect value may be rejected. Test once, then carry on with the values you keep.</span><span class="fex">e.g. calcium in a control serum: 9.42, 9.47, 9.45, 9.44, 9.71 mg/dL</span></a>
+        <div class="fdown" aria-hidden="true"><span>No, or after the Q test</span></div>
+      </li>
+      <li class="frow">
+        <div class="fq"><span class="fqn">2</span><span>Are you comparing one mean with a known or certified value?</span></div>
+        <div class="fyes" aria-hidden="true"><span>Yes</span></div>
+        <a class="fres" href="#tcase1"><b>t test · Case 1</b><span>Mean versus a known value. Detects systematic error.</span><span class="fex">e.g. copper in a certified reference material, 10.00 mg/L</span></a>
+        <div class="fdown" aria-hidden="true"><span>No: you are comparing two sets of results</span></div>
+      </li>
+      <li class="frow">
+        <div class="fq"><span class="fqn">3</span><span>Was each sample measured once by both methods (paired data)?</span></div>
+        <div class="fyes" aria-hidden="true"><span>Yes</span></div>
+        <a class="fres" href="#tcase3"><b>Paired t test · Case 3</b><span>Works on the differences, so sample-to-sample variation drops out.</span><span class="fex">e.g. glucose in six patients, glucometer versus lab analyzer</span></a>
+        <div class="fdown" aria-hidden="true"><span>No: two independent sets</span></div>
+      </li>
+      <li class="frow">
+        <a class="fres fspine" href="#ftest"><b>F test</b><span>Compare the precision (variances) of the two sets first.</span><span class="fex">e.g. two glucometers, each measuring the same control seven times</span></a>
+        <div class="fdown" aria-hidden="true"><span>Then</span></div>
+      </li>
+      <li class="frow">
+        <div class="fq"><span class="fqn">4</span><span>Do the variances differ significantly \(\left(F_{\text{calc}} > F_{\text{crit}}\right)\)?</span></div>
+        <div class="fyes" aria-hidden="true"><span>Yes</span></div>
+        <a class="fres" href="#tcase2"><b>t test · Welch form</b><span>Compare the means without pooling the standard deviations.</span><span class="fex">Unequal-variance form, described under Case 2</span></a>
+        <div class="fdown" aria-hidden="true"><span>No</span></div>
+      </li>
+      <li class="frow">
+        <a class="fres fspine" href="#tcase2"><b>t test · Case 2</b><span>Compare two independent means using the pooled standard deviation.</span><span class="fex">e.g. cholesterol in one control serum, measured at two hospital labs</span></a>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -785,7 +840,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <p class="src-line">Sources: Student (1908); Harris and Lucy; Skoog et al. <a href="references.html#r8">References 1, 2, 8.</a></p>
     </div>
 
-    <div class="testcase">
+    <div class="testcase" id="tcase1">
       <h3>Case 1 · Comparing a mean with a known value</h3>
       <div class="formula multi"><div class="eq">\[ t_{\text{calc}} = \frac{\left|\bar{x} - \mu_{\text{known}}\right| \sqrt{n}}{s} \]</div><div class="eq">\[ \nu = n - 1 \]</div></div>
       <p class="prose">Use it to check a method for systematic error by analyzing a certified reference material or standard.</p>
@@ -797,7 +852,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       </div>
     </div>
 
-    <div class="testcase">
+    <div class="testcase" id="tcase2">
       <h3>Case 2 · Comparing two independent means</h3>
       <div class="formula multi">
         <div class="eq">\[ t_{\text{calc}} = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{s_{\text{pooled}}} \sqrt{\frac{n_1 n_2}{n_1 + n_2}} \]</div>
@@ -814,7 +869,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       </div>
     </div>
 
-    <div class="testcase">
+    <div class="testcase" id="tcase3">
       <h3>Case 3 · Paired t test</h3>
       <div class="formula multi">
         <div class="eq">\[ d_i = x_{B,i} - x_{A,i} \]</div>
@@ -1612,11 +1667,11 @@ const CHALLENGER=[[66,0],[70,1],[69,0],[68,0],[67,0],[72,0],[73,0],[70,0],[57,1]
 function renderChallenger(view){
   const W=640,H=300,m={l:52,r:18,t:22,b:52}, X=lin(25,85,m.l,W-m.r), Y=lin(-0.35,2.5,H-m.b,m.t);
   let s=`<rect x="${X(25)}" y="${m.t}" width="${X(53)-X(25)}" height="${H-m.b-m.t}" fill="var(--surface-2)"/>`;
-  s+=`<text x="${(X(25)+X(53))/2}" y="${m.t+16}" text-anchor="middle">colder than any earlier launch</text>`;
+  s+=`<text x="${(X(25)+X(53))/2}" y="${m.t+19}" text-anchor="middle">colder than any earlier launch</text>`;
   for(const k of [0,1,2]){ s+=`<line class="gridl" x1="${m.l}" x2="${W-m.r}" y1="${Y(k)}" y2="${Y(k)}"/><text x="${m.l-10}" y="${Y(k)+4}" text-anchor="end">${k}</text>`; }
   s+=xAxis(X,niceTicks(25,85,6),H-m.b,m.l,W-m.r);
   s+=`<line x1="${X(31)}" x2="${X(31)}" y1="${m.t+24}" y2="${H-m.b}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 4"/>`;
-  s+=`<text class="t-acc" x="${X(31)+7}" y="${Y(2.05)}" font-weight="600">launch day</text><text class="t-acc" x="${X(31)+7}" y="${Y(2.05)+15}" font-weight="600">31 °F</text>`;
+  s+=`<text class="t-acc" x="${X(31)+7}" y="${Y(1.8)}" font-weight="600">launch day</text><text class="t-acc" x="${X(31)+7}" y="${Y(1.8)+18}" font-weight="600">31 °F</text>`;
   const pts = view==='all' ? CHALLENGER : CHALLENGER.filter(d=>d[1]>0);
   const groups={}; pts.forEach(d=>{ (groups[d[0]+','+d[1]] ||= []).push(d); });
   for(const key in groups){ const g=groups[key]; g.forEach((d,i)=>{ const cx=X(d[0]), cy=Y(d[1])-i*13;  // repeated temperatures stack upward like a dot plot
@@ -1631,8 +1686,8 @@ function renderChallenger(view){
     : `<b>Damaged flights only:</b> damage appears at both 53 °F and 75 °F, so temperature looks unimportant. This is the view the decision was based on.`;
 }
 function barPanel({title,bars,ymax,ticks,ylabel,fmtv,tickf=fmtv}){
-  const W=320,H=270,m={l:50,r:12,t:46,b:40}, Y=lin(0,ymax,H-m.b,m.t), bw=72, gap=(W-m.l-m.r-bars.length*bw)/(bars.length+1);
-  let s=`<text class="t-ink" x="${m.l-38}" y="18" font-weight="700" font-size="14">${title}</text>`;
+  const W=320,H=270,m={l:50,r:12,t:40,b:40}, Y=lin(0,ymax,H-m.b,m.t), bw=72, gap=(W-m.l-m.r-bars.length*bw)/(bars.length+1);
+  let s=`<text class="t-ink" x="${(m.l+W-m.r)/2}" y="20" text-anchor="middle" font-weight="700" style="font-size:14px">${title}</text>`; // same height in every panel, centered over the plot
   for(const t of ticks){ s+=`<line class="gridl" x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end">${tickf(t)}</text>`; }
   s+=`<line class="axis" x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}"/>`;
   bars.forEach((b,i)=>{ const x=m.l+gap*(i+1)+bw*i, top=Y(b.value);
@@ -1646,9 +1701,9 @@ function barPanel({title,bars,ymax,ticks,ylabel,fmtv,tickf=fmtv}){
 }
 function renderVioxx(view){
   const all = view==='all';
-  $('#vxPlot1').innerHTML=barPanel({title:'VIGOR: vs naproxen (no placebo)',ymax:24,ticks:[0,5,10,15,20],ylabel:'heart attacks',fmtv:v=>String(v),
+  $('#vxPlot1').innerHTML=barPanel({title:'VIGOR vs. naproxen (no placebo)',ymax:25,ticks:[0,5,10,15,20,25],ylabel:'heart attacks',fmtv:v=>String(v),
     bars:[{label:'rofecoxib',value:17,extra:all?3:0,color:'var(--data)'},{label:'naproxen',value:4,color:'var(--muted)'}]});
-  $('#vxPlot2').innerHTML=barPanel({title:'APPROVe: vs placebo (2005)',ymax:2,ticks:[0,0.5,1,1.5,2],ylabel:'events / 100 patient-yr',fmtv:v=>v.toFixed(2),tickf:v=>String(v),
+  $('#vxPlot2').innerHTML=barPanel({title:'APPROVe vs. placebo (2005)',ymax:2,ticks:[0,0.5,1,1.5,2],ylabel:'events / 100 patient-yr',fmtv:v=>v.toFixed(2),tickf:v=>String(v),
     bars:[{label:'rofecoxib',value:1.50,color:'var(--data)'},{label:'placebo',value:0.78,color:'var(--muted)'}]});
   $('#vxNote').innerHTML = all
     ? `<b>With all events:</b> 20 vs 4 heart attacks, relative risk for rofecoxib 5.00 (95% CI 1.68 to 20.13). The placebo trial on the right settles which drug was responsible: rofecoxib, relative risk 1.92 (95% CI 1.19 to 3.11).`
