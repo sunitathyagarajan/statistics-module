@@ -13,6 +13,10 @@
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <style>
+/* Calibri's Greek ν looks almost exactly like a Latin v, so that one character comes from KaTeX's math fonts
+   (upright and italic); every other character on the page is Calibri. */
+@font-face{font-family:"NuGlyph";src:url(https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/fonts/KaTeX_Main-Regular.woff2) format("woff2");unicode-range:U+03BD;font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:"NuGlyph";src:url(https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/fonts/KaTeX_Math-Italic.woff2) format("woff2");unicode-range:U+03BD;font-style:italic;font-weight:100 900;font-display:swap}
 /* Base reset */
 html{color-scheme:light;-webkit-text-size-adjust:100%}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -27,7 +31,7 @@ img{max-width:100%}
   --med:#0b7869; --med-soft:#d4efe9; --chem:#6a48ad; --chem-soft:#e8e1f6;
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1;
   --f-display:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-body:"NuGlyph",Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   --f-num:var(--f-body); /* values and calculations: Calibri too, with tabular figures so columns line up */
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
