@@ -63,13 +63,13 @@ header .wrap{padding-block:36px 30px;display:grid;gap:12px}
 .reading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:18px 32px;align-items:center;margin-top:4px}
 .reading > *{min-width:0}
 .rtext{display:grid;gap:8px;align-content:center}
-@media (max-width:640px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{justify-self:center;width:100%;max-width:360px}}
+@media (max-width:640px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{width:100%;max-width:360px}}
 .bfig{margin:0;display:grid;gap:6px}
 .bfig svg{width:100%;height:auto;display:block}
 .bfig text{font-family:var(--f-body);font-variant-numeric:tabular-nums;font-size:11px;fill:var(--muted)}
 .bfig text.ink{fill:var(--ink);font-weight:600}
 .bfig text.acc{fill:var(--accent);font-weight:600}
-.bfig figcaption{font-size:.85rem;color:var(--muted);text-align:center}
+.bfig figcaption{font-size:.85rem;color:var(--muted);text-align:left}
 .bfig .glass{fill:none;stroke:var(--muted);stroke-width:1.3}
 .bfig .liq{fill:var(--data);fill-opacity:.13}
 .bfig .men{fill:none;stroke:var(--data)}
