@@ -15,7 +15,6 @@
   --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0;
   --accent:#c2185b; --accent-soft:#fbe3ed; --data:#1d6a94;
   --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-mono:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
@@ -36,7 +35,7 @@ header{background:var(--surface);border-bottom:1px solid var(--line)}
 header .wrap{padding-block:36px 28px;display:grid;gap:10px}
 .back{font-weight:600;text-decoration:none;font-size:.95rem}
 .back:hover{text-decoration:underline}
-.eyebrow{font-family:var(--f-mono);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.eyebrow{font-family:var(--f-body);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
 h1{font-size:clamp(2rem,5vw,2.8rem);line-height:1.15;margin:0;letter-spacing:-.01em}
 h2{font-size:1.3rem;margin:0}
 .lead{color:var(--muted);max-width:66ch;margin:0}
@@ -44,7 +43,7 @@ main .wrap{padding-block:28px 56px;display:grid;gap:30px}
 .group{display:grid;gap:12px;scroll-margin-top:16px}
 ol.refs{margin:0;padding-left:2.2em;display:grid;gap:12px}
 ol.refs li{padding-left:4px;scroll-margin-top:16px}
-ol.refs li::marker{font-family:var(--f-mono);color:var(--muted);font-size:.9em}
+ol.refs li::marker{font-family:var(--f-body);color:var(--muted);font-size:.9em}
 ol.refs li:target{background:var(--accent-soft);border-radius:6px;outline:6px solid var(--accent-soft)}
 .cite{display:block;overflow-wrap:anywhere}
 .use{display:block;font-size:.88rem;color:var(--muted)}

@@ -28,7 +28,7 @@ img{max-width:100%}
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1;
   --f-display:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-mono:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-num:KaTeX_Main,"Cambria Math",Cambria,"Times New Roman",serif; /* values and calculations: the same face KaTeX uses for formulas */
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46; --grid:#1f2f38;
@@ -55,12 +55,10 @@ p{margin:0}
 .prose{max-width:68ch;display:grid;gap:.8em}
 p.prose{display:block}
 .muted{color:var(--muted)}
-.mono,code,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.mono,code,.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
 code{font-size:.88em;background:var(--surface-2);padding:.05em .35em;border-radius:4px}
-.ov{display:inline-block;position:relative;line-height:1;font-style:normal}
-.ov::before{content:"";position:absolute;left:.06em;right:.06em;top:.2em;height:.075em;min-height:1px;background:currentColor;border-radius:1px}
 .plot .ovs{text-decoration:overline}
-.eyebrow{font-family:var(--f-mono);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.eyebrow{font-family:var(--f-body);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
 a{color:var(--data)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
 
@@ -69,10 +67,10 @@ header.hero{background:var(--surface);border-bottom:1px solid var(--line)}
 header.hero .wrap{padding-block:48px 36px;display:grid;gap:18px}
 header.hero .eyebrow{font-size:calc(.78rem + 4px)}
 .hero .lead{font-size:1.2rem;max-width:62ch;color:var(--muted)}
-.reading{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin-top:6px}
-.reading .big{font-family:var(--f-mono);font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:600;color:var(--ink)}
+.reading{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:6px}
+.reading .big{font-family:var(--f-num);font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:600;color:var(--ink)}
 .reading .big b{color:var(--accent);font-weight:600}
-.reading .cap{color:var(--muted);font-size:.95rem;max-width:44ch}
+.reading .cap{color:var(--muted);font-size:.95rem;max-width:60ch;margin:0}
 nav.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
 nav.index .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:thin}
 nav.index a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;padding:6px 12px;border-radius:999px}
@@ -84,11 +82,11 @@ section.block > .wrap{display:grid;gap:22px}
 .sechead{display:grid;gap:8px}
 
 /* definition cards */
-.groupname{font-family:var(--f-mono);font-size:calc(.8rem + 2px);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.groupname{font-family:var(--f-body);font-size:calc(.8rem + 2px);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
 .defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}
 .def{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
-.def h4 .sym{font-family:var(--f-mono);font-weight:400;color:var(--accent);font-size:.9em;margin-left:6px}
-.formula{font-family:var(--f-mono);font-size:.9rem;background:var(--surface-2);border-radius:6px;padding:9px 12px;overflow-x:auto;line-height:1.5}
+.def h4 .sym{font-family:var(--f-body);font-weight:400;color:var(--accent);font-size:.9em;margin-left:6px}
+.formula{font-family:var(--f-body);font-size:.9rem;background:var(--surface-2);border-radius:6px;padding:9px 12px;overflow-x:auto;line-height:1.5}
 .formula.multi{display:grid;gap:4px}
 .formula .eq{white-space:nowrap;padding-block:2px}
 .formula .eqlbl{font-family:var(--f-body);font-size:.8rem;font-weight:700;color:var(--muted);margin-top:4px}
@@ -109,11 +107,11 @@ section.block > .wrap{display:grid;gap:22px}
 .ex.med{border-top:4px solid var(--med)}
 .ex.chem{border-top:4px solid var(--chem)}
 .datarow{display:flex;flex-wrap:wrap;gap:6px}
-.datarow span{font-family:var(--f-mono);font-size:.88rem;background:var(--surface-2);padding:2px 8px;border-radius:5px}
+.datarow span{font-family:var(--f-num);font-size:.88rem;background:var(--surface-2);padding:2px 8px;border-radius:5px}
 .datarow .lbl{background:none;padding-left:0;font-family:var(--f-body);font-weight:600;color:var(--muted)}
 table.st{border-collapse:collapse;width:100%;font-size:.92rem}
 table.st td{padding:4px 8px;border-bottom:1px solid var(--line)}
-table.st td:last-child{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+table.st td:last-child{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums}
 table.st tr:last-child td{border-bottom:none}
 .concepts{display:flex;flex-wrap:wrap;gap:6px}
 /* clickable results and the step-by-step popup */
@@ -134,6 +132,7 @@ button.steps-x{font-size:1.5rem;line-height:1;padding:2px 10px;background:none;b
 .steplist .hl{color:var(--accent)}
 .steps-ans{margin:16px 0 0;background:var(--accent-soft);border-radius:8px;padding:10px 14px;font-weight:700;font-size:1.05rem}
 table.st.cmp th,table.st.cmp td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+table.st.cmp td,table.devtbl td{font-family:var(--f-num)}
 table.st.cmp th[scope=row]{text-align:left;font-weight:400}
 table.st.cmp th[scope=row] .muted{font-size:.85em;white-space:nowrap}
 table.st.cmp thead th{font-weight:700;border-bottom:2px solid var(--line);white-space:nowrap}
@@ -152,19 +151,19 @@ table.devtbl tfoot td{font-weight:700;border-bottom:none}
 @media (max-width:820px){.bench-grid{grid-template-columns:minmax(0,1fr)}}
 .controls{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end}
 .ctl{display:grid;gap:4px;font-size:.88rem;color:var(--muted);font-weight:600;min-width:0}
-.ctl output{font-family:var(--f-mono);color:var(--ink);font-weight:600}
+.ctl output{font-family:var(--f-num);color:var(--ink);font-weight:600}
 .ctl.slider{min-width:min(100%,180px);flex:1 1 180px}
 input[type=range]{width:100%;accent-color:var(--accent)}
 input[type=number],input[type=text],select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
-input[type=number]{width:8.5em;font-family:var(--f-mono)}
-textarea{width:100%;font-family:var(--f-mono);resize:vertical;min-height:60px}
+input[type=number]{width:8.5em;font-family:var(--f-num)}
+textarea{width:100%;font-family:var(--f-num);resize:vertical;min-height:60px}
 button{font:inherit;font-weight:600;font-size:.93rem;cursor:pointer;border-radius:8px;padding:8px 14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
 button:hover{border-color:var(--muted)}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 button.primary:hover{filter:brightness(1.08)}
 button.link{background:none;border:none;color:var(--data);padding:0;text-decoration:underline;text-underline-offset:3px}
 .plot{width:100%;height:auto;display:block;touch-action:none;user-select:none;-webkit-user-select:none}
-.plot text{font-family:var(--f-mono);font-size:12px;fill:var(--muted)}
+.plot text{font-family:var(--f-num);font-size:12px;fill:var(--muted)}
 .plot .t-ink{fill:var(--ink)}
 .plot .t-acc{fill:var(--accent)}
 .plot .t-bad{fill:var(--bad)}
@@ -180,10 +179,10 @@ button.link{background:none;border:none;color:var(--data);padding:0;text-decorat
 .statgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .stat{background:var(--surface-2);border-radius:8px;padding:8px 10px;min-width:0}
 .stat .k{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em}
-.stat .v{font-family:var(--f-mono);font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.stat .v{font-family:var(--f-num);font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .stat.wide{grid-column:1/-1}
 .note{font-size:.9rem;color:var(--muted)}
-.calcline{font-family:var(--f-mono);font-size:.88rem;background:var(--surface-2);border-radius:8px;padding:10px 12px;overflow-x:auto;line-height:1.8}
+.calcline{font-family:var(--f-num);font-size:.88rem;background:var(--surface-2);border-radius:8px;padding:10px 12px;overflow-x:auto;line-height:1.8}
 .verdict{display:inline-block;font-weight:700;padding:4px 12px;border-radius:999px;font-size:.92rem}
 .verdict.sig{background:var(--bad-soft);color:var(--bad)}
 .verdict.ns{background:var(--good-soft);color:var(--good)}
@@ -194,7 +193,7 @@ button.link{background:none;border:none;color:var(--data);padding:0;text-decorat
 .bar .track{background:var(--surface-2);border-radius:4px;height:14px;overflow:hidden}
 .bar .fill{height:100%;background:var(--data);border-radius:4px}
 .bar .fill.alt{background:var(--accent)}
-.bar .pc{font-family:var(--f-mono);text-align:right}
+.bar .pc{font-family:var(--f-num);text-align:right}
 
 /* tests */
 /* real-data cases */
@@ -204,7 +203,7 @@ button.link{background:none;border:none;color:var(--data);padding:0;text-decorat
 .case-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:22px;align-items:start}
 @media (max-width:820px){.case-grid{grid-template-columns:minmax(0,1fr)}}
 .facts{display:grid;gap:12px;margin:0}
-.facts dt{font-family:var(--f-mono);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.facts dt{font-family:var(--f-body);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .facts dd{margin:2px 0 0;font-size:.95rem}
 .seg{display:inline-flex;flex-wrap:wrap;gap:2px;border:1px solid var(--line);border-radius:12px;padding:3px;background:var(--surface-2);justify-self:start;max-width:100%}
 .seg button{border:none;background:none;border-radius:9px;padding:6px 12px;font-size:.86rem;color:var(--muted)}
@@ -228,7 +227,7 @@ select{max-width:100%}
 .prob h4::before{content:"Problem " counter(p) " · ";color:var(--accent)}
 .prob .ptable{overflow-x:auto}
 .prob table{border-collapse:collapse;font-size:.9rem}
-.prob table th,.prob table td{padding:3px 10px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.prob table th,.prob table td{padding:3px 10px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums}
 .prob table th{font-family:var(--f-body);color:var(--muted);font-weight:600}
 .prob table th:first-child,.prob table td:first-child{text-align:left}
 .check{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -241,7 +240,7 @@ details.sol summary{cursor:pointer;font-weight:700;color:var(--data)}
 details.sol ol{margin:10px 0 0;padding-left:1.3em;display:grid;gap:6px}
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 .tbl table{border-collapse:collapse;width:100%;font-size:.9rem}
-.tbl th,.tbl td{padding:5px 10px;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl th,.tbl td{padding:5px 10px;text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums;border-bottom:1px solid var(--line);white-space:nowrap}
 .tbl th{font-family:var(--f-body);background:var(--surface-2);font-weight:700}
 .tbl td:first-child,.tbl th:first-child{text-align:left;font-weight:700}
 .tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start}
@@ -256,6 +255,9 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 .formula .katex-display>.katex{text-align:left;font-size:1.3em}
 .eqlbl .katex{white-space:nowrap}
 .calcline .katex,.calcbox .katex{font-size:1.08em}
+.calcline.eqstack{display:grid;gap:18px;padding:14px 16px}
+.calcline.eqstack .katex-display{margin:0}
+.calcline.eqstack .katex-display>.katex{text-align:left;font-size:1.3em}
 </style>
 </head>
 <body>
@@ -267,7 +269,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <p class="lead">Every number that comes off a balance, a burette or a blood analyzer is a best estimate with a spread around it. This module shows how to describe that spread, how to carry it through a calculation, and how to decide when two results really differ.</p>
     <div class="reading">
       <span class="big">24.13 <b>± 0.04</b> mL</span>
-      <span class="cap">A titration result reported the way an analyst writes it: the mean of five endpoints and its 95% confidence interval. By the end you will be able to produce and defend both numbers.</span>
+      <p class="cap">A titration result reported the way an analyst writes it. The above number represents the mean of five endpoints and its 95% confidence interval. By the end you will be able to produce and defend both numbers.</p>
     </div>
   </div>
 </header>
@@ -303,10 +305,10 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <div class="groupname">Describing a set of replicates</div>
     <div class="defs">
       <div class="def"><h4>Population and sample</h4>
-        <p>The <b>population</b> is every measurement you could ever make on the material; its true mean is μ and its standard deviation is σ. A <b>sample</b> is the handful of replicates you actually made, described by <span class="ov">x</span> and s.</p>
+        <p>The <b>population</b> is every measurement you could ever make on the material; its true mean is \(\mu\) and its standard deviation is \(\sigma\). A <b>sample</b> is the handful of replicates you actually made, described by \(\bar{x}\) and \(s\).</p>
         <p class="use"><b>Where it matters:</b> A few tablets tested from a batch of millions decide whether the whole batch can be sold.</p>
         <p class="lab"><b>At the bench:</b> your five titrations are a sample. μ is the concentration you are trying to find.</p></div>
-      <div class="def"><h4>Mean <span class="sym"><span class="ov">x</span></span></h4>
+      <div class="def"><h4>Mean <span class="sym">\(\bar{x}\)</span></h4>
         <div class="formula">\[ \bar{x} = \frac{\displaystyle\sum_{i=1}^{n} x_i}{n} \]</div>
         <p>The arithmetic average. It is the best single estimate of μ when errors are random.</p>
         <p class="use"><b>Where it matters:</b> Doctors average several blood pressure readings rather than trusting a single one.</p>
@@ -326,34 +328,34 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>The value that occurs most often. It is rarely useful for continuous lab data, where exact repeats are uncommon, but appears with counted or rounded data.</p>
         <p class="use"><b>Where it matters:</b> Finding the most common particle size in a pharmaceutical powder, which affects how fast a tablet dissolves.</p>
         <p class="lab"><b>At the bench:</b> the most common reading on a digital meter that only shows whole units.</p></div>
-      <div class="def"><h4>Range <span class="sym">w</span></h4>
+      <div class="def"><h4>Range <span class="sym">\(w\)</span></h4>
         <div class="formula">\[ w = x_{\max} - x_{\min} \]</div>
         <p>The simplest measure of spread. It depends only on the two extreme values.</p>
         <p class="use"><b>Where it matters:</b> A quick check on duplicate analyses: a large range between the two flags a problem at once.</p>
         <p class="lab"><b>At the bench:</b> the denominator of the Q test for outliers.</p></div>
-      <div class="def"><h4>Deviation from the mean <span class="sym">d<sub>i</sub></span></h4>
+      <div class="def"><h4>Deviation from the mean <span class="sym">\(d_i\)</span></h4>
         <div class="formula">\[ d_i = x_i - \bar{x} \]</div>
         <p>How far one result sits from the mean. Deviations always sum to zero, which is why they are squared before averaging.</p>
         <p class="use"><b>Where it matters:</b> Showing which replicate pulls a result away from the rest before you investigate it.</p>
         <p class="lab"><b>At the bench:</b> the building block of variance and standard deviation.</p></div>
-      <div class="def"><h4>Variance <span class="sym">s²</span></h4>
+      <div class="def"><h4>Variance <span class="sym">\(s^2\)</span></h4>
         <div class="formula">\[ s^2 = \frac{\displaystyle\sum_{i=1}^{n} \left(x_i - \bar{x}\right)^2}{n - 1} \]</div>
         <p>The average squared deviation, using n − 1. Variances add when independent errors combine, which makes them central to propagation and to the F test.</p>
         <p class="use"><b>Where it matters:</b> Combining the uncertainty from weighing, diluting and reading an instrument, because variances add.</p>
         <p class="lab"><b>At the bench:</b> the F test compares the variances of two methods.</p></div>
-      <div class="def"><h4>Standard deviation <span class="sym">s, σ</span></h4>
+      <div class="def"><h4>Standard deviation <span class="sym">\(s,\ \sigma\)</span></h4>
         <div class="formula">\[ s = \sqrt{\frac{\displaystyle\sum_{i=1}^{n} \left(x_i - \bar{x}\right)^2}{n - 1}} \]</div>
         <p>The square root of the variance, in the same units as the data. It describes how much a single measurement typically scatters. σ (dividing by N) is the population value; s estimates it from a sample.</p>
         <p class="use"><b>Where it matters:</b> Clinical labs run control samples daily and flag a run when a control falls outside mean ± 2s.</p>
-        <p class="lab"><b>At the bench:</b> the main number for <b>precision</b>. Calculators label it s, s<sub>x</sub> or σ<sub>n−1</sub>.</p></div>
-      <div class="def"><h4>Degrees of freedom <span class="sym">ν</span></h4>
+        <p class="lab"><b>At the bench:</b> the main number for <b>precision</b>. Calculators label it \(s\), \(s_x\) or \(\sigma_{n-1}\).</p></div>
+      <div class="def"><h4>Degrees of freedom <span class="sym">\(\nu\)</span></h4>
         <div class="formula multi">
           <div class="eq">\[ \nu = n - 1 \]</div>
           <div class="eqlbl">for one data set</div>
         </div>
-        <p>The number of independent deviations. Once <span class="ov">x</span> is fixed, only n − 1 of the deviations are free to vary. Critical values of t and F depend on ν.</p>
-        <p class="use"><b>Where it matters:</b> Choosing the right t value: duplicates (ν = 1) need t = 12.7, so they give very wide intervals.</p>
-        <p class="lab"><b>At the bench:</b> 4 titrations give ν = 3 when you look up t.</p></div>
+        <p>The number of independent deviations. Once \(\bar{x}\) is fixed, only \(n - 1\) of the deviations are free to vary. Critical values of \(t\) and \(F\) depend on \(\nu\).</p>
+        <p class="use"><b>Where it matters:</b> Choosing the right t value: duplicates (\(\nu = 1\)) need \(t = 12.7\), so they give very wide intervals.</p>
+        <p class="lab"><b>At the bench:</b> 4 titrations give \(\nu = 3\) when you look up \(t\).</p></div>
       <div class="def"><h4>Relative standard deviation <span class="sym">RSD, CV</span></h4>
         <div class="formula multi">
           <div class="eq">\[ \text{RSD}\ (\%) = \frac{s}{\bar{x}} \times 100 \]</div>
@@ -362,7 +364,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>The standard deviation as a fraction of the mean, so precision can be compared across very different magnitudes. In clinical labs it is called the <b>coefficient of variation (CV)</b>.</p>
         <p class="use"><b>Where it matters:</b> Method validation: drug assays are often required to show an RSD of 2% or less on replicates.</p>
         <p class="lab"><b>At the bench:</b> a good titration has an RSD of a few parts per thousand (ppt).</p></div>
-      <div class="def"><h4>Standard error of the mean <span class="sym">s<sub><span class="ov">x</span></sub></span></h4>
+      <div class="def"><h4>Standard error of the mean <span class="sym">\(s_{\bar{x}}\)</span></h4>
         <div class="formula">\[ s_{\bar{x}} = \frac{s}{\sqrt{n}} \]</div>
         <p>The uncertainty in the <em>mean</em>, which is smaller than the scatter of single results. Four times as many replicates halves it.</p>
         <p class="use"><b>Where it matters:</b> Planning how many replicates to run: going from 3 to 12 titrations cuts the uncertainty of the mean in half.</p>
@@ -409,7 +411,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 
     <div class="groupname">Uncertainty and confidence</div>
     <div class="defs">
-      <div class="def"><h4>Uncertainty <span class="sym">u</span></h4>
+      <div class="def"><h4>Uncertainty <span class="sym">\(u\)</span></h4>
         <div class="formula multi">
           <div class="eqlbl">Absolute uncertainty (same units as x)</div>
           <div class="eq">\[ x \pm u \]</div>
@@ -441,29 +443,29 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <div class="def"><h4>Student’s t</h4>
         <p>When σ is unknown and estimated by s from a few replicates, the bell curve is replaced by the wider t distribution. t shrinks toward z as ν grows.</p>
         <p class="use"><b>Where it matters:</b> Any check based on a handful of replicates, where σ is unknown, relies on t instead of z.</p>
-        <p class="lab"><b>At the bench:</b> t = 2.776 for 5 replicates at 95% instead of z = 1.960.</p></div>
+        <p class="lab"><b>At the bench:</b> \(t = 2.776\) for 5 replicates at 95% instead of \(z = 1.960\).</p></div>
       <div class="def"><h4>Confidence interval (CI)</h4>
         <div class="formula">\[ \mu = \bar{x} \pm \frac{t\,s}{\sqrt{n}} \]</div>
-        <p>A range around <span class="ov">x</span> expected to contain μ with a stated probability. In the long run, about 95 of every 100 intervals built this way contain μ.</p>
+        <p>A range around \(\bar{x}\) expected to contain \(\mu\) with a stated probability. In the long run, about 95 of every 100 intervals built this way contain \(\mu\).</p>
         <p class="use"><b>Where it matters:</b> Drug trials report a 95% CI for the treatment effect. If the interval includes zero, the benefit is not established.</p>
         <p class="lab"><b>At the bench:</b> the “± 0.04 mL” at the top of this page.</p></div>
-      <div class="def"><h4>Confidence level and significance level <span class="sym">α</span></h4>
+      <div class="def"><h4>Confidence level and significance level <span class="sym">\(\alpha\)</span></h4>
         <div class="formula">\[ \alpha = 1 - \text{confidence level} \]</div>
-        <p>A 95% confidence level means a 5% chance (α = 0.05) of declaring a difference that is really just random error.</p>
+        <p>A 95% confidence level means a 5% chance (\(\alpha = 0.05\)) of declaring a difference that is really just random error.</p>
         <p class="use"><b>Where it matters:</b> A factory may choose 99% confidence before rejecting an expensive batch, to reduce false alarms.</p>
         <p class="lab"><b>At the bench:</b> most lab reports use 95%. Clinical decisions sometimes demand 99%.</p></div>
     </div>
 
     <div class="groupname">Hypothesis tests and calibration</div>
     <div class="defs">
-      <div class="def"><h4>Null hypothesis <span class="sym">H₀</span></h4>
+      <div class="def"><h4>Null hypothesis <span class="sym">\(H_0\)</span></h4>
         <p>The assumption that there is no real difference: the two means are equal, the variances are equal, the suspect point belongs. A test asks whether the data give strong enough evidence to reject H₀.</p>
         <p class="use"><b>Where it matters:</b> Quality control assumes a batch meets its label claim until the data show strong evidence that it does not.</p>
         <p class="lab"><b>At the bench:</b> “My method has no systematic error.”</p></div>
       <div class="def"><h4>Test statistic and critical value</h4>
         <p>The test statistic (t, F or Q) is computed from your data. The critical value comes from a table for your confidence level and n. If the calculated value is greater than the critical value, reject H₀.</p>
         <p class="use"><b>Where it matters:</b> Deciding whether a cheaper, faster method gives the same results as the official method.</p>
-        <p class="lab"><b>At the bench:</b> t<sub>calc</sub> = 4.50 &gt; t<sub>crit</sub> = 2.262 means the difference is significant.</p></div>
+        <p class="lab"><b>At the bench:</b> \(t_{\text{calc}} = 4.50 > t_{\text{crit}} = 2.262\) means the difference is significant.</p></div>
       <div class="def"><h4>p-value</h4>
         <p>The probability of getting a difference at least this large by random error alone if H₀ were true. A p-value below α (for example 0.05) means a significant difference.</p>
         <p class="use"><b>Where it matters:</b> Clinical trials use p-values to show that a drug’s effect on patients is larger than chance alone would produce.</p>
@@ -489,7 +491,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <div class="eqlbl">Limit of quantitation</div>
           <div class="eq">\[ \text{LOQ} = \frac{10\,s_{\text{blank}}}{m} \]</div>
         </div>
-        <p>The lowest concentration that can be told apart from the blank (LOD), and the lowest that can be measured with acceptable precision (LOQ). s<sub>blank</sub> is the standard deviation of blank replicates; m is the calibration slope.</p>
+        <p>The lowest concentration that can be told apart from the blank (LOD), and the lowest that can be measured with acceptable precision (LOQ). \(s_{\text{blank}}\) is the standard deviation of blank replicates; \(m\) is the calibration slope.</p>
         <p class="use"><b>Where it matters:</b> Drinking-water testing: deciding whether arsenic is truly absent or only below what the method can detect.</p>
         <p class="lab"><b>At the bench:</b> deciding whether trace lead in a water sample is “not detected” or “detected but below LOQ”.</p></div>
     </div>
@@ -589,9 +591,9 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <svg class="plot" id="exPlot" viewBox="0 0 640 230" role="img" aria-label="Dot plot of the data with mean, median, standard deviation band and confidence interval"></svg>
           <div class="legend">
             <span><i style="background:var(--data)"></i>data point (drag me)</span>
-            <span><i style="background:var(--accent);height:3px"></i>mean <span class="ov">x</span></span>
+            <span><i style="background:var(--accent);height:3px"></i>mean \(\bar{x}\)</span>
             <span><i style="background:repeating-linear-gradient(90deg,var(--data) 0 4px,transparent 4px 7px);height:3px"></i>median</span>
-            <span><i style="background:var(--data-soft)"></i><span class="ov">x</span> ± 1s</span>
+            <span><i style="background:var(--data-soft)"></i>\(\bar{x} \pm 1s\)</span>
             <span><i style="background:var(--ink);height:3px"></i>confidence interval for μ</span>
           </div>
           <label class="ctl" for="exText">Values (separate with commas or spaces)
@@ -614,7 +616,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <span class="eyebrow">Part 4 · Interactive</span>
       <h2>The normal curve and what a confidence interval means</h2>
       <div class="prose muted">
-        <p>Imagine a quality-control serum whose true glucose concentration is exactly μ = 100.0 mg/dL, measured on an analyzer with random error σ. Each “experiment” is n replicate measurements. From each experiment we compute <span class="ov">x</span>, s and a confidence interval.</p>
+        <p>Imagine a quality-control serum whose true glucose concentration is exactly \(\mu = 100.0\) mg/dL, measured on an analyzer with random error \(\sigma\). Each “experiment” is \(n\) replicate measurements. From each experiment we compute \(\bar{x}\), \(s\) and a confidence interval.</p>
         <p>The top plot is the population of all possible single measurements. The bottom plot shows 25 experiments, each drawn as its confidence interval. Intervals that miss μ are drawn in red with an ✕.</p>
       </div>
     </div>
@@ -635,7 +637,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <button id="gMany" type="button">Run 10,000 experiments and count</button>
       </div>
       <div class="statgrid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))" id="gStats"></div>
-      <p class="hint"><b>Try this:</b> set n = 3 and tick “Use z instead of t”, then run 10,000 experiments. The intervals capture μ far less often than the promised 95%, because s from three replicates often underestimates σ. Student’s t widens the interval to make up for that.</p>
+      <p class="hint"><b>Try this:</b> set \(n = 3\) and tick “Use z instead of t”, then run 10,000 experiments. The intervals capture \(\mu\) far less often than the promised 95%, because \(s\) from three replicates often underestimates \(\sigma\). Student’s t widens the interval to make up for that.</p>
     </div>
   </div>
 </section>
@@ -698,15 +700,15 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <div class="prose">
         <p>Use the Q test when one result in a small set (3 to 10 values) looks suspiciously far from the rest. Sort the data, then compare the <b>gap</b> between the suspect value and its nearest neighbor with the <b>range</b> of all the data.</p>
         <div class="formula">\[ Q_{\text{calc}} = \frac{\text{gap}}{\text{range}} = \frac{\left|x_{\text{suspect}} - x_{\text{nearest}}\right|}{x_{\max} - x_{\min}} \]</div>
-        <p>If Q<sub>calc</sub> &gt; Q<sub>crit</sub> for your n and confidence level, the suspect value may be rejected. Otherwise it must be kept. Apply the test once. Never reject a value just because it spoils your precision, and never test again after removing one point. Some textbooks use the Grubbs test instead; the reasoning is the same.</p>
+        <p>If \(Q_{\text{calc}} > Q_{\text{crit}}\) for your \(n\) and confidence level, the suspect value may be rejected. Otherwise it must be kept. Apply the test once. Never reject a value just because it spoils your precision, and never test again after removing one point. Some textbooks use the Grubbs test instead; the reasoning is the same.</p>
         <p class="src-line">Sources: Dean and Dixon (1951); critical values from Rorabacher (1991). <a href="references.html#r9">References 9–10.</a></p>
       </div>
     </div>
     <div class="worked">
       <span class="chip med">Medical example</span>
-      <p>Five replicate measurements of calcium in one control serum (mg/dL): 9.42, 9.47, 9.45, 9.44, 9.71. Can 9.71 be rejected at 95% confidence?</p>
+      <p>Five replicate measurements of calcium in one control serum (mg/dL): <span class="num">9.42, 9.47, 9.45, 9.44, 9.71</span>. Can <span class="num">9.71</span> be rejected at 95% confidence?</p>
       <div class="calcline">Sorted: 9.42, 9.44, 9.45, 9.47, <b>9.71</b><br>\(\text{gap} = 9.71 - 9.47 = 0.24\)&emsp;&emsp;\(\text{range} = 9.71 - 9.42 = 0.29\)<br>\(Q_{\text{calc}} = \dfrac{0.24}{0.29} = 0.828\)&emsp;&emsp;\(Q_{\text{crit}}\ (n = 5,\ 95\%) = 0.710\)</div>
-      <p>0.828 &gt; 0.710, so <b>reject 9.71</b>. Report the mean of the remaining four: 9.445 mg/dL with s = 0.021 mg/dL. Keeping the outlier would have inflated s almost sixfold, to 0.120.</p>
+      <p>\(0.828 > 0.710\), so <b>reject <span class="num">9.71</span></b>. Report the mean of the remaining four, \(\bar{x} = 9.445\) mg/dL, with \(s = 0.021\) mg/dL. Keeping the outlier would have inflated \(s\) almost sixfold, to \(0.120\).</p>
     </div>
     <div class="bench">
       <h3>Q test playground</h3>
@@ -734,29 +736,29 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <div class="prose">
         <p>Use the F test to decide whether two sets of results have significantly different variances: two instruments, two analysts, an old and a new method. It also tells you which form of the two-mean t test to use.</p>
         <div class="formula multi"><div class="eq">\[ F_{\text{calc}} = \frac{s_1^2}{s_2^2} \]</div><div class="eqlbl">Put the larger variance on top, so \(F \ge 1\)</div></div>
-        <p>Degrees of freedom are ν<sub>1</sub> = n<sub>1</sub> − 1 for the numerator and ν<sub>2</sub> = n<sub>2</sub> − 1 for the denominator. If F<sub>calc</sub> &gt; F<sub>crit</sub>, the precisions are significantly different. Following most analytical chemistry textbooks, this page uses F<sub>crit</sub> at the 95% level from a one-tailed table.</p>
+        <p>Degrees of freedom are \(\nu_1 = n_1 - 1\) for the numerator and \(\nu_2 = n_2 - 1\) for the denominator. If \(F_{\text{calc}} > F_{\text{crit}}\), the precisions are significantly different. Following most analytical chemistry textbooks, this page uses \(F_{\text{crit}}\) at the 95% level from a one-tailed table.</p>
         <p class="src-line">Sources: Harris and Lucy; Miller and Miller; NIST/SEMATECH e-Handbook. <a href="references.html#textbooks">References 1, 3, 6.</a></p>
       </div>
     </div>
     <div class="worked">
       <span class="chip med">Medical example</span>
-      <p>A clinic compares two glucometers by measuring the same control solution seven times on each (mg/dL).<br>Meter A: 101, 97, 104, 99, 103, 95, 100 → s<sub>A</sub> = 3.18<br>Meter B: 100, 101, 99, 100, 102, 99, 101 → s<sub>B</sub> = 1.11</p>
+      <p>A clinic compares two glucometers by measuring the same control solution seven times on each (mg/dL).<br>Meter A: <span class="num">101, 97, 104, 99, 103, 95, 100</span> → \(s_A = 3.18\)<br>Meter B: <span class="num">100, 101, 99, 100, 102, 99, 101</span> → \(s_B = 1.11\)</p>
       <div class="calcline">\(F_{\text{calc}} = \dfrac{3.185^2}{1.113^2} = \dfrac{10.14}{1.238} = 8.19\)<br>\(\nu_A = 6,\ \nu_B = 6\)&emsp;&emsp;\(F_{\text{crit}}\ (6,\ 6,\ 95\%) = 4.28\)</div>
-      <p>8.19 &gt; 4.28, so <b>meter A is significantly less precise</b> than meter B. Both have a mean near 100 mg/dL, so the meters seem equally accurate. Their precision is what differs.</p>
+      <p>\(8.19 > 4.28\), so <b>meter A is significantly less precise</b> than meter B. Both have a mean near 100 mg/dL, so the meters seem equally accurate. Their precision is what differs.</p>
     </div>
     <div class="bench">
       <h3>F test playground</h3>
       <div class="controls">
-        <label class="ctl slider" for="fS1">s<sub>1</sub>: <output id="fS1O"></output><input type="range" id="fS1" min="0.05" max="1" step="0.01" value="0.32"></label>
-        <label class="ctl slider" for="fN1">n<sub>1</sub>: <output id="fN1O"></output><input type="range" id="fN1" min="3" max="20" step="1" value="6"></label>
-        <label class="ctl slider" for="fS2">s<sub>2</sub>: <output id="fS2O"></output><input type="range" id="fS2" min="0.05" max="1" step="0.01" value="0.18"></label>
-        <label class="ctl slider" for="fN2">n<sub>2</sub>: <output id="fN2O"></output><input type="range" id="fN2" min="3" max="20" step="1" value="5"></label>
+        <label class="ctl slider" for="fS1">\(s_1\): <output id="fS1O"></output><input type="range" id="fS1" min="0.05" max="1" step="0.01" value="0.32"></label>
+        <label class="ctl slider" for="fN1">\(n_1\): <output id="fN1O"></output><input type="range" id="fN1" min="3" max="20" step="1" value="6"></label>
+        <label class="ctl slider" for="fS2">\(s_2\): <output id="fS2O"></output><input type="range" id="fS2" min="0.05" max="1" step="0.01" value="0.18"></label>
+        <label class="ctl slider" for="fN2">\(n_2\): <output id="fN2O"></output><input type="range" id="fN2" min="3" max="20" step="1" value="5"></label>
         <label class="ctl" for="fConf">Confidence level
           <select id="fConf"><option value="90">90%</option><option value="95" selected>95%</option><option value="99">99%</option></select></label>
       </div>
       <svg class="plot" id="fPlot" viewBox="0 0 640 220" role="img" aria-label="F distribution with the rejection region and the calculated F value"></svg>
       <div class="calcline" id="fCalc"></div>
-      <p class="hint"><b>Try this:</b> keep s<sub>1</sub> and s<sub>2</sub> fixed and raise both n values. The same ratio of standard deviations becomes significant once you have enough replicates to trust it.</p>
+      <p class="hint"><b>Try this:</b> keep \(s_1\) and \(s_2\) fixed and raise both \(n\) values. The same ratio of standard deviations becomes significant once you have enough replicates to trust it.</p>
     </div>
     <div class="gen" id="genF"></div>
   </div>
@@ -768,7 +770,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
     <div class="sechead">
       <span class="eyebrow">Test 3</span>
       <h2>The t test (comparing means)</h2>
-      <p class="prose">Student’s t test asks whether a difference between means is larger than random error can explain. There are three situations, each with its own formula. In every case, if t<sub>calc</sub> &gt; t<sub>crit</sub> (two-tailed, at your confidence level and degrees of freedom), the difference is significant.</p>
+      <p class="prose">Student’s t test asks whether a difference between means is larger than random error can explain. There are three situations, each with its own formula. In every case, if \(t_{\text{calc}} > t_{\text{crit}}\) (two-tailed, at your confidence level and degrees of freedom), the difference is significant.</p>
       <p class="src-line">Sources: Student (1908); Harris and Lucy; Skoog et al. <a href="references.html#r8">References 1, 2, 8.</a></p>
     </div>
 
@@ -778,9 +780,9 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <p class="prose">Use it to check a method for systematic error by analyzing a certified reference material or standard.</p>
       <div class="worked">
         <span class="chip chem">Chemistry example</span>
-        <p>A CRM is certified at 10.00 mg/L Cu. Student A finds 9.62, 9.65, 9.60, 9.64 (<span class="ov">x</span> = 9.6275, s = 0.0222, n = 4).</p>
+        <p>A CRM is certified at 10.00 mg/L Cu. Student A finds <span class="num">9.62, 9.65, 9.60, 9.64</span> (\(\bar{x} = 9.6275,\ s = 0.0222,\ n = 4\)).</p>
         <div class="calcline">\(t_{\text{calc}} = \dfrac{\left|9.6275 - 10.00\right| \sqrt{4}}{0.0222} = \dfrac{0.3725 \times 2}{0.0222} = 33.6\)<br>\(t_{\text{crit}}\ (\nu = 3,\ 95\%) = 3.182\)</div>
-        <p>33.6 &gt; 3.182, so <b>Student A has a systematic error</b>. Student B (<span class="ov">x</span> = 10.0325, s = 0.174) gets t = 0.37, which is not significant.</p>
+        <p>\(33.6 > 3.182\), so <b>Student A has a systematic error</b>. Student B (\(\bar{x} = 10.0325,\ s = 0.174\)) gets \(t = 0.37\), which is not significant.</p>
       </div>
     </div>
 
@@ -795,9 +797,9 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <p class="prose">Use it for two separate sets of replicates: two labs, two methods on the same material, two samples. Run an F test first. If the variances are not significantly different, pool them as above. If they are, use the unequal-variance (Welch) form, \[ t = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} \] with ν from the Welch–Satterthwaite equation.</p>
       <div class="worked">
         <span class="chip med">Medical example</span>
-        <p>Two hospital labs measure cholesterol in the same control serum (mg/dL).<br>Lab X: 198, 202, 195, 201, 199, 203 → <span class="ov">x</span> = 199.67, s = 2.944, n = 6<br>Lab Y: 206, 209, 204, 211, 207 → <span class="ov">x</span> = 207.40, s = 2.702, n = 5</p>
+        <p>Two hospital labs measure cholesterol in the same control serum (mg/dL).<br>Lab X: <span class="num">198, 202, 195, 201, 199, 203</span> → \(\bar{x} = 199.67,\ s = 2.944,\ n = 6\)<br>Lab Y: <span class="num">206, 209, 204, 211, 207</span> → \(\bar{x} = 207.40,\ s = 2.702,\ n = 5\)</p>
         <div class="calcline">F test: \(F = \dfrac{2.944^2}{2.702^2} = 1.19 &lt; F_{\text{crit}}(5,\ 4) = 6.26\), so pool<br>\(s_{\text{pooled}} = \sqrt{\dfrac{8.667 \times 5 + 7.300 \times 4}{9}} = 2.839\)<br>\(t_{\text{calc}} = \dfrac{\left|199.67 - 207.40\right|}{2.839} \sqrt{\dfrac{6 \times 5}{11}} = 4.50\)<br>\(t_{\text{crit}}\ (\nu = 9,\ 95\%) = 2.262\)</div>
-        <p>4.50 &gt; 2.262, so <b>the labs disagree</b>. At least one of them has a bias, which matters for a patient whose result straddles a treatment threshold.</p>
+        <p>\(4.50 > 2.262\), so <b>the labs disagree</b>. At least one of them has a bias, which matters for a patient whose result straddles a treatment threshold.</p>
       </div>
     </div>
 
@@ -819,15 +821,15 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
           <tr><td>d = glucometer − lab</td><td>4</td><td>4</td><td>−3</td><td>7</td><td>9</td><td>5</td></tr>
         </table></div>
         <div class="calcline">\(\bar{d} = 4.33,\quad s_d = 4.08,\quad n = 6\)<br>\(t_{\text{calc}} = \dfrac{4.33 \sqrt{6}}{4.08} = 2.60\)&emsp;&emsp;\(t_{\text{crit}}\ (\nu = 5,\ 95\%) = 2.571\)</div>
-        <p>2.60 &gt; 2.571, so <b>the glucometer reads significantly high</b>, by about 4 mg/dL on average. Treating these as two independent sets would hide the bias, because patient glucose ranges from 64 to 240 mg/dL.</p>
+        <p>\(2.60 > 2.571\), so <b>the glucometer reads significantly high</b>, by about 4 mg/dL on average. Treating these as two independent sets would hide the bias, because patient glucose ranges from 64 to 240 mg/dL.</p>
       </div>
     </div>
 
     <div class="bench">
       <h3>t test playground · mean versus a certified value</h3>
-      <p class="note">Your replicate results on a copper CRM certified at μ = 10.00 mg/L. Change the mean, the spread and the number of replicates.</p>
+      <p class="note">Your replicate results on a copper CRM certified at \(\mu = 10.00\) mg/L. Change the mean, the spread and the number of replicates.</p>
       <div class="controls">
-        <label class="ctl slider" for="tMean">Your mean <span class="ov">x</span>: <output id="tMeanO"></output> mg/L<input type="range" id="tMean" min="9.50" max="10.50" step="0.01" value="9.86"></label>
+        <label class="ctl slider" for="tMean">Your mean \(\bar{x}\): <output id="tMeanO"></output> mg/L<input type="range" id="tMean" min="9.50" max="10.50" step="0.01" value="9.86"></label>
         <label class="ctl slider" for="tS">Standard deviation s: <output id="tSO"></output><input type="range" id="tS" min="0.02" max="0.50" step="0.01" value="0.18"></label>
         <label class="ctl slider" for="tN">Replicates n: <output id="tNO"></output><input type="range" id="tN" min="2" max="20" step="1" value="5"></label>
         <label class="ctl" for="tConf">Confidence level
@@ -836,7 +838,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <svg class="plot" id="tPlot" viewBox="0 0 640 220" role="img" aria-label="t distribution with rejection regions and the calculated t value"></svg>
       <svg class="plot" id="tCI" viewBox="0 0 640 90" role="img" aria-label="Confidence interval compared with the certified value"></svg>
       <div class="calcline" id="tCalc"></div>
-      <p class="hint"><b>Two views of one decision:</b> t<sub>calc</sub> lands in a red rejection region exactly when the confidence interval (bottom) no longer contains the certified value. Raise n from 5 to 12 and watch both change together.</p>
+      <p class="hint"><b>Two views of one decision:</b> \(t_{\text{calc}}\) lands in a red rejection region exactly when the confidence interval (bottom) no longer contains the certified value. Raise \(n\) from 5 to 12 and watch both change together.</p>
     </div>
     <div class="gen" id="genT"></div>
   </div>
@@ -1039,17 +1041,17 @@ function statRows(a,unit,known,set,name){
   STEPSETS[set]={kind:'data',a,unit,known,name};
   const d=describe(a), dec=decimalsOf(a), tc=tcrit(95,d.n-1), half=tc*d.sem, [cv,cu]=report(d.mean,half);
   const R=(label,stat,v,u)=>({label,stat,v,u,set});
-  const rows=[R('n',null,String(d.n)), R('Mean <span class="ov">x</span>','mean',fmt(d.mean,dec+1),'u'), R('Median','median',fmt(d.median,dec),'u'),
-    R('Range','range',fmt(d.range,dec),'u'), R('Standard deviation s','s',sg(d.s),'u'), R('Variance s²','var',sg(d.variance),'u2'),
+  const rows=[R('n',null,String(d.n)), R('Mean \\(\\bar{x}\\)','mean',fmt(d.mean,dec+1),'u'), R('Median','median',fmt(d.median,dec),'u'),
+    R('Range','range',fmt(d.range,dec),'u'), R('Standard deviation \\(s\\)','s',sg(d.s),'u'), R('Variance \\(s^2\\)','var',sg(d.variance),'u2'),
     R('RSD (CV)','rsd',`${sig(d.rsd,2)}%${d.rsd<2?` = ${sig(d.rsd*10,2)} ppt`:''}`), R(`Std. error ${tx`s/\sqrt{n}`}`,'sem',sg(d.sem),'u'),
-    R('95% CI for μ','ci',`${cv} ± ${cu}`,'u')];
+    R('95% CI for \\(\\mu\\)','ci',`${cv} ± ${cu}`,'u')];
   if(known!==undefined) rows.push(R(`Error vs. ${known} ${unit}`,'err',minus(((d.mean-known)/known*100).toFixed(1))+'%'));
   rows.tc=tc; return rows;
 }
 const cell = (r,U) => r.stat ? stepBtn(r.set,r.stat,r.v+U) : r.v+U;
 function miniStats(a,unit,known,set,name){
   const rows=statRows(a,unit,known,set,name), U=unit?' '+unit:'';
-  return `<table class="st">${rows.map(r=>`<tr><td>${r.stat==='ci'?`${r.label} (t = ${rows.tc.toFixed(3)})`:r.label}</td><td>${cell(r,r.u==='u'?U:'')}</td></tr>`).join('')}</table>`;
+  return `<table class="st">${rows.map(r=>`<tr><td>${r.stat==='ci'?`${r.label} (${tx`t = ${rows.tc.toFixed(3)}`})`:r.label}</td><td>${cell(r,r.u==='u'?U:'')}</td></tr>`).join('')}</table>`;
 }
 /* Two data sets side by side (C2): units move into the row labels so the value columns stay plain numbers. */
 function compareStats(a,b,unit,known,sets,names,heads){
@@ -1057,7 +1059,7 @@ function compareStats(a,b,unit,known,sets,names,heads){
   const lab=r=> r.u==='u'&&unit ? `${r.label} (${unit})` : r.u==='u2'&&unit ? `${r.label} (${unit})²` : r.label;
   const sameT=Math.abs(ra.tc-rb.tc)<1e-9;
   return `<div class="tblwrap"><table class="st cmp"><thead><tr><th scope="col">Statistic</th><th scope="col">${heads[0]}</th><th scope="col">${heads[1]}</th></tr></thead><tbody>${
-    ra.map((r,i)=>`<tr><th scope="row">${lab(r)}${r.stat==='ci'&&sameT?` <span class="muted">t = ${ra.tc.toFixed(3)}</span>`:''}</th><td>${cell(r,'')}</td><td>${cell(rb[i],'')}</td></tr>`).join('')}</tbody></table></div>`;
+    ra.map((r,i)=>`<tr><th scope="row">${lab(r)}${r.stat==='ci'&&sameT?` <span class="muted">${tx`t = ${ra.tc.toFixed(3)}`}</span>`:''}</th><td>${cell(r,'')}</td><td>${cell(rb[i],'')}</td></tr>`).join('')}</tbody></table></div>`;
 }
 /* C3: propagation of uncertainty for a primary standard (mass and volume uncertainties combined). */
 const PROP_EX = {m:0.5106, um:0.0002, M:204.22, V:100.00, uV:0.08};
@@ -1085,10 +1087,10 @@ function devTable(a,d,dec){
 function dataSteps(S,stat){
   const a=S.a, d=describe(a), dec=decimalsOf(a), n=d.n, U=S.unit?' '+S.unit:'', TU=S.unit?`\\ \\text{${S.unit}}`:'';
   const X=v=>fmt(v,dec), M4=fmt(d.mean,dec+3), sum=a.reduce((s,x)=>s+x,0);
-  const meanStep={t:`Add the ${n} values, then divide by n = ${n}.`, m:tex`\bar{x} = \frac{\sum x_i}{n} = \frac{${a.map(X).join(' + ')}}{${n}} = \frac{${fmt(sum,dec)}}{${n}} = ${M4}`};
+  const meanStep={t:`Add the ${n} values, then divide by ${tx`n = ${n}`}.`, m:tex`\bar{x} = \frac{\sum x_i}{n} = \frac{${a.map(X).join(' + ')}}{${n}} = \frac{${fmt(sum,dec)}}{${n}} = ${M4}`};
   const varSteps=[meanStep,
     {t:'Subtract the mean from each value and square the result. The deviations add up to zero; the squares do not.', html:devTable(a,d,dec)},
-    {t:`Add the squared deviations and divide by n − 1 = ${n-1}. This is the variance.`, m:tex`s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1} = \frac{${sg(d.ss,4)}}{${n-1}} = ${sg(d.variance,4)}`}];
+    {t:`Add the squared deviations and divide by ${tx`n - 1 = ${n-1}`}. This is the variance.`, m:tex`s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1} = \frac{${sg(d.ss,4)}}{${n-1}} = ${sg(d.variance,4)}`}];
   const sStep={t:'Take the square root of the variance.', m:tex`s = \sqrt{s^2} = \sqrt{${sg(d.variance,4)}} = ${sg(d.s,4)}`};
   const sorted=d.sorted, mid=n%2?[(n+1)/2]:[n/2,n/2+1];
   const sortedHTML=sorted.map((v,i)=>mid.includes(i+1)?`<b class="hl">${X(v)}</b>`:X(v)).join(', ');
@@ -1097,8 +1099,8 @@ function dataSteps(S,stat){
     case 'mean': return {title:'Mean', steps:[meanStep, {t:'Round for reporting: one more decimal place than the data.'}], ans:fmt(d.mean,dec+1)+U};
     case 'median': return {title:'Median', steps:[
       {t:`Sort the ${n} values from low to high: ${sortedHTML}.`},
-      n%2 ? {t:`n = ${n} is odd, so the median is the middle value, the ${ord(mid[0])} one.`, m:tex`\tilde{x} = x_{${mid[0]}} = ${X(d.median)}`}
-          : {t:`n = ${n} is even, so the median is the average of the two middle values, the ${ord(mid[0])} and ${ord(mid[1])}.`, m:tex`\tilde{x} = \frac{x_{${mid[0]}} + x_{${mid[1]}}}{2} = \frac{${X(sorted[mid[0]-1])} + ${X(sorted[mid[1]-1])}}{2} = ${fmt(d.median,dec+1)}`}],
+      n%2 ? {t:`${tx`n = ${n}`} is odd, so the median is the middle value, the ${ord(mid[0])} one.`, m:tex`\tilde{x} = x_{${mid[0]}} = ${X(d.median)}`}
+          : {t:`${tx`n = ${n}`} is even, so the median is the average of the two middle values, the ${ord(mid[0])} and ${ord(mid[1])}.`, m:tex`\tilde{x} = \frac{x_{${mid[0]}} + x_{${mid[1]}}}{2} = \frac{${X(sorted[mid[0]-1])} + ${X(sorted[mid[1]-1])}}{2} = ${fmt(d.median,dec+1)}`}],
       ans:fmt(d.median,dec)+U};
     case 'range': return {title:'Range', steps:[
       {t:`Find the smallest and largest values: ${tx`x_{\min} = ${X(d.min)}`} and ${tx`x_{\max} = ${X(d.max)}`}.`},
@@ -1118,15 +1120,15 @@ function dataSteps(S,stat){
       {t:'Round for reporting: three significant figures.'}], ans:sg(d.sem)+U};
     case 'ci': return {title:'95% confidence interval', steps:[
       {t:'Find the degrees of freedom.', m:tex`\nu = n - 1 = ${n} - 1 = ${n-1}`},
-      {t:`Look up Student’s t for 95% confidence (two-tailed) and ν = ${n-1} in the t table in the Reference section.`, m:tex`t = ${tc.toFixed(3)}`},
+      {t:`Look up Student’s t for 95% confidence (two-tailed) and ${tx`\nu = ${n-1}`} in the t table in the Reference section.`, m:tex`t = ${tc.toFixed(3)}`},
       {t:'Find the standard error of the mean.', m:tex`\frac{s}{\sqrt{n}} = \frac{${sg(d.s,4)}}{\sqrt{${n}}} = ${sg(d.sem,4)}`},
       {t:'Multiply by t to get the half-width of the interval.', m:tex`\frac{t\,s}{\sqrt{n}} = ${tc.toFixed(3)} \times ${sg(d.sem,4)} = ${sg(half,4)}`},
       {t:'Put the interval around the mean.', m:tex`\mu = \bar{x} \pm \frac{t\,s}{\sqrt{n}} = ${M4} \pm ${sg(half,4)}`},
-      {t:`Round the ± value to one significant figure (two if it starts with 1), giving ${cu}. Then round the mean to the same decimal place, giving ${cv}.`}],
+      {t:`Round the ± value to one significant figure (two if it starts with 1), giving ${tx`${cu}`}. Then round the mean to the same decimal place, giving ${tx`${cv}`}.`}],
       ans:`${cv} ± ${cu}${U}`};
     case 'err': { const e=(d.mean-S.known)/S.known*100; return {title:'Relative error', steps:[
       {t:`Find the mean of the replicates.`, m:tex`\bar{x} = \frac{${fmt(sum,dec)}}{${n}} = ${M4}`},
-      {t:`Compare it with the certified value, ${S.known.toFixed(2)}${U}.`, m:tex`E_{\text{rel}} = \frac{\bar{x} - x_{\text{true}}}{x_{\text{true}}} \times 100\% = \frac{${M4} - ${S.known.toFixed(2)}}{${S.known.toFixed(2)}} \times 100\% = ${e.toFixed(2)}\%`},
+      {t:`Compare it with the certified value, ${tx`x_{\text{true}} = ${S.known.toFixed(2)}`}${U}.`, m:tex`E_{\text{rel}} = \frac{\bar{x} - x_{\text{true}}}{x_{\text{true}}} \times 100\% = \frac{${M4} - ${S.known.toFixed(2)}}{${S.known.toFixed(2)}} \times 100\% = ${e.toFixed(2)}\%`},
       {t:e<0?'The error is negative, so the result is low. Round to one decimal place.':'The error is positive, so the result is high. Round to one decimal place.'}],
       ans:minus(e.toFixed(1))+'%'}; }
   }
@@ -1139,13 +1141,13 @@ function propSteps(S,stat){
   const rcStep={t:'c is a quotient, so the relative uncertainties add in quadrature. (The molar mass is known so precisely that its uncertainty is negligible.)', m:tex`\frac{u_c}{c} = \sqrt{\left(\frac{u_m}{m}\right)^2 + \left(\frac{u_V}{V}\right)^2} = \sqrt{(${(r.rm*100).toFixed(3)}\%)^2 + (${(r.rv*100).toFixed(3)}\%)^2} = ${(r.rc*100).toFixed(3)}\%`};
   const ucStep={t:'Multiply the relative uncertainty by c to get the absolute uncertainty.', m:tex`u_c = c \times \frac{u_c}{c} = ${r.c.toFixed(6)} \times ${r.rc.toFixed(6)} = ${texSci(r.uc,2)}\ \text{M}`};
   switch(stat){
-    case 'c': return {title:'Concentration', steps:[{t:`Volume: ${p.V.toFixed(2)} mL = ${r.VL.toFixed(5)} L.`}, cStep], ans:r.c.toFixed(6)+' M'};
+    case 'c': return {title:'Concentration', steps:[{t:`Convert the volume to liters: ${tx`V = ${p.V.toFixed(2)}\ \text{mL} = ${r.VL.toFixed(5)}\ \text{L}`}.`}, cStep], ans:r.c.toFixed(6)+' M'};
     case 'rm': return {title:'Relative uncertainty of the mass', steps:[rmStep], ans:(r.rm*100).toFixed(3)+'%'};
     case 'rv': return {title:'Relative uncertainty of the volume', steps:[rvStep], ans:(r.rv*100).toFixed(3)+'%'};
     case 'rc': return {title:'Combined relative uncertainty', steps:[rmStep,rvStep,rcStep], ans:(r.rc*100).toFixed(3)+'%'};
     case 'uc': return {title:'Absolute uncertainty', steps:[cStep,rmStep,rvStep,rcStep,ucStep], ans:r.uc.toFixed(6)+' M'};
     case 'rep': return {title:'Reported result', steps:[cStep,rcStep,ucStep,
-      {t:`Round the uncertainty to one significant figure (two if it starts with 1): ${r.ur} M. Then round c to the same decimal place: ${r.cr} M.`},
+      {t:`Round the uncertainty to one significant figure (two if it starts with 1): ${tx`u_c = ${r.ur}\ \text{M}`}. Then round ${tx`c`} to the same decimal place: ${tx`c = ${r.cr}\ \text{M}`}.`},
       {t:`The volume term is about ${Math.round(r.flask*100)}% of the variance, so a better flask would help more than a better balance.`}],
       ans:`${r.cr} ± ${r.ur} M`};
   }
@@ -1156,7 +1158,7 @@ function openSteps(set,stat){
   const r = S.kind==='prop' ? propSteps(S,stat) : dataSteps(S,stat); if(!r) return;
   const dlg=$('#stepsDlg');
   $('#stepsTitle').textContent = `${r.title} · ${S.name}`;
-  $('#stepsBody').innerHTML = `<ol class="steplist">${r.steps.map(s=>`<li>${s.t}${s.m?D(s.m):''}${s.html||''}</li>`).join('')}</ol><p class="steps-ans">Answer: ${r.ans}</p>`;
+  $('#stepsBody').innerHTML = `<ol class="steplist">${r.steps.map(s=>`<li>${s.t}${s.m?D(s.m):''}${s.html||''}</li>`).join('')}</ol><p class="steps-ans">Answer: <span class="num">${r.ans}</span></p>`;
   if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open','');
   $('#stepsBody').scrollTop=0;
 }
@@ -1170,32 +1172,38 @@ const EXAMPLES = [
  {f:'med',key:'m1',title:'M1 · How precise is a glucometer?',
   scene:'A nurse tests the same tube of blood six times on one glucometer to check its precision.',
   data:[104,98,101,99,103,97],unit:'mg/dL',
-  read:'The mean (100.3) and median (100) agree, so nothing looks unusual. A single reading scatters by about s = 2.8 mg/dL, an RSD of 2.8%. Averaging six readings shrinks the uncertainty of the mean to \\(s/\\sqrt{n}\\) = 1.1 mg/dL, and the 95% CI is 100 ± 3 mg/dL.',
+  read:'The mean (\\(\\bar{x} = 100.3\\)) and median (\\(\\tilde{x} = 100\\)) agree, so nothing looks unusual. A single reading scatters by about \\(s = 2.8\\) mg/dL, an RSD of \\(2.8\\%\\). Averaging six readings shrinks the uncertainty of the mean to \\(s/\\sqrt{n} = 1.1\\) mg/dL, and the 95% CI is \\(100 \\pm 3\\) mg/dL.',
   tags:['mean','median','standard deviation','RSD / CV','standard error']},
  {f:'chem',key:'c1',title:'C1 · Standardizing NaOH by titration',
   scene:'Five titrations of a KHP standard with NaOH. Endpoint volumes read from a 50 mL burette.',
   data:[24.12,24.18,24.09,24.15,24.11],unit:'mL',
-  read:'s = 0.035 mL is only 1.5 parts per thousand of the volume, typical of careful burette work. The 95% CI, 24.13 ± 0.04 mL, uses t = 2.776 for 4 degrees of freedom. Note the sig figs: the burette is read to 0.01 mL, so the result is 24.13, not 24.130.',
+  read:'\\(s = 0.035\\) mL is only 1.5 parts per thousand of the volume, typical of careful burette work. The 95% CI, \\(24.13 \\pm 0.04\\) mL, uses \\(t = 2.776\\) for \\(\\nu = 4\\) degrees of freedom. Note the sig figs: the burette is read to 0.01 mL, so the result is \\(24.13\\), not \\(24.130\\).',
   tags:['mean','RSD in ppt','degrees of freedom','confidence interval','significant figures']},
  {f:'med',key:'m2',title:'M2 · When the mean misleads: hospital length of stay',
   scene:'Days in hospital for eight patients after the same surgery. One patient developed a complication.',
   data:[2,3,3,4,4,5,6,21],unit:'days',
-  read:'The mean (6.0 days) is longer than six of the eight stays. The median (4.0 days) describes a typical patient far better. The single long stay also makes s (6.2 days) larger than the median itself. Skewed data like this call for the median; in the lab, the same effect comes from a gross error, which the Q test addresses.',
+  read:'The mean (\\(\\bar{x} = 6.0\\) days) is longer than six of the eight stays. The median (\\(\\tilde{x} = 4.0\\) days) describes a typical patient far better. The single long stay also makes \\(s\\) (\\(6.2\\) days) larger than the median itself. Skewed data like this call for the median; in the lab, the same effect comes from a gross error, which the Q test addresses.',
   tags:['median vs. mean','range','outlier','skewed data']},
  {f:'chem',key:'c2a',key2:'c2b',title:'C2 · Accuracy versus precision on a reference material',
   scene:'Two students analyze a copper certified reference material (10.00 mg/L) by atomic absorption, four replicates each.',
   data:[9.62,9.65,9.60,9.64],data2:[9.85,10.21,9.92,10.15],unit:'mg/L',known:10.00,
-  read:'Student A is very precise (RSD 0.23%) but 3.7% low, the signature of a systematic error such as a miscalibrated pipette or wrongly made standards. Student B is accurate on average (+0.3%) but much less precise (RSD 1.7%), the signature of random error. Averaging more replicates would help B; it would not help A.',
+  read:'Student A is very precise (\\(\\text{RSD} = 0.23\\%\\)) but \\(3.7\\%\\) low, the signature of a systematic error such as a miscalibrated pipette or wrongly made standards. Student B is accurate on average (\\(+0.3\\%\\)) but much less precise (\\(\\text{RSD} = 1.7\\%\\)), the signature of random error. Averaging more replicates would help B; it would not help A.',
   tags:['accuracy','precision','systematic error','random error','% error']},
  {f:'med',key:'m3',title:'M3 · Is the blood pressure really above 130?',
   scene:'A patient’s systolic pressure is measured five times. Stage 1 hypertension in US guidelines starts at 130 mmHg.',
   data:[128,134,131,126,136],unit:'mmHg',
-  read:'The mean is 131 mmHg, just over the threshold. With s = 4.1 mmHg and n = 5, the 95% CI is 131 ± 5 mmHg, or roughly 126 to 136. The interval includes 130, so these readings alone cannot show that the true average is above 130. More readings would narrow the interval.',
+  read:'The mean is \\(\\bar{x} = 131\\) mmHg, just over the threshold. With \\(s = 4.1\\) mmHg and \\(n = 5\\), the 95% CI is \\(131 \\pm 5\\) mmHg, or roughly 126 to 136. The interval includes 130, so these readings alone cannot show that the true average is above 130. More readings would narrow the interval.',
   tags:['uncertainty','standard error','confidence interval','decision near a threshold']},
  {f:'chem',key:'prop',title:'C3 · Uncertainty in a primary standard solution',
   scene:'0.5106 ± 0.0002 g of KHP (204.22 g/mol) is dissolved and diluted to 100.00 ± 0.08 mL in a Class A volumetric flask.',
   unit:'M',
-  read:'\\(c = \\dfrac{0.5106}{204.22 \\times 0.10000} = 0.025002\\) M. Relative uncertainties: mass \\(\\dfrac{0.0002}{0.5106} = 0.039\\%\\), volume \\(\\dfrac{0.08}{100.00} = 0.080\\%\\). Combined: \\(\\sqrt{0.039^2 + 0.080^2} = 0.089\\%\\), so u = 0.000022 M. Report c = 0.02500 ± 0.00002 M. The flask contributes about 80% of the variance.',
+  read:'Divide the mass by molar mass × volume, find the relative uncertainty of each input, combine them in quadrature, then round the result to match its uncertainty. The flask contributes about 80% of the variance, so a better flask would help more than a better balance.',
+  calc:[String.raw`c = \frac{m}{M\,V} = \frac{0.5106\ \text{g}}{204.22\ \text{g/mol} \times 0.10000\ \text{L}} = 0.025002\ \text{M}`,
+    String.raw`\frac{u_m}{m} = \frac{0.0002}{0.5106} = 0.039\%`,
+    String.raw`\frac{u_V}{V} = \frac{0.08}{100.00} = 0.080\%`,
+    String.raw`\frac{u_c}{c} = \sqrt{(0.039\%)^2 + (0.080\%)^2} = 0.089\%`,
+    String.raw`u_c = 0.025002\ \text{M} \times 0.089\% = 0.000022\ \text{M}`,
+    String.raw`c = 0.02500 \pm 0.00002\ \text{M}`],
   tags:['absolute uncertainty','relative uncertainty','propagation','significant figures']}
 ];
 function renderExamples(){
@@ -1210,12 +1218,12 @@ function renderExamples(){
         body += compareStats(e.data,e.data2,e.unit,e.known,[e.key,e.key2],[e.id+' · Student A',e.id+' · Student B'],['Student A','Student B']);
       } else body += miniStats(e.data,e.unit,e.known,e.key,e.id);
     } else {
-      body += `<div class="calcline">${tx`c = \dfrac{m}{M\,V}`}<br>${tx`\dfrac{u_c}{c} = \sqrt{\left(\dfrac{u_m}{m}\right)^2 + \left(\dfrac{u_V}{V}\right)^2}`}</div>${propStats(e.key,e.id)}`;
+      body += `<div class="calcline eqstack"><div>${D(tex`c = \frac{m}{M\,V}`)}</div><div>${D(tex`\frac{u_c}{c} = \sqrt{\left(\frac{u_m}{m}\right)^2 + \left(\frac{u_V}{V}\right)^2}`)}</div></div>${propStats(e.key,e.id)}`;
     }
     const btns = e.key==='prop' ? `<button type="button" data-go="propagation" class="go">Open in the uncertainty calculator</button>`
       : `<button type="button" data-load="${e.key}">Explore ${e.data2?'student A':'these numbers'}</button>${e.key2?` <button type="button" data-load="${e.key2}">Explore student B</button>`:''}`;
     return `<article class="ex ${e.f}"><div style="display:flex;gap:8px;align-items:center">${tag}</div><h3>${e.title}</h3><p>${e.scene}</p>${body}
-      <p><b>What it shows.</b> ${e.read}</p><div class="concepts">${e.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="controls">${btns}</div></article>`;
+      <p><b>What it shows.</b> ${e.read}</p>${e.calc?`<div class="calcline eqstack">${e.calc.map(m=>`<div>${D(m)}</div>`).join('')}</div>`:''}<div class="concepts">${e.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="controls">${btns}</div></article>`;
   }).join('');
   document.querySelectorAll('[data-load]').forEach(b=>b.addEventListener('click',()=>{ loadPreset(b.dataset.load); $('#explorer').scrollIntoView({behavior:'smooth'}); }));
   document.querySelectorAll('.ex [data-go]').forEach(b=>b.addEventListener('click',()=>$('#propagation').scrollIntoView({behavior:'smooth'})));
@@ -1267,9 +1275,9 @@ function renderExStats(d,conf){
   const u=EX.unit, dec=EX.dec, el=$('#exStats');
   if(d.n<2){ el.innerHTML=`<div class="stat wide"><div class="k">Need at least 2 values</div></div>`; return; }
   const tc=tcrit(conf,d.n-1), half=tc*d.sem, [cv,cu]=report(d.mean,half);
-  const items=[['n (replicates)',d.n],['Degrees of freedom',d.n-1],['Mean <span class="ov">x</span>',`${fmt(d.mean,dec+1)} ${u}`],['Median',`${fmt(d.median,dec)} ${u}`],
-    ['Range',`${fmt(d.range,dec)} ${u}`],['Mean − median',`${fmt(d.mean-d.median,dec+1)}`],['Variance s²',sg(d.variance)],['Std. deviation s',`${sg(d.s)} ${u}`],
-    ['RSD (CV)',`${sig(d.rsd,2)}%`],['RSD in ppt',`${sig(d.rsd*10,2)} ppt`],[`Std. error ${tx`s/\sqrt{n}`}`,`${sg(d.sem)} ${u}`],[`t (${conf}%, ν = ${d.n-1})`,tc.toFixed(3)]];
+  const items=[['n (replicates)',d.n],['Degrees of freedom',d.n-1],['Mean \\(\\bar{x}\\)',`${fmt(d.mean,dec+1)} ${u}`],['Median',`${fmt(d.median,dec)} ${u}`],
+    ['Range',`${fmt(d.range,dec)} ${u}`],['Mean − median',`${fmt(d.mean-d.median,dec+1)}`],['Variance \\(s^2\\)',sg(d.variance)],['Std. deviation \\(s\\)',`${sg(d.s)} ${u}`],
+    ['RSD (CV)',`${sig(d.rsd,2)}%`],['RSD in ppt',`${sig(d.rsd*10,2)} ppt`],[`Std. error ${tx`s/\sqrt{n}`}`,`${sg(d.sem)} ${u}`],[`${tx`t`} (${conf}%, ${tx`\nu = ${d.n-1}`})`,tc.toFixed(3)]];
   el.innerHTML = items.map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('') +
     `<div class="stat wide" style="background:var(--accent-soft)"><div class="k">Report as (${conf}% CI)</div><div class="v">${cv} ± ${cu} ${u}</div></div>`;
 }
@@ -1347,7 +1355,7 @@ function renderG(){
   c+=`<text x="${m2.l}" y="${H2-4}">each line = one experiment’s ${p.conf}% CI (<tspan class="ovs">x</tspan> ± ${p.useZ?'z':'t'}·s/√n)</text>`;
   $('#ciPlot').innerHTML=c;
   const hits=G.samples.filter(e=>e.hit).length, cval=p.useZ?zcrit(p.conf):tcrit(p.conf,p.n-1);
-  const items=[[`Captured μ (this batch)`,`${hits} of 25`],[`Multiplier used`,`${p.useZ?'z':'t'} = ${cval.toFixed(3)}`],[`${tx`\sigma/\sqrt{n}`} (true error of ${tx`\bar{x}`})`,`${(p.sigma/Math.sqrt(p.n)).toFixed(2)} mg/dL`]];
+  const items=[[`Captured ${tx`\mu`} (this batch)`,`${hits} of 25`],[`Multiplier used`,`${p.useZ?'z':'t'} = ${cval.toFixed(3)}`],[`${tx`\sigma/\sqrt{n}`} (true error of ${tx`\bar{x}`})`,`${(p.sigma/Math.sqrt(p.n)).toFixed(2)} mg/dL`]];
   if(G.many) items.push([`Long-run coverage (10,000)`,`${G.many.toFixed(1)}%  (target ${p.conf}%)`]);
   $('#gStats').innerHTML=items.map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
 }
@@ -1395,7 +1403,7 @@ function renderQ(){
   const rest=QP.data.filter((v,i)=>i!==QP.data.indexOf(q.suspect)), dAll=describe(QP.data), dRest=describe(rest);
   $('#qCalc').innerHTML=`Sorted: ${q.sorted.map(v=>v===q.suspect?`<b>${v.toFixed(QP.dec)}</b>`:v.toFixed(QP.dec)).join(', ')}<br>${tx`Q_{\text{calc}} = \dfrac{\text{gap}}{\text{range}} = \dfrac{${q.gap.toFixed(3)}}{${q.range.toFixed(3)}} = \mathbf{${q.Q.toFixed(3)}}`}&emsp;&emsp;${tx`Q_{\text{crit}}\ (n = ${q.n},\ ${conf}\%) = ${qc.toFixed(3)}`}<br>`+
    `<span class="verdict ${rej?'sig':'ns'}">${rej?`Reject ${q.suspect.toFixed(QP.dec)}`:`Keep ${q.suspect.toFixed(QP.dec)}`}</span>  `+
-   (rej?`mean without it ${dRest.mean.toFixed(QP.dec+1)}, s = ${sig(dRest.s)}   (with it: ${dAll.mean.toFixed(QP.dec+1)}, s = ${sig(dAll.s)})`:`report all ${q.n} values: mean ${dAll.mean.toFixed(QP.dec+1)}, s = ${sig(dAll.s)}`);
+   (rej?`without it: ${tx`\bar{x} = ${dRest.mean.toFixed(QP.dec+1)},\ s = ${sig(dRest.s)}`}&emsp;(with it: ${tx`\bar{x} = ${dAll.mean.toFixed(QP.dec+1)},\ s = ${sig(dAll.s)}`})`:`report all ${q.n} values: ${tx`\bar{x} = ${dAll.mean.toFixed(QP.dec+1)},\ s = ${sig(dAll.s)}`}`);
 }
 function setupQ(){
   $('#qConf').addEventListener('change',renderQ);
@@ -1415,7 +1423,7 @@ function renderF(){
   const x1=Math.min(Math.max(Fc*1.5,F*1.1,4),30);
   $('#fPlot').innerHTML=distPlot({pdf:x=>fpdf(x,dn,dd),x0:0,x1,right:Fc,stat:F,statName:'F',critName:'F crit'});
   const p=1-fcdf(F,dn,dd);
-  $('#fCalc').innerHTML=`${tx`F_{\text{calc}} = \dfrac{s_${big?1:2}^2}{s_${big?2:1}^2} = \dfrac{${sn.toFixed(2)}^2}{${sd.toFixed(2)}^2} = \mathbf{${F.toFixed(3)}}`}&emsp;&emsp;${tx`\nu_{\text{num}} = ${dn},\ \nu_{\text{den}} = ${dd}`}<br>${tx`F_{\text{crit}}\ (${conf}\%) = ${Fc.toFixed(3)}`}&emsp;&emsp;<i>p</i> = ${p<0.0001?'< 0.0001':p.toFixed(4)}<br><span class="verdict ${sigd?'sig':'ns'}">${sigd?'Precisions differ significantly':'No significant difference in precision'}</span>`;
+  $('#fCalc').innerHTML=`${tx`F_{\text{calc}} = \dfrac{s_${big?1:2}^2}{s_${big?2:1}^2} = \dfrac{${sn.toFixed(2)}^2}{${sd.toFixed(2)}^2} = \mathbf{${F.toFixed(3)}}`}&emsp;&emsp;${tx`\nu_{\text{num}} = ${dn},\ \nu_{\text{den}} = ${dd}`}<br>${tx`F_{\text{crit}}\ (${conf}\%) = ${Fc.toFixed(3)}`}&emsp;&emsp;${tx`p ${p<0.0001?'\\lt 0.0001':'= '+p.toFixed(4)}`}<br><span class="verdict ${sigd?'sig':'ns'}">${sigd?'Precisions differ significantly':'No significant difference in precision'}</span>`;
 }
 function setupF(){ ['fS1','fN1','fS2','fN2','fConf'].forEach(id=>$('#'+id).addEventListener('input',renderF)); renderF(); }
 
@@ -1433,7 +1441,7 @@ function renderT(){
   c+=`<path d="M${X(mu)},22 l7,12 l-7,12 l-7,-12 Z" fill="${sigd?'var(--bad)':'var(--good)'}"/><text class="${sigd?'t-bad':'t-good'}" x="${X(mu)}" y="14" text-anchor="middle" font-weight="600">certified 10.00</text>`;
   c+=`<text class="t-ink" x="${X(xb)}" y="${X(xb)>X(mu)-60&&X(xb)<X(mu)+60?86:20}" text-anchor="middle">${conf}% CI: ${xb.toFixed(2)} ± ${half.toFixed(3)}</text>`;
   $('#tCI').innerHTML=c;
-  $('#tCalc').innerHTML=`${tx`t_{\text{calc}} = \dfrac{\left|${xb.toFixed(2)} - 10.00\right| \sqrt{${n}}}{${s.toFixed(2)}} = \mathbf{${t.toFixed(3)}}`}&emsp;&emsp;${tx`\nu = ${df}`}<br>${tx`t_{\text{crit}}\ (${conf}\%,\ \text{two-tailed}) = ${tc.toFixed(3)}`}&emsp;&emsp;<i>p</i> = ${p<0.0001?'< 0.0001':p.toFixed(4)}<br><span class="verdict ${sigd?'sig':'ns'}">${sigd?'Significant difference: evidence of systematic error':'No significant difference from the certified value'}</span>`;
+  $('#tCalc').innerHTML=`${tx`t_{\text{calc}} = \dfrac{\left|${xb.toFixed(2)} - 10.00\right| \sqrt{${n}}}{${s.toFixed(2)}} = \mathbf{${t.toFixed(3)}}`}&emsp;&emsp;${tx`\nu = ${df}`}<br>${tx`t_{\text{crit}}\ (${conf}\%,\ \text{two-tailed}) = ${tc.toFixed(3)}`}&emsp;&emsp;${tx`p ${p<0.0001?'\\lt 0.0001':'= '+p.toFixed(4)}`}<br><span class="verdict ${sigd?'sig':'ns'}">${sigd?'Significant difference: evidence of systematic error':'No significant difference from the certified value'}</span>`;
 }
 function setupT(){ ['tMean','tS','tN','tConf'].forEach(id=>$('#'+id).addEventListener('input',renderT)); renderT(); }
 
@@ -1467,12 +1475,12 @@ function genQ(){
     const qc=qcrit(conf,n), rej=q.Q>qc;
     const keep=data.filter((v,i)=>i!==data.indexOf(q.suspect)), dk=describe(keep), da=describe(data);
     const prompt=`${chip(c.f)}<p>A technician makes ${n} replicate measurements of ${c.what} (${c.unit}). One value looks suspicious. Use the Q test at ${conf}% confidence to decide whether it can be rejected.</p>${dataRow('Data:',data,c.d)}`;
-    const sol=`<ol><li>Sort the data: ${q.sorted.map(v=>v.toFixed(c.d)).join(', ')}.</li>
-      <li>The suspect value is the one with the larger gap at either end: <b>${q.suspect.toFixed(c.d)}</b> (nearest neighbor ${q.neighbor.toFixed(c.d)}).</li>
+    const sol=`<ol><li>Sort the data: <span class="num">${q.sorted.map(v=>v.toFixed(c.d)).join(', ')}</span>.</li>
+      <li>The suspect value is the one with the larger gap at either end: <b class="num">${q.suspect.toFixed(c.d)}</b> (nearest neighbor <span class="num">${q.neighbor.toFixed(c.d)}</span>).</li>
       <li>${tx`\text{gap} = \left|${q.suspect.toFixed(c.d)} - ${q.neighbor.toFixed(c.d)}\right| = ${q.gap.toFixed(c.d)}`};&emsp;${tx`\text{range} = ${q.sorted[n-1].toFixed(c.d)} - ${q.sorted[0].toFixed(c.d)} = ${q.range.toFixed(c.d)}`}.</li>
       <li>${tx`Q_{\text{calc}} = \dfrac{\text{gap}}{\text{range}} = \dfrac{${q.gap.toFixed(c.d)}}{${q.range.toFixed(c.d)}} = \mathbf{${q.Q.toFixed(3)}}`}.</li>
-      <li>Q<sub>crit</sub> for n = ${n} at ${conf}% = ${qc.toFixed(3)}.</li>
-      <li>${q.Q.toFixed(3)} ${rej?'&gt;':'≤'} ${qc.toFixed(3)}, so <b>${rej?'reject':'keep'} ${q.suspect.toFixed(c.d)}</b>. ${rej?`Report the remaining ${n-1} values: <span class="ov">x</span> = ${dk.mean.toFixed(c.d+1)}, s = ${sig(dk.s)} ${c.unit}.`:`Report all ${n} values: <span class="ov">x</span> = ${da.mean.toFixed(c.d+1)}, s = ${sig(da.s)} ${c.unit}.`}</li></ol>
+      <li>${tx`Q_{\text{crit}}\ (n = ${n},\ ${conf}\%) = ${qc.toFixed(3)}`}.</li>
+      <li>${tx`${q.Q.toFixed(3)} ${rej?'>':'\\le'} ${qc.toFixed(3)}`}, so <b>${rej?'reject':'keep'} <span class="num">${q.suspect.toFixed(c.d)}</span></b>. ${rej?`Report the remaining ${n-1} values: ${tx`\bar{x} = ${dk.mean.toFixed(c.d+1)},\ s = ${sig(dk.s)}`} ${c.unit}.`:`Report all ${n} values: ${tx`\bar{x} = ${da.mean.toFixed(c.d+1)},\ s = ${sig(da.s)}`} ${c.unit}.`}</li></ol>
       <svg class="plot" viewBox="0 0 640 190">${qLine(data,{interactive:false})}</svg>`;
     return {prompt,sol,stat:q.Q,statName:'Q',reject:rej,yes:'Reject the suspect value',no:'Keep the suspect value'};
   }
@@ -1485,11 +1493,11 @@ function genF(){
   const big=da.s>=db.s, sn=big?da:db, sdn=big?db:da, F=sn.variance/sdn.variance, dn=sn.n-1, dd=sdn.n-1, Fc=fcrit(95,dn,dd), sigd=F>Fc;
   const L1=big?pr[0]:pr[1], L2=big?pr[1]:pr[0];
   const prompt=`${chip(c.f)}<p>${pr[0]} and ${pr[1]} each measure ${c.what} (${c.unit}) on the same material. Is there a significant difference in their precision at 95% confidence?</p>${dataRow(pr[0]+':',a,c.d)}${dataRow(pr[1]+':',b,c.d)}`;
-  const sol=`<ol><li>${pr[0]}: n = ${da.n}, s = ${sig(da.s,4)}, s² = ${sig(da.variance,4)}.  ${pr[1]}: n = ${db.n}, s = ${sig(db.s,4)}, s² = ${sig(db.variance,4)}.</li>
+  const sol=`<ol><li>${pr[0]}: ${tx`n = ${da.n},\ s = ${sig(da.s,4)},\ s^2 = ${sig(da.variance,4)}`}.&emsp;${pr[1]}: ${tx`n = ${db.n},\ s = ${sig(db.s,4)},\ s^2 = ${sig(db.variance,4)}`}.</li>
     <li>Put the larger variance (${L1}) on top: ${tx`F_{\text{calc}} = \dfrac{${sig(sn.variance,4)}}{${sig(sdn.variance,4)}} = \mathbf{${F.toFixed(3)}}`}.</li>
-    <li>Degrees of freedom: ν<sub>num</sub> = ${dn} (${L1}), ν<sub>den</sub> = ${dd} (${L2}).</li>
-    <li>F<sub>crit</sub> (${dn}, ${dd}) at 95% = ${Fc.toFixed(2)}.</li>
-    <li>${F.toFixed(2)} ${sigd?'&gt;':'≤'} ${Fc.toFixed(2)}, so <b>${sigd?`${L1} is significantly less precise than ${L2}`:'there is no significant difference in precision'}</b>.${sigd?' Use the unequal-variance (Welch) t test if you go on to compare their means.':' The standard deviations can be pooled for a t test.'}</li></ol>
+    <li>Degrees of freedom: ${tx`\nu_{\text{num}} = ${dn}`} (${L1}), ${tx`\nu_{\text{den}} = ${dd}`} (${L2}).</li>
+    <li>${tx`F_{\text{crit}}\ (${dn},\ ${dd},\ 95\%) = ${Fc.toFixed(2)}`}.</li>
+    <li>${tx`${F.toFixed(2)} ${sigd?'>':'\\le'} ${Fc.toFixed(2)}`}, so <b>${sigd?`${L1} is significantly less precise than ${L2}`:'there is no significant difference in precision'}</b>.${sigd?' Use the unequal-variance (Welch) t test if you go on to compare their means.':' The standard deviations can be pooled for a t test.'}</li></ol>
     <svg class="plot" viewBox="0 0 640 220">${distPlot({pdf:x=>fpdf(x,dn,dd),x0:0,x1:Math.min(Math.max(Fc*1.5,F*1.1,4),30),right:Fc,stat:F,statName:'F',critName:'F crit'})}</svg>`;
   return {prompt,sol,stat:F,statName:'F',reject:sigd,yes:'Precisions differ significantly',no:'No significant difference'};
 }
@@ -1502,11 +1510,11 @@ function genT(kind){
     const t=Math.abs(d.mean-known)*Math.sqrt(n)/d.s, df=n-1, tc=tcrit(conf,df), sigd=t>tc, half=tc*d.sem;
     const what = c.f==='med'?'a certified control material':'a certified reference material';
     const prompt=`${chip(c.f)}<p><b>Mean vs. known value.</b> ${what[0].toUpperCase()+what.slice(1)} has a certified value of <b>${known.toFixed(c.d)} ${c.unit}</b> for ${c.what.replace(/^the /,'').replace(/ in (a|an|the) .*$/,'')}. A new method gives the results below. Is there evidence of systematic error at 95% confidence?</p>${dataRow('Results:',a,c.d)}`;
-    const sol=`<ol><li><span class="ov">x</span> = ${d.mean.toFixed(c.d+2)}, s = ${sig(d.s,4)}, n = ${n}, ν = ${df}.</li>
+    const sol=`<ol><li>${tx`\bar{x} = ${d.mean.toFixed(c.d+2)},\ s = ${sig(d.s,4)},\ n = ${n},\ \nu = ${df}`}.</li>
       <li>${tx`t_{\text{calc}} = \dfrac{\left|\bar{x} - \mu\right| \sqrt{n}}{s} = \dfrac{\left|${d.mean.toFixed(c.d+2)} - ${known.toFixed(c.d)}\right| \sqrt{${n}}}{${sig(d.s,4)}} = \mathbf{${t.toFixed(3)}}`}.</li>
-      <li>t<sub>crit</sub> (ν = ${df}, 95%, two-tailed) = ${tc.toFixed(3)}.</li>
-      <li>${t.toFixed(3)} ${sigd?'&gt;':'≤'} ${tc.toFixed(3)}, so <b>${sigd?'the difference is significant: the method shows a systematic error':'no significant difference: no evidence of systematic error'}</b>.</li>
-      <li>Check with the CI: ${d.mean.toFixed(c.d+1)} ± ${half.toFixed(c.d+1)} ${c.unit} ${sigd?'does not contain':'contains'} ${known.toFixed(c.d)}.</li></ol>
+      <li>${tx`t_{\text{crit}}\ (\nu = ${df},\ 95\%,\ \text{two-tailed}) = ${tc.toFixed(3)}`}.</li>
+      <li>${tx`${t.toFixed(3)} ${sigd?'>':'\\le'} ${tc.toFixed(3)}`}, so <b>${sigd?'the difference is significant: the method shows a systematic error':'no significant difference: no evidence of systematic error'}</b>.</li>
+      <li>Check with the CI: ${tx`${d.mean.toFixed(c.d+1)} \pm ${half.toFixed(c.d+1)}`} ${c.unit} ${sigd?'does not contain':'contains'} ${tx`${known.toFixed(c.d)}`}.</li></ol>
       <svg class="plot" viewBox="0 0 640 220">${tDist(t,df,tc)}</svg>`;
     return {prompt,sol,stat:t,statName:'t',reject:sigd,yes:'Significant difference',no:'No significant difference'};
   }
@@ -1517,18 +1525,18 @@ function genT(kind){
     const big=da.variance>=db.variance, F=big?da.variance/db.variance:db.variance/da.variance, dn=big?n1-1:n2-1, dd=big?n2-1:n1-1, Fc=fcrit(95,dn,dd), pool=F<=Fc;
     let t,df,steps;
     if(pool){ const sp=Math.sqrt((da.variance*(n1-1)+db.variance*(n2-1))/(n1+n2-2)); t=Math.abs(da.mean-db.mean)/sp*Math.sqrt(n1*n2/(n1+n2)); df=n1+n2-2;
-      steps=`<li>F test: F = ${F.toFixed(2)} ≤ F<sub>crit</sub>(${dn}, ${dd}) = ${Fc.toFixed(2)}, so the variances can be pooled.</li>
+      steps=`<li>F test: ${tx`F = ${F.toFixed(2)} \le F_{\text{crit}}(${dn},\ ${dd}) = ${Fc.toFixed(2)}`}, so the variances can be pooled.</li>
       <li>${tx`s_{\text{pooled}} = \sqrt{\dfrac{${sig(da.variance,4)} \times ${n1-1} + ${sig(db.variance,4)} \times ${n2-1}}{${n1+n2-2}}} = ${sig(sp,4)}`}.</li>
-      <li>${tx`t_{\text{calc}} = \dfrac{\left|${da.mean.toFixed(c.d+2)} - ${db.mean.toFixed(c.d+2)}\right|}{${sig(sp,4)}} \sqrt{\dfrac{${n1} \times ${n2}}{${n1+n2}}} = \mathbf{${t.toFixed(3)}}`}, ν = ${df}.</li>`; }
+      <li>${tx`t_{\text{calc}} = \dfrac{\left|${da.mean.toFixed(c.d+2)} - ${db.mean.toFixed(c.d+2)}\right|}{${sig(sp,4)}} \sqrt{\dfrac{${n1} \times ${n2}}{${n1+n2}}} = \mathbf{${t.toFixed(3)}}`}, ${tx`\nu = ${df}`}.</li>`; }
     else { const se=Math.sqrt(da.variance/n1+db.variance/n2); t=Math.abs(da.mean-db.mean)/se; df=welchDf(da.s,n1,db.s,n2);
-      steps=`<li>F test: F = ${F.toFixed(2)} &gt; F<sub>crit</sub>(${dn}, ${dd}) = ${Fc.toFixed(2)}, so the variances differ. Use the Welch form.</li>
+      steps=`<li>F test: ${tx`F = ${F.toFixed(2)} > F_{\text{crit}}(${dn},\ ${dd}) = ${Fc.toFixed(2)}`}, so the variances differ. Use the Welch form.</li>
       <li>${tx`t_{\text{calc}} = \dfrac{\left|${da.mean.toFixed(c.d+2)} - ${db.mean.toFixed(c.d+2)}\right|}{\sqrt{\dfrac{${sig(da.variance,4)}}{${n1}} + \dfrac{${sig(db.variance,4)}}{${n2}}}} = \mathbf{${t.toFixed(3)}}`}.</li>
-      <li>Welch–Satterthwaite degrees of freedom: ν = ${df.toFixed(2)}.</li>`; }
+      <li>Welch–Satterthwaite degrees of freedom: ${tx`\nu = ${df.toFixed(2)}`}.</li>`; }
     const tc=tcrit(conf,df), sigd=t>tc;
     const prompt=`${chip(c.f)}<p><b>Two independent means.</b> ${pr[0]} and ${pr[1]} each analyze ${c.what} (${c.unit}). Do their mean results differ significantly at 95% confidence? Start with an F test to decide whether to pool.</p>${dataRow(pr[0]+':',a,c.d)}${dataRow(pr[1]+':',b,c.d)}`;
-    const sol=`<ol><li>${pr[0]}: <span class="ov">x</span> = ${da.mean.toFixed(c.d+2)}, s = ${sig(da.s,4)}, n = ${n1}.  ${pr[1]}: <span class="ov">x</span> = ${db.mean.toFixed(c.d+2)}, s = ${sig(db.s,4)}, n = ${n2}.</li>${steps}
-      <li>t<sub>crit</sub> (ν = ${pool?df:df.toFixed(2)}, 95%) = ${tc.toFixed(3)}.</li>
-      <li>${t.toFixed(3)} ${sigd?'&gt;':'≤'} ${tc.toFixed(3)}, so <b>${sigd?'the means differ significantly':'no significant difference between the means'}</b>.</li></ol>
+    const sol=`<ol><li>${pr[0]}: ${tx`\bar{x} = ${da.mean.toFixed(c.d+2)},\ s = ${sig(da.s,4)},\ n = ${n1}`}.&emsp;${pr[1]}: ${tx`\bar{x} = ${db.mean.toFixed(c.d+2)},\ s = ${sig(db.s,4)},\ n = ${n2}`}.</li>${steps}
+      <li>${tx`t_{\text{crit}}\ (\nu = ${pool?df:df.toFixed(2)},\ 95\%) = ${tc.toFixed(3)}`}.</li>
+      <li>${tx`${t.toFixed(3)} ${sigd?'>':'\\le'} ${tc.toFixed(3)}`}, so <b>${sigd?'the means differ significantly':'no significant difference between the means'}</b>.</li></ol>
       <svg class="plot" viewBox="0 0 640 220">${tDist(t,df,tc)}</svg>`;
     return {prompt,sol,stat:t,statName:'t',reject:sigd,yes:'Means differ significantly',no:'No significant difference'};
   }
@@ -1541,11 +1549,11 @@ function genT(kind){
   const unitName = c.f==='med'?'Patient':'Sample';
   const prompt=`${chip(c.f)}<p><b>Paired comparison.</b> ${n} different ${c.f==='med'?'patient specimens':'samples'} are each analyzed twice, once in each of two ways (${pr[0]} and ${pr[1]}), for ${c.what.replace(/ in (a|an|the) .*$/,'').replace(/^the /,'')} (${c.unit}). Do the two give significantly different results at 95% confidence?</p>
     <div class="ptable"><table><tr><th>${unitName}</th>${A.map((_,i)=>`<th>${i+1}</th>`).join('')}</tr><tr><td>${pr[0]}</td>${A.map(v=>`<td>${v.toFixed(c.d)}</td>`).join('')}</tr><tr><td>${pr[1]}</td>${B.map(v=>`<td>${v.toFixed(c.d)}</td>`).join('')}</tr></table></div>`;
-  const sol=`<ol><li>Differences d = ${pr[1]} − ${pr[0]}: ${dvals.map(v=>minus(v.toFixed(c.d))).join(', ')}.</li>
-    <li><span class="ov">d</span> = ${minus(dd.mean.toFixed(c.d+2))}, s<sub>d</sub> = ${sig(dd.s,4)}, n = ${n}, ν = ${df}.</li>
+  const sol=`<ol><li>Differences ${tx`d`} = ${pr[1]} − ${pr[0]}: <span class="num">${dvals.map(v=>minus(v.toFixed(c.d))).join(', ')}</span>.</li>
+    <li>${tx`\bar{d} = ${minus(dd.mean.toFixed(c.d+2))},\ s_d = ${sig(dd.s,4)},\ n = ${n},\ \nu = ${df}`}.</li>
     <li>${tx`t_{\text{calc}} = \dfrac{\left|\bar{d}\right| \sqrt{n}}{s_d} = \dfrac{${Math.abs(dd.mean).toFixed(c.d+2)} \sqrt{${n}}}{${sig(dd.s,4)}} = \mathbf{${t.toFixed(3)}}`}.</li>
-    <li>t<sub>crit</sub> (ν = ${df}, 95%) = ${tc.toFixed(3)}.</li>
-    <li>${t.toFixed(3)} ${sigd?'&gt;':'≤'} ${tc.toFixed(3)}, so <b>${sigd?`the methods differ significantly (${pr[1]} reads ${dd.mean>0?'higher':'lower'} by about ${Math.abs(dd.mean).toFixed(c.d+1)} ${c.unit})`:'no significant difference between the methods'}</b>.</li></ol>
+    <li>${tx`t_{\text{crit}}\ (\nu = ${df},\ 95\%) = ${tc.toFixed(3)}`}.</li>
+    <li>${tx`${t.toFixed(3)} ${sigd?'>':'\\le'} ${tc.toFixed(3)}`}, so <b>${sigd?`the methods differ significantly (${pr[1]} reads ${dd.mean>0?'higher':'lower'} by about ${Math.abs(dd.mean).toFixed(c.d+1)} ${c.unit})`:'no significant difference between the methods'}</b>.</li></ol>
     <svg class="plot" viewBox="0 0 640 220">${tDist(t,df,tc)}</svg>`;
   return {prompt,sol,stat:t,statName:'t',reject:sigd,yes:'Methods differ significantly',no:'No significant difference'};
 }

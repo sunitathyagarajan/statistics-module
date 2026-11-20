@@ -20,7 +20,7 @@
   --med:#0b7869; --med-soft:#d4efe9; --chem:#6a48ad; --chem-soft:#e8e1f6;
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1; --warn:#8a5a00; --warn-soft:#fbefd5;
   --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-mono:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-num:KaTeX_Main,"Cambria Math",Cambria,"Times New Roman",serif; /* values and calculations: the same face KaTeX uses for formulas */
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
@@ -52,8 +52,8 @@ sup,sub{line-height:0}
 .prose{max-width:68ch;display:grid;gap:.8em}
 p.prose{display:block}
 .muted{color:var(--muted)}
-.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.eyebrow{font-family:var(--f-mono);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.mono,.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-body);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
 
 header{background:var(--surface);border-bottom:1px solid var(--line)}
 header .wrap{padding-block:36px 30px;display:grid;gap:12px}
@@ -66,7 +66,7 @@ header .wrap{padding-block:36px 30px;display:grid;gap:12px}
 @media (max-width:640px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{justify-self:center;width:100%;max-width:360px}}
 .bfig{margin:0;display:grid;gap:6px}
 .bfig svg{width:100%;height:auto;display:block}
-.bfig text{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.bfig text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
 .bfig text.ink{fill:var(--ink);font-weight:600}
 .bfig text.acc{fill:var(--accent);font-weight:600}
 .bfig figcaption{font-size:.85rem;color:var(--muted);text-align:center}
@@ -78,7 +78,7 @@ header .wrap{padding-block:36px 30px;display:grid;gap:12px}
 .bfig .zoom{fill:none;stroke:var(--accent);stroke-width:1.4}
 .bfig .panel{fill:var(--surface);stroke:var(--accent);stroke-width:1.4}
 .bfig .shine{stroke:var(--surface);stroke-opacity:.6;stroke-width:3}
-.reading .big{font-family:var(--f-mono);font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:600}
+.reading .big{font-family:var(--f-num);font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:600}
 .reading .cap{color:var(--muted);font-size:.95rem;max-width:46ch}
 nav.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
 nav.index .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:thin}
@@ -90,7 +90,7 @@ section.block > .wrap{display:grid;gap:22px}
 .sechead{display:grid;gap:8px}
 
 /* digit highlighting, used by the rule cards and the counter */
-.digits{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.digits{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.04em;white-space:nowrap}
 .digits .s{color:var(--accent)}
 .digits .n{color:var(--muted);opacity:.65;font-weight:400}
 .digits .a{color:var(--data);text-decoration:underline dashed;text-underline-offset:4px}
@@ -106,14 +106,14 @@ section.block > .wrap{display:grid;gap:22px}
 .card .ex .digits{font-size:1.02rem}
 .card .why{font-size:.93rem;border-top:1px solid var(--line);padding-top:8px;color:var(--muted)}
 .card .why b{color:var(--ink)}
-.calcbox{font-family:var(--f-mono);font-size:.92rem;background:var(--surface-2);border-radius:6px;padding:10px 14px;line-height:1.7;overflow-x:auto;white-space:pre;font-variant-numeric:tabular-nums}
+.calcbox{font-family:var(--f-num);font-size:.92rem;background:var(--surface-2);border-radius:6px;padding:10px 14px;line-height:1.7;overflow-x:auto;white-space:pre;font-variant-numeric:tabular-nums}
 .calcbox .u{color:var(--accent);font-weight:600}
 .calcbox .g{color:var(--muted)}
 .calcbox .r{color:var(--good);font-weight:600}
 .reader{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:center}
 @media (max-width:640px){.reader{grid-template-columns:minmax(0,1fr)}}
 .reader svg{width:100%;max-width:260px;height:auto;justify-self:center}
-.reader svg text{font-family:var(--f-mono);font-size:12px;fill:var(--muted)}
+.reader svg text{font-family:var(--f-num);font-size:12px;fill:var(--muted)}
 .reader svg .t-acc{fill:var(--accent);font-weight:600}
 
 /* counter tool */
@@ -122,7 +122,7 @@ section.block > .wrap{display:grid;gap:22px}
 .ctlrow{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
 .ctl{display:grid;gap:4px;font-size:.88rem;color:var(--muted);font-weight:600;min-width:0}
 input[type=text],textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
-input[type=text]{font-family:var(--f-mono)}
+input[type=text]{font-family:var(--f-num)}
 #cIn{width:16em;max-width:100%;font-size:1.05rem}
 textarea{width:100%;resize:vertical;min-height:64px}
 button{font:inherit;font-weight:600;font-size:.93rem;cursor:pointer;border-radius:8px;padding:8px 14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
@@ -130,7 +130,7 @@ button:hover{border-color:var(--muted)}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 button.primary:hover{filter:brightness(1.08)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips button{font-family:var(--f-mono);font-weight:400;font-size:.88rem;padding:4px 10px;border-radius:999px;background:var(--bg)}
+.chips button{font-family:var(--f-num);font-weight:400;font-size:.88rem;padding:4px 10px;border-radius:999px;background:var(--bg)}
 .cout{display:grid;gap:10px}
 .cout .bigd{font-size:clamp(2rem,7vw,3rem);line-height:1.2;overflow-x:auto}
 .cout .count{font-size:1.1rem;font-weight:700}
@@ -143,7 +143,7 @@ button.primary:hover{filter:brightness(1.08)}
 .chip.chem{background:var(--chem-soft);color:var(--chem)}
 .scorebar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.95rem}
 .score{font-weight:700;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 14px}
-.score b{color:var(--good);font-family:var(--f-mono)}
+.score b{color:var(--good);font-family:var(--f-num)}
 .tip{font-size:.92rem;border-left:3px solid var(--data);padding:4px 0 4px 12px;color:var(--muted);max-width:72ch}
 .tip b{color:var(--ink)}
 .problems{display:grid;gap:14px}
@@ -151,7 +151,7 @@ button.primary:hover{filter:brightness(1.08)}
 .prob > *{min-width:0}
 .prob.done{border-left:4px solid var(--good)}
 .prob .ph{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.prob .ph .no{font-family:var(--f-mono);color:var(--accent);font-weight:600}
+.prob .ph .no{font-family:var(--f-body);color:var(--accent);font-weight:600}
 .prob .q{max-width:72ch}
 .check{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .check input{width:11em}
@@ -172,12 +172,12 @@ details.sol .final{margin-top:8px;font-weight:700}
 .tbl th,.tbl td{padding:6px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .tbl tr:last-child td{border-bottom:none}
 .tbl th{background:var(--surface-2);font-weight:700}
-.tbl td.v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl td.v{font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tbl td.i{color:var(--muted)}
 .reflect{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:12px}
 .rq{display:grid;gap:6px}
 .rq label{font-weight:600;font-size:.96rem;max-width:72ch}
-.rq label .rl{font-family:var(--f-mono);color:var(--accent);margin-right:6px}
+.rq label .rl{font-family:var(--f-body);color:var(--accent);margin-right:6px}
 .rq details{font-size:.95rem}
 .rq details p{margin-top:6px;background:var(--surface-2);border-radius:8px;padding:10px 12px;max-width:72ch}
 .src-line{font-size:.86rem;color:var(--muted)}
@@ -587,116 +587,116 @@ const sci = (m, e) => `${m} × 10${sup(e)}`;
 const PROBLEMS = [
   // ---- calculations 1-10 ----
   {sec:'calc', title:'Adding three masses', tag:'Addition',
-   q:'Add the three masses: 12.11 g + 18.0 g + 1.013 g.', unit:'g', exact:12.11+18.0+1.013, sf:3, ans:'31.1 g',
-   why:'In addition the decimal places decide: 18.0 g stops at the tenths place.',
-   steps:['Line up the decimal points. 18.0 is known only to the tenths place.','Add: 12.11 + 18.0 + 1.013 = 31.123.','Round to the tenths place: 31.1 g (3 significant figures).']},
+   q:'Add the three masses: <span class="num">12.11</span> g <span class="num">+ 18.0</span> g <span class="num">+ 1.013</span> g.', unit:'g', exact:12.11+18.0+1.013, sf:3, ans:'31.1 g',
+   why:'In addition the decimal places decide: <span class="num">18.0</span> g stops at the tenths place.',
+   steps:['Line up the decimal points. <span class="num">18.0</span> is known only to the tenths place.','Add: <span class="num">12.11 + 18.0 + 1.013 = 31.123</span>.','Round to the tenths place: <span class="num">31.1</span> g (3 significant figures).']},
   {sec:'calc', title:'Subtraction loses figures', tag:'Subtraction',
-   q:'A beaker weighs 47.632 g with a sample in it. On a less precise balance the empty beaker weighed 46.1 g. What is the mass of the sample?', unit:'g', exact:47.632-46.1, sf:2, ans:'1.5 g',
-   why:'46.1 g is known only to the tenths place, so the difference stops there.',
-   steps:['Subtract: 47.632 − 46.1 = 1.532.','46.1 is known only to tenths, so round to tenths: 1.5 g.','Five and three significant figures went in; two came out. Subtracting two similar numbers loses figures, which is why both masses should come from the same precise balance.']},
+   q:'A beaker weighs <span class="num">47.632</span> g with a sample in it. On a less precise balance the empty beaker weighed <span class="num">46.1</span> g. What is the mass of the sample?', unit:'g', exact:47.632-46.1, sf:2, ans:'1.5 g',
+   why:'<span class="num">46.1</span> g is known only to the tenths place, so the difference stops there.',
+   steps:['Subtract: <span class="num">47.632 − 46.1 = 1.532</span>.','<span class="num">46.1</span> is known only to tenths, so round to tenths: <span class="num">1.5</span> g.','Five and three significant figures went in; two came out. Subtracting two similar numbers loses figures, which is why both masses should come from the same precise balance.']},
   {sec:'calc', title:'Multiplying', tag:'Multiplication',
-   q:'Calculate 4.56 × 1.4.', unit:'', exact:4.56*1.4, sf:2, ans:'6.4',
-   why:'1.4 has only two significant figures.',
-   steps:['Multiply: 4.56 × 1.4 = 6.384.','4.56 has 3 significant figures; 1.4 has 2. Keep the smaller number: 2.','Round: 6.4.']},
+   q:'Calculate <span class="num">4.56 × 1.4</span>.', unit:'', exact:4.56*1.4, sf:2, ans:'6.4',
+   why:'<span class="num">1.4</span> has only two significant figures.',
+   steps:['Multiply: <span class="num">4.56 × 1.4 = 6.384</span>.','<span class="num">4.56</span> has 3 significant figures; <span class="num">1.4</span> has 2. Keep the smaller number: 2.','Round: <span class="num">6.4</span>.']},
   {sec:'calc', title:'Dividing, with a large answer', tag:'Division',
-   q:'Calculate 9.871 ÷ 0.023.', unit:'', exact:9.871/0.023, sf:2, ans:sci('4.3',2),
-   why:'0.023 has only two significant figures (leading zeros do not count).',
-   steps:['Divide: 9.871 ÷ 0.023 = 429.17…','0.023 has 2 significant figures (the leading zeros only place the decimal point).','Round to 2 figures: 430. But “430” does not show whether the zero is significant.','Write it in scientific notation: 4.3 × 10<sup>2</sup>.']},
+   q:'Calculate <span class="num">9.871 ÷ 0.023</span>.', unit:'', exact:9.871/0.023, sf:2, ans:sci('4.3',2),
+   why:'<span class="num">0.023</span> has only two significant figures (leading zeros do not count).',
+   steps:['Divide: <span class="num">9.871 ÷ 0.023 = 429.17…</span>','<span class="num">0.023</span> has 2 significant figures (the leading zeros only place the decimal point).','Round to 2 figures: 430. But “430” does not show whether the zero is significant.','Write it in scientific notation: <span class="num">4.3 × 10<sup>2</sup></span>.']},
   {sec:'calc', title:'Subtract, then divide', tag:'Mixed operations',
-   q:'Calculate (25.36 − 24.1) ÷ 3.112.', unit:'', exact:(25.36-24.1)/3.112, sf:2, ans:'0.40',
-   why:'The subtraction leaves 1.26, known only to the tenths place: two significant figures.',
-   alts:[{v:0.42, msg:'You rounded 1.26 to 1.3 before dividing. Keep the extra digit (1.2<sub>6</sub>) and round only at the end.'}],
-   steps:['Subtraction first: 25.36 − 24.1 = 1.26. It is known to the tenths place, so it has 2 significant figures. Keep the 6 as a guard digit: 1.2<sub>6</sub>.','Divide: 1.26 ÷ 3.112 = 0.40488…','The fewest figures is 2 (from the subtraction), so round to 0.40.','The trailing zero is significant. Write 0.40, not 0.4. (Rounding 1.26 to 1.3 too early gives 0.42, which is wrong.)']},
+   q:'Calculate <span class="num">(25.36 − 24.1) ÷ 3.112</span>.', unit:'', exact:(25.36-24.1)/3.112, sf:2, ans:'0.40',
+   why:'The subtraction leaves <span class="num">1.26</span>, known only to the tenths place: two significant figures.',
+   alts:[{v:0.42, msg:'You rounded <span class="num">1.26</span> to <span class="num">1.3</span> before dividing. Keep the extra digit <span class="num">(1.2<sub>6</sub>)</span> and round only at the end.'}],
+   steps:['Subtraction first: <span class="num">25.36 − 24.1 = 1.26</span>. It is known to the tenths place, so it has 2 significant figures. Keep the 6 as a guard digit: <span class="num">1.2<sub>6</sub></span>.','Divide: <span class="num">1.26 ÷ 3.112 = 0.40488…</span>','The fewest figures is 2 (from the subtraction), so round to <span class="num">0.40</span>.','The trailing zero is significant. Write <span class="num">0.40</span>, not <span class="num">0.4</span>. (Rounding <span class="num">1.26</span> to <span class="num">1.3</span> too early gives <span class="num">0.42</span>, which is wrong.)']},
   {sec:'calc', title:'Mean of three titrations', tag:'Exact numbers',
-   q:'Three titrations used 10.21 mL, 10.24 mL and 10.19 mL. What is the mean volume?', unit:'mL', exact:(10.21+10.24+10.19)/3, sf:4, ans:'10.21 mL',
-   why:'The 3 is a count, so it is exact and does not limit the answer. The sum, 30.64, has four figures.',
-   steps:['Add: 10.21 + 10.24 + 10.19 = 30.64 mL (all three are known to hundredths, so the sum is too: 4 figures).','Divide by 3. The 3 is a count, an exact number, so it does not limit the figures.','30.64 ÷ 3 = 10.2133… → 10.21 mL (4 figures, hundredths place, same as the readings).']},
+   q:'Three titrations used <span class="num">10.21</span> mL, <span class="num">10.24</span> mL and <span class="num">10.19</span> mL. What is the mean volume?', unit:'mL', exact:(10.21+10.24+10.19)/3, sf:4, ans:'10.21 mL',
+   why:'The 3 is a count, so it is exact and does not limit the answer. The sum, <span class="num">30.64</span>, has four figures.',
+   steps:['Add: <span class="num">10.21 + 10.24 + 10.19 = 30.64</span> mL (all three are known to hundredths, so the sum is too: 4 figures).','Divide by 3. The 3 is a count, an exact number, so it does not limit the figures.','<span class="num">30.64 ÷ 3 = 10.2133… → 10.21</span> mL (4 figures, hundredths place, same as the readings).']},
   {sec:'calc', title:'Scientific notation', tag:'Multiplication',
-   q:'How many molecules are in 0.0150 mol? Use Avogadro’s number, 6.022 × 10<sup>23</sup> mol<sup>−1</sup>.', unit:'molecules', exact:6.022e23*0.0150, sf:3, ans:sci('9.03',21),
-   why:'0.0150 has three significant figures: the leading zeros do not count, the trailing zero does.',
-   steps:['Multiply: 0.0150 × 6.022 × 10<sup>23</sup> = 9.033 × 10<sup>21</sup>.','0.0150 has 3 significant figures (1, 5 and the trailing 0). 6.022 × 10<sup>23</sup> has 4.','Round to 3: 9.03 × 10<sup>21</sup> molecules.']},
+   q:'How many molecules are in <span class="num">0.0150</span> mol? Use Avogadro’s number, <span class="num">6.022 × 10<sup>23</sup></span> mol<sup>−1</sup>.', unit:'molecules', exact:6.022e23*0.0150, sf:3, ans:sci('9.03',21),
+   why:'<span class="num">0.0150</span> has three significant figures: the leading zeros do not count, the trailing zero does.',
+   steps:['Multiply: <span class="num">0.0150 × 6.022 × 10<sup>23</sup> = 9.033 × 10<sup>21</sup></span>.','<span class="num">0.0150</span> has 3 significant figures (1, 5 and the trailing 0). <span class="num">6.022 × 10<sup>23</sup></span> has 4.','Round to 3: <span class="num">9.03 × 10<sup>21</sup></span> molecules.']},
   {sec:'calc', title:'pH from concentration', tag:'Logarithm',
-   q:'The hydrogen ion concentration of a sample is 3.2 × 10<sup>−4</sup> M. What is its pH?', unit:'', exact:-Math.log10(3.2e-4), dp:2, ans:'3.49',
-   why:'3.2 × 10<sup>−4</sup> has two significant figures, so the pH gets two digits after the decimal point.',
-   steps:['pH = −log(3.2 × 10<sup>−4</sup>) = 3.49485…','3.2 has 2 significant figures, so the pH keeps 2 digits after the decimal point.','The 3 before the decimal point comes from the power of ten and is not counted.','pH = 3.49.']},
+   q:'The hydrogen ion concentration of a sample is <span class="num">3.2 × 10<sup>−4</sup></span> M. What is its pH?', unit:'', exact:-Math.log10(3.2e-4), dp:2, ans:'3.49',
+   why:'<span class="num">3.2 × 10<sup>−4</sup></span> has two significant figures, so the pH gets two digits after the decimal point.',
+   steps:['pH = −log<span class="num">(3.2 × 10<sup>−4</sup>) = 3.49485…</span>','<span class="num">3.2</span> has 2 significant figures, so the pH keeps 2 digits after the decimal point.','The 3 before the decimal point comes from the power of ten and is not counted.','<span class="num">pH = 3.49</span>.']},
   {sec:'calc', title:'Concentration from pH', tag:'Antilogarithm',
-   q:'A solution has a pH of 10.73. What is its hydrogen ion concentration?', unit:'M', exact:Math.pow(10,-10.73), sf:2, ans:sci('1.9',-11) + ' M',
-   why:'10.73 has two digits after the decimal point, so the concentration has two significant figures.',
-   steps:['[H<sup>+</sup>] = 10<sup>−10.73</sup> = 1.862 × 10<sup>−11</sup> M.','The pH has 2 digits after the decimal point, so the concentration has 2 significant figures.','[H<sup>+</sup>] = 1.9 × 10<sup>−11</sup> M.']},
+   q:'A solution has a pH of <span class="num">10.73</span>. What is its hydrogen ion concentration?', unit:'M', exact:Math.pow(10,-10.73), sf:2, ans:sci('1.9',-11) + ' M',
+   why:'<span class="num">10.73</span> has two digits after the decimal point, so the concentration has two significant figures.',
+   steps:['[H<sup>+</sup>] <span class="num">= 10<sup>−10.73</sup> = 1.862 × 10<sup>−11</sup></span> M.','The pH has 2 digits after the decimal point, so the concentration has 2 significant figures.','[H<sup>+</sup>] <span class="num">= 1.9 × 10<sup>−11</sup></span> M.']},
   {sec:'calc', title:'Energy of a photon', tag:'Mixed operations',
-   q:'Sodium emits yellow light at 5.89 × 10<sup>−7</sup> m. Find the energy of one photon with \\(E = \\dfrac{hc}{\\lambda}\\), using h = 6.626 × 10<sup>−34</sup> J s and c = 2.998 × 10<sup>8</sup> m/s.', unit:'J', exact:6.626e-34*2.998e8/5.89e-7, sf:3, ans:sci('3.37',-19) + ' J',
-   why:'The wavelength, 5.89 × 10<sup>−7</sup> m, has only three significant figures.',
-   steps:['Numerator: 6.626 × 10<sup>−34</sup> × 2.998 × 10<sup>8</sup> = 1.9865 × 10<sup>−25</sup> J m (keep guard digits).','Divide: 1.9865 × 10<sup>−25</sup> ÷ 5.89 × 10<sup>−7</sup> = 3.3726 × 10<sup>−19</sup> J.','Figures: h has 4, c has 4, λ has 3. Round to 3: 3.37 × 10<sup>−19</sup> J.']},
+   q:'Sodium emits yellow light at <span class="num">5.89 × 10<sup>−7</sup></span> m. Find the energy of one photon with \\(E = \\dfrac{hc}{\\lambda}\\), using <span class="num">h = 6.626 × 10<sup>−34</sup></span> J s and <span class="num">c = 2.998 × 10<sup>8</sup></span> m/s.', unit:'J', exact:6.626e-34*2.998e8/5.89e-7, sf:3, ans:sci('3.37',-19) + ' J',
+   why:'The wavelength, <span class="num">5.89 × 10<sup>−7</sup></span> m, has only three significant figures.',
+   steps:['Numerator: <span class="num">6.626 × 10<sup>−34</sup> × 2.998 × 10<sup>8</sup> = 1.9865 × 10<sup>−25</sup></span> J m (keep guard digits).','Divide: <span class="num">1.9865 × 10<sup>−25</sup> ÷ 5.89 × 10<sup>−7</sup> = 3.3726 × 10<sup>−19</sup></span> J.','Figures: h has 4, c has 4, λ has 3. Round to 3: <span class="num">3.37 × 10<sup>−19</sup></span> J.']},
 
   // ---- case study 11-15 ----
   {sec:'case', title:'Moles of KHP', tag:'Weighing by difference',
    q:'Using the two weighings in the table, how many moles of KHP did the student transfer into the flask?', unit:'mol', exact:(18.4372-17.9261)/204.22, sf:4, ans:sci('2.503',-3) + ' mol',
-   why:'The mass by difference, 0.5111 g, has four significant figures.',
-   steps:['Mass by difference: 18.4372 − 17.9261 = 0.5111 g. Both readings go to the fourth decimal place, so the difference does too: 4 significant figures (the leading zero does not count).','Moles: 0.5111 g ÷ 204.22 g/mol = 2.50269… × 10<sup>−3</sup> mol.','0.5111 has 4 figures and 204.22 has 5, so round to 4: 2.503 × 10<sup>−3</sup> mol.','For the next step, keep a guard digit: 2.5027 × 10<sup>−3</sup> mol.']},
+   why:'The mass by difference, <span class="num">0.5111</span> g, has four significant figures.',
+   steps:['Mass by difference: <span class="num">18.4372 − 17.9261 = 0.5111</span> g. Both readings go to the fourth decimal place, so the difference does too: 4 significant figures (the leading zero does not count).','Moles: <span class="num">0.5111</span> g <span class="num">÷ 204.22</span> g/mol <span class="num">= 2.50269… × 10<sup>−3</sup></span> mol.','<span class="num">0.5111</span> has 4 figures and <span class="num">204.22</span> has 5, so round to 4: <span class="num">2.503 × 10<sup>−3</sup></span> mol.','For the next step, keep a guard digit: <span class="num">2.5027 × 10<sup>−3</sup></span> mol.']},
   {sec:'case', title:'Concentration of the NaOH', tag:'Titration',
    q:'Carry your moles of KHP from Problem 11 into this step. Using the burette readings for the KHP titration, what is the molarity of the NaOH?', unit:'M', exact:((18.4372-17.9261)/204.22)/((25.47-0.42)/1000), sf:4, ans:'0.09991 M',
-   why:'Moles (4 figures) divided by volume (25.05 mL, 4 figures) gives 4 figures. The leading zero in 0.09991 does not count.',
-   alts:[{v:0.09992, msg:'Close. 0.09992 comes from rounding the moles to 2.503 × 10<sup>−3</sup> before dividing. Carry the guard digit (2.5027 × 10<sup>−3</sup>) and round only at the end.'}],
-   steps:['Volume: 25.47 − 0.42 = 25.05 mL. Both readings go to hundredths, so 25.05 mL has 4 figures.','Convert: 25.05 mL × (1 L / 1000 mL) = 0.02505 L. The 1000 is a definition, so it is exact.','1 mol NaOH per mol KHP (exact). Molarity = 2.5027 × 10<sup>−3</sup> mol ÷ 0.02505 L = 0.099908 M.','Round to 4 figures: 0.09991 M. (Rounding the moles to 2.503 × 10<sup>−3</sup> first gives 0.09992, one unit off in the last digit.)']},
+   why:'Moles (4 figures) divided by volume (25.05 mL, 4 figures) gives 4 figures. The leading zero in <span class="num">0.09991</span> does not count.',
+   alts:[{v:0.09992, msg:'Close. <span class="num">0.09992</span> comes from rounding the moles to <span class="num">2.503 × 10<sup>−3</sup></span> before dividing. Carry the guard digit <span class="num">(2.5027 × 10<sup>−3</sup>)</span> and round only at the end.'}],
+   steps:['Volume: <span class="num">25.47 − 0.42 = 25.05</span> mL. Both readings go to hundredths, so <span class="num">25.05</span> mL has 4 figures.','Convert: <span class="num">25.05</span> mL × (1 L / 1000 mL) <span class="num">= 0.02505</span> L. The 1000 is a definition, so it is exact.','1 mol NaOH per mol KHP (exact). Molarity <span class="num">= 2.5027 × 10<sup>−3</sup></span> mol <span class="num">÷ 0.02505</span> L <span class="num">= 0.099908</span> M.','Round to 4 figures: <span class="num">0.09991</span> M. (Rounding the moles to <span class="num">2.503 × 10<sup>−3</sup></span> first gives <span class="num">0.09992</span>, one unit off in the last digit.)']},
   {sec:'case', title:'Moles of acetic acid', tag:'Titration',
-   q:'Use 0.09991 M for the NaOH (from Problem 12). How many moles of acetic acid were in the 5.00 mL vinegar sample?', unit:'mol', exact:0.09991*(42.71-1.06)/1000, sf:4, ans:sci('4.161',-3) + ' mol',
-   why:'0.09991 M and 41.65 mL both have four significant figures.',
-   steps:['Volume of NaOH: 42.71 − 1.06 = 41.65 mL = 0.04165 L (4 figures).','Moles NaOH = 0.09991 mol/L × 0.04165 L = 4.1613 × 10<sup>−3</sup> mol.','Acetic acid reacts 1 : 1 with NaOH, so moles of acetic acid = 4.161 × 10<sup>−3</sup> mol (4 figures).']},
+   q:'Use <span class="num">0.09991</span> M for the NaOH (from Problem 12). How many moles of acetic acid were in the <span class="num">5.00</span> mL vinegar sample?', unit:'mol', exact:0.09991*(42.71-1.06)/1000, sf:4, ans:sci('4.161',-3) + ' mol',
+   why:'<span class="num">0.09991</span> M and <span class="num">41.65</span> mL both have four significant figures.',
+   steps:['Volume of NaOH: <span class="num">42.71 − 1.06 = 41.65</span> mL <span class="num">= 0.04165</span> L (4 figures).','Moles NaOH <span class="num">= 0.09991</span> mol/L <span class="num">× 0.04165</span> L <span class="num">= 4.1613 × 10<sup>−3</sup></span> mol.','Acetic acid reacts 1 : 1 with NaOH, so moles of acetic acid <span class="num">= 4.161 × 10<sup>−3</sup></span> mol (4 figures).']},
   {sec:'case', title:'Percent acidity', tag:'Final result',
-   q:'Use 4.161 × 10<sup>−3</sup> mol acetic acid (from Problem 13). What is the acidity of the vinegar, in grams of acetic acid per 100 mL? Does it match the label?', unit:'% (g per 100 mL)', exact:4.161e-3*60.052/5.00*100, sf:3, ans:'5.00%',
-   why:'The pipette volume, 5.00 mL, has three significant figures. The 100 in “per 100 mL” is exact.',
-   steps:['Mass of acetic acid: 4.161 × 10<sup>−3</sup> mol × 60.052 g/mol = 0.24988 g.','Per 100 mL: 0.24988 g ÷ 5.00 mL × 100 mL = 4.9975 g per 100 mL.','The 5.00 mL volume has 3 figures and the 100 is exact, so round to 3: 5.00%.','The zeros matter. “5.00%” says the result is good to the hundredths place and matches the label; “5%” would say only that it is somewhere between about 4.5% and 5.5%.']},
+   q:'Use <span class="num">4.161 × 10<sup>−3</sup></span> mol acetic acid (from Problem 13). What is the acidity of the vinegar, in grams of acetic acid per 100 mL? Does it match the label?', unit:'% (g per 100 mL)', exact:4.161e-3*60.052/5.00*100, sf:3, ans:'5.00%',
+   why:'The pipette volume, <span class="num">5.00</span> mL, has three significant figures. The 100 in “per 100 mL” is exact.',
+   steps:['Mass of acetic acid: <span class="num">4.161 × 10<sup>−3</sup></span> mol <span class="num">× 60.052</span> g/mol <span class="num">= 0.24988</span> g.','Per 100 mL: <span class="num">0.24988</span> g <span class="num">÷ 5.00</span> mL <span class="num">× 100</span> mL <span class="num">= 4.9975</span> g per 100 mL.','The <span class="num">5.00</span> mL volume has 3 figures and the 100 is exact, so round to 3: <span class="num">5.00</span>%.','The zeros matter. “<span class="num">5.00</span>%” says the result is good to the hundredths place and matches the label; “5%” would say only that it is somewhere between about <span class="num">4.5</span>% and <span class="num">5.5</span>%.']},
   {sec:'case', title:'Reporting replicate results', tag:'Mean and standard deviation',
-   q:'The student repeats the vinegar titration twice more. The three results, straight from the calculator, are 4.998, 5.041 and 4.962% (g per 100 mL). Find the mean and the standard deviation, then report the mean with the decimal places that the standard deviation supports. Enter the mean in the box.', unit:'%', exact:(4.998+5.041+4.962)/3, dp:2, ans:'5.00% (reported as 5.00 ± 0.04%)',
-   why:'The standard deviation, 0.04, is in the hundredths place, so the mean stops at the hundredths place.',
-   steps:['Mean: (4.998 + 5.041 + 4.962) ÷ 3 = 5.0003%.','Standard deviation (n − 1 in the denominator): s = 0.0396%, which rounds to 0.04% (one significant figure).','The uncertainty is in the hundredths place, so round the mean to hundredths: 5.00%.','Report 5.00 ± 0.04% (mean ± s, n = 3). <a href="./#terms">Mean and standard deviation in the module.</a>']},
+   q:'The student repeats the vinegar titration twice more. The three results, straight from the calculator, are <span class="num">4.998, 5.041</span> and <span class="num">4.962</span>% (g per 100 mL). Find the mean and the standard deviation, then report the mean with the decimal places that the standard deviation supports. Enter the mean in the box.', unit:'%', exact:(4.998+5.041+4.962)/3, dp:2, ans:'5.00% (reported as 5.00 ± 0.04%)',
+   why:'The standard deviation, <span class="num">0.04</span>, is in the hundredths place, so the mean stops at the hundredths place.',
+   steps:['Mean: <span class="num">(4.998 + 5.041 + 4.962) ÷ 3 = 5.0003</span>%.','Standard deviation (<span class="num">n − 1</span> in the denominator): <span class="num">s = 0.0396</span>%, which rounds to <span class="num">0.04</span>% (one significant figure).','The uncertainty is in the hundredths place, so round the mean to hundredths: <span class="num">5.00</span>%.','Report <span class="num">5.00</span> ± <span class="num">0.04</span>% (mean ± s, n = 3). <a href="./#terms">Mean and standard deviation in the module.</a>']},
 
   // ---- reflect 16-20 ----
   {sec:'reflect', field:'med', title:'Blood glucose: mmol/L to mg/dL', tag:'Unit conversion',
-   q:'A patient’s home glucose meter reads 5.6 mmol/L before breakfast. The clinic records glucose in mg/dL. Convert the reading, using 1 mmol/L = 18.016 mg/dL (from the molar mass of glucose, 180.16 g/mol).', unit:'mg/dL', exact:5.6*18.016, sf:2, ans:sci('1.0',2) + ' mg/dL',
-   why:'The reading, 5.6 mmol/L, has only two significant figures.',
-   steps:['Multiply: 5.6 × 18.016 = 100.89 mg/dL.','5.6 has 2 significant figures; 18.016 has 5. Keep 2.','Two figures gives 100, but “100” hides whether the zeros are significant. Write 1.0 × 10<sup>2</sup> mg/dL.'],
+   q:'A patient’s home glucose meter reads <span class="num">5.6</span> mmol/L before breakfast. The clinic records glucose in mg/dL. Convert the reading, using 1 mmol/L <span class="num">= 18.016</span> mg/dL (from the molar mass of glucose, <span class="num">180.16</span> g/mol).', unit:'mg/dL', exact:5.6*18.016, sf:2, ans:sci('1.0',2) + ' mg/dL',
+   why:'The reading, <span class="num">5.6</span> mmol/L, has only two significant figures.',
+   steps:['Multiply: <span class="num">5.6 × 18.016 = 100.89</span> mg/dL.','<span class="num">5.6</span> has 2 significant figures; <span class="num">18.016</span> has 5. Keep 2.','Two figures gives 100, but “100” hides whether the zeros are significant. Write <span class="num">1.0 × 10<sup>2</sup></span> mg/dL.'],
    reflect:[
-     {q:'The clinic’s software converts the reading and prints “100.89 mg/dL”. What does that number claim about the measurement, and is the claim true?',
-      a:'It claims the meter can tell 100.89 from 100.88, a precision of about 0.01%. The reading of 5.6 only places the glucose between about 5.55 and 5.65 mmol/L, which is roughly 100 to 102 mg/dL. The extra digits were made by the calculator, not measured.'},
+     {q:'The clinic’s software converts the reading and prints “<span class="num">100.89</span> mg/dL”. What does that number claim about the measurement, and is the claim true?',
+      a:'It claims the meter can tell <span class="num">100.89</span> from <span class="num">100.88</span>, a precision of about <span class="num">0.01</span>%. The reading of <span class="num">5.6</span> only places the glucose between about <span class="num">5.55</span> and <span class="num">5.65</span> mmol/L, which is roughly 100 to 102 mg/dL. The extra digits were made by the calculator, not measured.'},
      {q:'A fasting glucose of 100 mg/dL (5.6 mmol/L) or higher is the cutoff for prediabetes. Can this single reading tell you which side of the cutoff the patient is on?',
       a:'No. The cutoff sits inside the range the reading allows, so the result is on the line. Home meters also carry an uncertainty of several percent. Diagnosis is based on laboratory plasma glucose, confirmed by a repeat test. The honest conclusion is “borderline, retest”, not “prediabetes”.'}]},
   {sec:'reflect', field:'chem', title:'Arsenic in well water', tag:'Dilution',
-   q:'A well-water sample is diluted before analysis: 10.00 mL of water is diluted to 50.00 mL in a volumetric flask. The ICP-MS reads 1.94 µg/L arsenic in the diluted solution. What is the arsenic concentration in the well water?', unit:'µg/L', exact:1.94*50.00/10.00, sf:3, ans:'9.70 µg/L',
-   why:'The instrument reading, 1.94 µg/L, has three significant figures; the dilution factor 50.00/10.00 has four.',
-   steps:['Dilution factor: 50.00 mL ÷ 10.00 mL = 5.000 (4 figures).','Concentration: 1.94 µg/L × 5.000 = 9.70 µg/L.','1.94 has 3 figures, so keep 3. The trailing zero is significant: write 9.70, not 9.7.'],
+   q:'A well-water sample is diluted before analysis: <span class="num">10.00</span> mL of water is diluted to <span class="num">50.00</span> mL in a volumetric flask. The ICP-MS reads <span class="num">1.94</span> µg/L arsenic in the diluted solution. What is the arsenic concentration in the well water?', unit:'µg/L', exact:1.94*50.00/10.00, sf:3, ans:'9.70 µg/L',
+   why:'The instrument reading, <span class="num">1.94</span> µg/L, has three significant figures; the dilution factor <span class="num">50.00</span>/<span class="num">10.00</span> has four.',
+   steps:['Dilution factor: <span class="num">50.00</span> mL <span class="num">÷ 10.00</span> mL <span class="num">= 5.000</span> (4 figures).','Concentration: <span class="num">1.94</span> µg/L <span class="num">× 5.000 = 9.70</span> µg/L.','<span class="num">1.94</span> has 3 figures, so keep 3. The trailing zero is significant: write <span class="num">9.70</span>, not <span class="num">9.7</span>.'],
    reflect:[
-     {q:'A summary report lists the result as “0.01 mg/L”. How many significant figures is that, and why is it misleading next to the U.S. limit for arsenic of 0.010 mg/L (10 µg/L)?',
-      a:'One significant figure. “0.01 mg/L” could mean anything from 0.005 to 0.015 mg/L, from half the limit to one and a half times it. It reads as “at the limit” even though the measurement was 9.70 µg/L. Write 0.00970 mg/L or 9.70 µg/L.'},
-     {q:'The laboratory states an uncertainty of ±0.5 µg/L (95% confidence). How should the result be reported, and can you say the water is below the limit?',
-      a:'The uncertainty is in the tenths place, so report 9.7 ± 0.5 µg/L; the hundredths digit is not supported. The range 9.2 to 10.2 µg/L includes 10, so from this one measurement you cannot say with 95% confidence that the water is below the limit, and you cannot say it is above. Replicate samples would narrow the range.'}]},
+     {q:'A summary report lists the result as “<span class="num">0.01</span> mg/L”. How many significant figures is that, and why is it misleading next to the U.S. limit for arsenic of <span class="num">0.010</span> mg/L (10 µg/L)?',
+      a:'One significant figure. “<span class="num">0.01</span> mg/L” could mean anything from <span class="num">0.005</span> to <span class="num">0.015</span> mg/L, from half the limit to one and a half times it. It reads as “at the limit” even though the measurement was <span class="num">9.70</span> µg/L. Write <span class="num">0.00970</span> mg/L or <span class="num">9.70</span> µg/L.'},
+     {q:'The laboratory states an uncertainty of ±<span class="num">0.5</span> µg/L (95% confidence). How should the result be reported, and can you say the water is below the limit?',
+      a:'The uncertainty is in the tenths place, so report <span class="num">9.7</span> ± <span class="num">0.5</span> µg/L; the hundredths digit is not supported. The range <span class="num">9.2</span> to <span class="num">10.2</span> µg/L includes 10, so from this one measurement you cannot say with 95% confidence that the water is below the limit, and you cannot say it is above. Replicate samples would narrow the range.'}]},
   {sec:'reflect', field:'chem', title:'Beer’s law with a handbook value', tag:'Division',
-   q:'A dye solution in a 1.00 cm cuvette has an absorbance of 0.432. A handbook gives the molar absorptivity as ε = 1.1 × 10<sup>4</sup> L mol<sup>−1</sup> cm<sup>−1</sup>. Use Beer’s law, \\(A = \\varepsilon b c\\), to find the concentration.', unit:'M', exact:0.432/(1.1e4*1.00), sf:2, ans:sci('3.9',-5) + ' M',
-   why:'ε = 1.1 × 10<sup>4</sup> has only two significant figures.',
-   steps:['Rearrange: \\(c = \\dfrac{A}{\\varepsilon b}\\).','\\(c = \\dfrac{0.432}{\\left(1.1 \\times 10^{4}\\right)(1.00)} = 3.927 \\times 10^{-5}\\) M.','A has 3 figures, b has 3, ε has 2. Keep 2: 3.9 × 10<sup>−5</sup> M.'],
+   q:'A dye solution in a <span class="num">1.00</span> cm cuvette has an absorbance of <span class="num">0.432</span>. A handbook gives the molar absorptivity as <span class="num">ε = 1.1 × 10<sup>4</sup></span> L mol<sup>−1</sup> cm<sup>−1</sup>. Use Beer’s law, \\(A = \\varepsilon b c\\), to find the concentration.', unit:'M', exact:0.432/(1.1e4*1.00), sf:2, ans:sci('3.9',-5) + ' M',
+   why:'<span class="num">ε = 1.1 × 10<sup>4</sup></span> has only two significant figures.',
+   steps:['Rearrange: \\(c = \\dfrac{A}{\\varepsilon b}\\).','\\(c = \\dfrac{0.432}{\\left(1.1 \\times 10^{4}\\right)(1.00)} = 3.927 \\times 10^{-5}\\) M.','A has 3 figures, b has 3, ε has 2. Keep 2: <span class="num">3.9 × 10<sup>−5</sup></span> M.'],
    reflect:[
-     {q:'Your lab partner reports 3.927 × 10<sup>−5</sup> M “because that is what the calculator shows”. Which of those digits are actually known?',
-      a:'Only the 3 is certain, and the 9 is the estimated digit. ε = 1.1 × 10<sup>4</sup> could be anything from 1.05 to 1.15 × 10<sup>4</sup>, which puts c anywhere from 3.76 to 4.11 × 10<sup>−5</sup> M. The 2 and 7 are noise.'},
+     {q:'Your lab partner reports <span class="num">3.927 × 10<sup>−5</sup></span> M “because that is what the calculator shows”. Which of those digits are actually known?',
+      a:'Only the 3 is certain, and the 9 is the estimated digit. <span class="num">ε = 1.1 × 10<sup>4</sup></span> could be anything from <span class="num">1.05</span> to <span class="num">1.15 × 10<sup>4</sup></span>, which puts c anywhere from <span class="num">3.76</span> to <span class="num">4.11 × 10<sup>−5</sup></span> M. The 2 and 7 are noise.'},
      {q:'Which input limits the answer, and what one change would let you report three significant figures?',
       a:'The molar absorptivity (2 figures), not the absorbance or the path length (3 each). Measure ε yourself: prepare standards of known concentration, make a calibration curve, and use its slope. A more expensive spectrometer would not help, because the absorbance is not the weak link.'}]},
   {sec:'reflect', field:'med', title:'Body mass index from a self-reported height', tag:'Powers',
-   q:'At a health fair, a person’s mass is measured as 68.2 kg on a calibrated scale, but the height is self-reported as “1.7 m”. Calculate the body mass index, \\(\\text{BMI} = \\dfrac{\\text{mass}}{\\text{height}^2}\\), in kg/m<sup>2</sup>.', unit:'kg/m²', exact:68.2/(1.7*1.7), sf:2, ans:'24 kg/m²',
-   why:'The height, 1.7 m, has only two significant figures. The exponent 2 is exact.',
-   steps:['Square the height: 1.7<sup>2</sup> = 2.89 m<sup>2</sup> (still 2 figures; the exponent is exact).','Divide: 68.2 ÷ 2.89 = 23.599 kg/m<sup>2</sup>.','68.2 has 3 figures, 1.7 has 2. Keep 2: 24 kg/m<sup>2</sup>.'],
+   q:'At a health fair, a person’s mass is measured as <span class="num">68.2</span> kg on a calibrated scale, but the height is self-reported as “<span class="num">1.7</span> m”. Calculate the body mass index, \\(\\text{BMI} = \\dfrac{\\text{mass}}{\\text{height}^2}\\), in kg/m<sup>2</sup>.', unit:'kg/m²', exact:68.2/(1.7*1.7), sf:2, ans:'24 kg/m²',
+   why:'The height, <span class="num">1.7</span> m, has only two significant figures. The exponent 2 is exact.',
+   steps:['Square the height: <span class="num">1.7<sup>2</sup> = 2.89</span> m<sup>2</sup> (still 2 figures; the exponent is exact).','Divide: <span class="num">68.2 ÷ 2.89 = 23.599</span> kg/m<sup>2</sup>.','<span class="num">68.2</span> has 3 figures, <span class="num">1.7</span> has 2. Keep 2: 24 kg/m<sup>2</sup>.'],
    reflect:[
-     {q:'“1.7 m” could be anything from 1.65 m to 1.75 m. Calculate the BMI at both ends. What does this say about recording the BMI as 23.6?',
-      a:'68.2 ÷ 1.75<sup>2</sup> = 22.3 and 68.2 ÷ 1.65<sup>2</sup> = 25.1. The BMI could be anywhere from 22.3 to 25.1, so even the second digit is uncertain. Writing 23.6 claims a precision ten times better than the height allows; 24 is the honest report, and even that is roughly ±1.'},
-     {q:'A BMI of 25 is the cutoff for “overweight”. Measured with a stadiometer, the height is 1.73 m. Recalculate the BMI, and explain why the height deserves more care than the mass.',
-      a:'68.2 ÷ 1.73<sup>2</sup> = 22.8 kg/m<sup>2</sup> (3 figures). The self-reported range crossed the cutoff; the measured value is clearly below it. Height is squared, so its relative uncertainty counts twice, and it was the measurement with the fewest significant figures.'}]},
+     {q:'“<span class="num">1.7</span> m” could be anything from <span class="num">1.65</span> m to <span class="num">1.75</span> m. Calculate the BMI at both ends. What does this say about recording the BMI as <span class="num">23.6</span>?',
+      a:'<span class="num">68.2 ÷ 1.75<sup>2</sup> = 22.3</span> and <span class="num">68.2 ÷ 1.65<sup>2</sup> = 25.1</span>. The BMI could be anywhere from <span class="num">22.3</span> to <span class="num">25.1</span>, so even the second digit is uncertain. Writing <span class="num">23.6</span> claims a precision ten times better than the height allows; 24 is the honest report, and even that is roughly ±1.'},
+     {q:'A BMI of 25 is the cutoff for “overweight”. Measured with a stadiometer, the height is <span class="num">1.73</span> m. Recalculate the BMI, and explain why the height deserves more care than the mass.',
+      a:'<span class="num">68.2 ÷ 1.73<sup>2</sup> = 22.8</span> kg/m<sup>2</sup> (3 figures). The self-reported range crossed the cutoff; the measured value is clearly below it. Height is squared, so its relative uncertainty counts twice, and it was the measurement with the fewest significant figures.'}]},
   {sec:'reflect', field:'chem', title:'A standard made on the wrong balance', tag:'Weakest measurement',
-   q:'To make a sodium chloride standard, a student weighs 1.2 g of NaCl on a top-loading balance that reads to 0.1 g, dissolves it, and dilutes to the mark of a 250.0 mL volumetric flask. The molar mass of NaCl is 58.44 g/mol. What is the molarity?', unit:'M', exact:1.2/58.44/0.2500, sf:2, ans:'0.082 M',
-   why:'The mass, 1.2 g, has only two significant figures.',
-   steps:['Moles: 1.2 g ÷ 58.44 g/mol = 0.020534 mol (2 figures, keep guard digits).','Volume: 250.0 mL = 0.2500 L (4 figures).','Molarity: 0.020534 ÷ 0.2500 = 0.082136 M → 0.082 M (2 figures).'],
+   q:'To make a sodium chloride standard, a student weighs <span class="num">1.2</span> g of NaCl on a top-loading balance that reads to <span class="num">0.1</span> g, dissolves it, and dilutes to the mark of a <span class="num">250.0</span> mL volumetric flask. The molar mass of NaCl is <span class="num">58.44</span> g/mol. What is the molarity?', unit:'M', exact:1.2/58.44/0.2500, sf:2, ans:'0.082 M',
+   why:'The mass, <span class="num">1.2</span> g, has only two significant figures.',
+   steps:['Moles: <span class="num">1.2</span> g <span class="num">÷ 58.44</span> g/mol <span class="num">= 0.020534</span> mol (2 figures, keep guard digits).','Volume: <span class="num">250.0</span> mL <span class="num">= 0.2500</span> L (4 figures).','Molarity: <span class="num">0.020534 ÷ 0.2500 = 0.082136</span> M <span class="num">→ 0.082</span> M (2 figures).'],
    reflect:[
-     {q:'The Class A flask is good to ±0.12 mL. Did using such a precise flask improve the answer?',
-      a:'No. The flask’s relative uncertainty is 0.12 ÷ 250 ≈ 0.05%. The balance’s is 0.1 ÷ 1.2 ≈ 8%, more than 100 times larger. The answer has two significant figures either way: a result is only as good as its weakest measurement.'},
+     {q:'The Class A flask is good to ±<span class="num">0.12</span> mL. Did using such a precise flask improve the answer?',
+      a:'No. The flask’s relative uncertainty is <span class="num">0.12 ÷ 250</span> ≈ <span class="num">0.05</span>%. The balance’s is <span class="num">0.1 ÷ 1.2</span> ≈ 8%, more than 100 times larger. The answer has two significant figures either way: a result is only as good as its weakest measurement.'},
      {q:'What would you change so the concentration could be reported to four significant figures?',
-      a:'Weigh the NaCl on an analytical balance that reads to 0.0001 g, for example 1.2047 g (5 figures). The result would then be limited by the molar mass (58.44) and the volume (250.0), both 4 figures. Drying the NaCl before weighing would also make the extra digits trustworthy.'}]}
+      a:'Weigh the NaCl on an analytical balance that reads to <span class="num">0.0001</span> g, for example <span class="num">1.2047</span> g (5 figures). The result would then be limited by the molar mass <span class="num">(58.44)</span> and the volume <span class="num">(250.0)</span>, both 4 figures. Drying the NaCl before weighing would also make the extra digits trustworthy.'}]}
 ];
 
 /* ---------- checking an answer ---------- */
@@ -754,7 +754,7 @@ function render(){
           <button type="button" class="primary" data-check="${i}">Check</button>
         </div>
         <p class="fb" id="${id}fb" aria-live="polite"></p>
-        <details class="sol"><summary>Show solution</summary><ol>${p.steps.map(s => `<li>${s}</li>`).join('')}</ol><p class="final">Answer: ${p.ans}</p></details>
+        <details class="sol"><summary>Show solution</summary><ol>${p.steps.map(s => `<li>${s}</li>`).join('')}</ol><p class="final">Answer: <span class="num">${p.ans}</span></p></details>
         ${refl}
       </article>`;
     }).join('');
