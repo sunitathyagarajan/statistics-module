@@ -20,7 +20,7 @@
   --med:#0b7869; --med-soft:#d4efe9; --chem:#6a48ad; --chem-soft:#e8e1f6;
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1; --warn:#8a5a00; --warn-soft:#fbefd5;
   --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-num:KaTeX_Main,"Cambria Math",Cambria,"Times New Roman",serif; /* values and calculations: the same face KaTeX uses for formulas */
+  --f-num:var(--f-body); /* values and calculations: Calibri too, with tabular figures so columns line up */
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
@@ -186,7 +186,13 @@ footer .wrap{padding-block:20px 48px}
   .tbl tr{display:grid;grid-template-columns:minmax(0,1fr) auto;border-bottom:1px solid var(--line)} .tbl tr:last-child{border-bottom:none}
   .tbl th,.tbl td{border-bottom:none} .tbl th:nth-child(3){display:none} .tbl td.i{grid-column:1/-1;padding-top:0;font-size:.85rem} }
 /* Math: KaTeX typesets formulas in textbook style; panels keep equations left-aligned and scroll sideways on narrow screens instead of overflowing. */
-.katex{font-size:1.1em}
+/* Equations: KaTeX lays them out, but every letter, digit and symbol is set in Calibri like the rest of the page.
+   Only the pieces KaTeX draws itself (fraction bars, roots, tall brackets) keep KaTeX's shapes. */
+.katex{font-size:1.1em;font-family:var(--f-body)}
+.katex .mathnormal,.katex .mathit{font-family:var(--f-body);font-style:italic}
+.katex .mord,.katex .mbin,.katex .mrel,.katex .mopen,.katex .mclose,.katex .mpunct,.katex .minner,.katex .mop,
+.katex .mathrm,.katex .textrm,.katex .mainrm,.katex .mathsf,.katex .textsf{font-family:var(--f-body)}
+.katex .mathbf,.katex .textbf{font-family:var(--f-body);font-weight:700}
 .katex-display{margin:.5em 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
 .formula .katex-display{margin:.15em 0}
 .formula .katex-display>.katex{text-align:left;font-size:1.3em}
@@ -472,8 +478,8 @@ pH = −log(2.0 × 10⁻³) = <span class="r">2.70</span>  (2 decimals)
 /* Math typesetting: KaTeX renders any \( \) or \[ \] LaTeX on the page, including problem text the script adds later. */
 (function(){
   if(typeof renderMathInElement!=='function') return;
-  const opts={delimiters:[{left:'\[',right:'\]',display:true},{left:'\(',right:'\)',display:false}],throwOnError:false,ignoredTags:['script','noscript','style','textarea','pre','code','option','svg']};
-  const hasTex=el=>{ const t=el.textContent; return t.includes('\(')||t.includes('\['); };
+  const opts={delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false,ignoredTags:['script','noscript','style','textarea','pre','code','option','svg']};
+  const hasTex=el=>{ const t=el.textContent; return t.includes('\\(')||t.includes('\\['); };
   const pending=new Set(); let queued=false;
   const flush=()=>{ queued=false; const els=[...pending]; pending.clear(); for(const el of els) if(el.isConnected&&hasTex(el)) renderMathInElement(el,opts); };
   new MutationObserver(ms=>{ for(const m of ms){ const el=m.type==='characterData'?m.target.parentElement:m.target; if(el&&el.nodeType===1&&!el.closest('.katex')) pending.add(el); } if(pending.size&&!queued){ queued=true; queueMicrotask(flush); } })

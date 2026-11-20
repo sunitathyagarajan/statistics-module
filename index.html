@@ -28,7 +28,7 @@ img{max-width:100%}
   --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1;
   --f-display:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  --f-num:KaTeX_Main,"Cambria Math",Cambria,"Times New Roman",serif; /* values and calculations: the same face KaTeX uses for formulas */
+  --f-num:var(--f-body); /* values and calculations: Calibri too, with tabular figures so columns line up */
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46; --grid:#1f2f38;
@@ -279,7 +279,13 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 @media (max-width:520px){ body{font-size:16px} .bench,.gen,.ex{padding:14px} .statgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
 /* Math: KaTeX typesets formulas in textbook style; panels keep equations left-aligned and scroll sideways on narrow screens instead of overflowing. */
-.katex{font-size:1.1em}
+/* Equations: KaTeX lays them out, but every letter, digit and symbol is set in Calibri like the rest of the page.
+   Only the pieces KaTeX draws itself (fraction bars, roots, tall brackets) keep KaTeX's shapes. */
+.katex{font-size:1.1em;font-family:var(--f-body)}
+.katex .mathnormal,.katex .mathit{font-family:var(--f-body);font-style:italic}
+.katex .mord,.katex .mbin,.katex .mrel,.katex .mopen,.katex .mclose,.katex .mpunct,.katex .minner,.katex .mop,
+.katex .mathrm,.katex .textrm,.katex .mainrm,.katex .mathsf,.katex .textsf{font-family:var(--f-body)}
+.katex .mathbf,.katex .textbf{font-family:var(--f-body);font-weight:700}
 .katex-display{margin:.5em 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
 .formula .katex-display{margin:.15em 0}
 .formula .katex-display>.katex{text-align:left;font-size:1.3em}
@@ -932,7 +938,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
   <div class="steps-body" id="stepsBody"></div>
 </dialog>
 
-<footer><div class="wrap">Every problem generated on this page uses random numbers, so each set is new. Calculated answers are rounded only for display; check answers allow for small rounding differences. · <a href="sigfigs.html">Significant figures</a> · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
+<footer><div class="wrap">Every problem generated on this page uses random numbers, so each set is new. Calculated answers are rounded only for display; check answers allow for small rounding differences. · <a href="sigfigs.html">Significant figures</a> · <a href="em-radiation.html">Electromagnetic radiation</a> · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
 
 <script>
 /*CORE-START*/
