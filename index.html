@@ -19,7 +19,7 @@ html{color-scheme:light;-webkit-text-size-adjust:100%}
 body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
-/* Layout: one reading column (max 1000px) under a sticky section index; definitions in a responsive card grid; every interactive is a "bench" panel with controls beside or above its plot. */
+/* Layout: one column (max 1000px) under a sticky section index, with text running the full width of the column and of each panel; definitions in a responsive card grid; every interactive is a "bench" panel with controls beside or above its plot. */
 :root{
   --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0; --grid:#e4ebee;
   --accent:#c2185b; --accent-soft:#fbe3ed;        /* phenolphthalein endpoint pink */
@@ -52,7 +52,7 @@ h2{font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:700;letter-spacing:-.01em}
 h3{font-size:1.25rem;font-weight:700}
 h4{font-size:1.02rem;font-weight:700}
 p{margin:0}
-.prose{max-width:68ch;display:grid;gap:.8em}
+.prose{display:grid;gap:.8em}
 p.prose{display:block}
 .muted{color:var(--muted)}
 .mono,code,.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
@@ -66,11 +66,11 @@ a{color:var(--data)}
 header.hero{background:var(--surface);border-bottom:1px solid var(--line)}
 header.hero .wrap{padding-block:48px 36px;display:grid;gap:18px}
 header.hero .eyebrow{font-size:calc(.78rem + 4px)}
-.hero .lead{font-size:1.2rem;max-width:62ch;color:var(--muted)}
+.hero .lead{font-size:1.2rem;color:var(--muted)}
 .reading{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:6px}
 .reading .big{font-family:var(--f-num);font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:600;color:var(--ink)}
 .reading .big b{color:var(--accent);font-weight:600}
-.reading .cap{color:var(--muted);font-size:.95rem;max-width:60ch;margin:0}
+.reading .cap{color:var(--muted);font-size:.95rem;margin:0}
 nav.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
 nav.index .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:thin}
 nav.index a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;padding:6px 12px;border-radius:999px}
@@ -82,6 +82,9 @@ section.block > .wrap{display:grid;gap:22px}
 .sechead{display:grid;gap:8px}
 
 /* definition cards */
+a.sflink{color:var(--data);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a.sflink:hover{text-decoration-thickness:2px}
+.groupname a.sflink::after,.def h4 a.sflink::after{content:" →";text-decoration:none;display:inline-block;margin-left:2px}
 .groupname{font-family:var(--f-body);font-size:calc(.8rem + 2px);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
 .defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}
 .def{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
@@ -371,7 +374,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p class="lab"><b>At the bench:</b> why you run triplicates rather than a single titration.</p></div>
     </div>
 
-    <div class="groupname">Error, accuracy and precision</div>
+    <div class="groupname">Accuracy and precision</div>
     <div class="defs">
       <div class="def"><h4>Accuracy</h4>
         <p>How close a result is to the true or accepted value. It is checked against a certified reference material (CRM) or a standard.</p>
@@ -381,6 +384,10 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>How close replicate results are to each other, measured by s or RSD. <b>Repeatability</b> is precision under the same conditions; <b>reproducibility</b> is precision across analysts, days or labs.</p>
         <p class="use"><b>Where it matters:</b> Transferring a method to another lab: reproducibility shows the method works outside the lab that developed it.</p>
         <p class="lab"><b>At the bench:</b> you can be precise and still wrong. See Example C2.</p></div>
+    </div>
+
+    <div class="groupname">Types of error</div>
+    <div class="defs">
       <div class="def"><h4>Absolute and relative error</h4>
         <div class="formula multi">
           <div class="eqlbl">Absolute error</div>
@@ -403,8 +410,12 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
         <p>A large, one-off mistake such as a spilled sample or a misread burette. The result is an <b>outlier</b>: a value far from the rest. Use a test, not a hunch, to discard it.</p>
         <p class="use"><b>Where it matters:</b> Environmental labs must justify any discarded result before reporting contaminant levels to regulators.</p>
         <p class="lab"><b>At the bench:</b> the Q test decides whether a suspect value may be rejected.</p></div>
-      <div class="def"><h4>Significant figures</h4>
-        <p>The digits you know for certain plus the first uncertain digit. Uncertainty sets them: round the uncertainty to 1 (or 2) significant figures, then round the result to the same decimal place.</p>
+    </div>
+
+    <div class="groupname"><a class="sflink" href="sigfigs.html" title="Open the significant figures page">Significant figures</a></div>
+    <div class="defs">
+      <div class="def"><h4><a class="sflink" href="sigfigs.html" title="Open the significant figures page">Significant figures</a></h4>
+        <p>The digits you know for certain plus the first uncertain digit. Uncertainty sets them: round the uncertainty to 1 (or 2) <a class="sflink" href="sigfigs.html" title="Open the significant figures page">significant figures</a>, then round the result to the same decimal place.</p>
         <p class="use"><b>Where it matters:</b> Forensic and clinical reports must not claim more digits than the instrument can support.</p>
         <p class="lab"><b>At the bench:</b> a burette read to 0.01 mL gives 24.13 mL, not 24.1 or 24.130.</p></div>
     </div>
@@ -1561,7 +1572,7 @@ function tDist(t,df,tc){ const lim=Math.max(5,Math.min(tc*1.6,12)); return distP
 
 function buildGen(el,{title,blurb,make,typeSelect}){
   const id=el.id;
-  el.innerHTML=`<div class="gen-head"><div style="display:grid;gap:4px;max-width:60ch"><h3>${title}</h3><p class="note">${blurb}</p></div>
+  el.innerHTML=`<div class="gen-head"><div style="display:grid;gap:4px;flex:1 1 100%"><h3>${title}</h3><p class="note">${blurb}</p></div>
     <div class="controls">${typeSelect?`<label class="ctl" for="${id}-type">Problem type<select id="${id}-type"><option value="mixed">Mixed</option><option value="known">Mean vs. known value</option><option value="two">Two independent means</option><option value="paired">Paired</option></select></label>`:''}
     <label class="ctl" for="${id}-n">How many<select id="${id}-n"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
     <button class="primary" type="button" id="${id}-go">Generate new problems</button></div></div><div class="problems" id="${id}-list"></div>`;
