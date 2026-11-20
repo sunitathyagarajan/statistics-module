@@ -66,7 +66,7 @@ header .wrap{padding-block:36px 30px;display:grid;gap:12px}
 @media (max-width:640px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{justify-self:center;width:100%;max-width:360px}}
 .bfig{margin:0;display:grid;gap:6px}
 .bfig svg{width:100%;height:auto;display:block}
-.bfig text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
+.bfig text{font-family:var(--f-body);font-variant-numeric:tabular-nums;font-size:11px;fill:var(--muted)}
 .bfig text.ink{fill:var(--ink);font-weight:600}
 .bfig text.acc{fill:var(--accent);font-weight:600}
 .bfig figcaption{font-size:.85rem;color:var(--muted);text-align:center}
@@ -113,7 +113,7 @@ section.block > .wrap{display:grid;gap:22px}
 .reader{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:center}
 @media (max-width:640px){.reader{grid-template-columns:minmax(0,1fr)}}
 .reader svg{width:100%;max-width:260px;height:auto;justify-self:center}
-.reader svg text{font-family:var(--f-num);font-size:12px;fill:var(--muted)}
+.reader svg text{font-family:var(--f-body);font-variant-numeric:tabular-nums;font-size:12px;fill:var(--muted)}
 .reader svg .t-acc{fill:var(--accent);font-weight:600}
 
 /* counter tool */

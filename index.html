@@ -166,7 +166,7 @@ button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 button.primary:hover{filter:brightness(1.08)}
 button.link{background:none;border:none;color:var(--data);padding:0;text-decoration:underline;text-underline-offset:3px}
 .plot{width:100%;height:auto;display:block;touch-action:none;user-select:none;-webkit-user-select:none}
-.plot text{font-family:var(--f-num);font-size:12px;fill:var(--muted)}
+.plot text{font-family:var(--f-body);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums} /* graphs use Calibri, like the page text */
 .plot .t-ink{fill:var(--ink)}
 .plot .t-acc{fill:var(--accent)}
 .plot .t-bad{fill:var(--bad)}
@@ -1632,7 +1632,7 @@ function renderChallenger(view){
 }
 function barPanel({title,bars,ymax,ticks,ylabel,fmtv,tickf=fmtv}){
   const W=320,H=270,m={l:50,r:12,t:46,b:40}, Y=lin(0,ymax,H-m.b,m.t), bw=72, gap=(W-m.l-m.r-bars.length*bw)/(bars.length+1);
-  let s=`<text class="t-ink" x="${m.l-38}" y="18" font-weight="600">${title}</text>`;
+  let s=`<text class="t-ink" x="${m.l-38}" y="18" font-weight="700" font-size="14">${title}</text>`;
   for(const t of ticks){ s+=`<line class="gridl" x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end">${tickf(t)}</text>`; }
   s+=`<line class="axis" x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}"/>`;
   bars.forEach((b,i)=>{ const x=m.l+gap*(i+1)+bw*i, top=Y(b.value);
