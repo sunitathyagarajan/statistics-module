@@ -60,13 +60,14 @@ code{font-size:.88em;background:var(--surface-2);padding:.05em .35em;border-radi
 .ov{display:inline-block;position:relative;line-height:1;font-style:normal}
 .ov::before{content:"";position:absolute;left:.06em;right:.06em;top:.2em;height:.075em;min-height:1px;background:currentColor;border-radius:1px}
 .plot .ovs{text-decoration:overline}
-.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.eyebrow{font-family:var(--f-mono);font-size:calc(.78rem + 2px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
 a{color:var(--data)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
 
 /* header + nav */
 header.hero{background:var(--surface);border-bottom:1px solid var(--line)}
 header.hero .wrap{padding-block:48px 36px;display:grid;gap:18px}
+header.hero .eyebrow{font-size:calc(.78rem + 4px)}
 .hero .lead{font-size:1.2rem;max-width:62ch;color:var(--muted)}
 .reading{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin-top:6px}
 .reading .big{font-family:var(--f-mono);font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:600;color:var(--ink)}
@@ -83,7 +84,7 @@ section.block > .wrap{display:grid;gap:22px}
 .sechead{display:grid;gap:8px}
 
 /* definition cards */
-.groupname{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.groupname{font-family:var(--f-mono);font-size:calc(.8rem + 2px);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
 .defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}
 .def{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
 .def h4 .sym{font-family:var(--f-mono);font-weight:400;color:var(--accent);font-size:.9em;margin-left:6px}
@@ -115,6 +116,34 @@ table.st td{padding:4px 8px;border-bottom:1px solid var(--line)}
 table.st td:last-child{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 table.st tr:last-child td{border-bottom:none}
 .concepts{display:flex;flex-wrap:wrap;gap:6px}
+/* clickable results and the step-by-step popup */
+button.stepbtn{font:inherit;font-weight:600;color:var(--accent);background:none;border:none;border-radius:4px;padding:0 2px;margin:0 -2px;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px;text-align:inherit}
+button.stepbtn:hover{background:var(--accent-soft);text-decoration-style:solid}
+button.stepbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+dialog.stepsdlg{border:1px solid var(--line);border-radius:14px;padding:0;width:min(680px,calc(100vw - 32px));max-height:calc(100vh - 48px);background:var(--surface);color:var(--ink);box-shadow:0 18px 48px rgba(0,0,0,.25);overflow:hidden}
+dialog.stepsdlg[open]{display:flex;flex-direction:column}
+dialog.stepsdlg::backdrop{background:rgba(10,20,26,.5)}
+.steps-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.steps-head h3{font-size:1.15rem}
+button.steps-x{font-size:1.5rem;line-height:1;padding:2px 10px;background:none;border:1px solid var(--line);border-radius:8px;color:var(--muted)}
+.steps-body{padding:16px 18px 18px;overflow:auto;min-height:0}
+.steplist{margin:0;padding-left:1.4em;display:grid;gap:12px}
+.steplist li{padding-left:4px}
+.steplist .katex-display{margin:.4em 0;text-align:left}
+.steplist .katex-display>.katex{text-align:left;font-size:1.2em}
+.steplist .hl{color:var(--accent)}
+.steps-ans{margin:16px 0 0;background:var(--accent-soft);border-radius:8px;padding:10px 14px;font-weight:700;font-size:1.05rem}
+table.st.cmp th,table.st.cmp td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+table.st.cmp th[scope=row]{text-align:left;font-weight:400}
+table.st.cmp th[scope=row] .muted{font-size:.85em;white-space:nowrap}
+table.st.cmp thead th{font-weight:700;border-bottom:2px solid var(--line);white-space:nowrap}
+table.st.cmp thead th:first-child{text-align:left;color:var(--muted);font-weight:600}
+table.st.cmp tbody tr:last-child th,table.st.cmp tbody tr:last-child td{border-bottom:none}
+.tblwrap{overflow-x:auto;margin-top:8px}
+table.devtbl{border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums;min-width:320px}
+table.devtbl th,table.devtbl td{padding:4px 12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.devtbl th{background:var(--surface-2);font-weight:600}
+table.devtbl tfoot td{font-weight:700;border-bottom:none}
 .concepts span{font-size:.8rem;border:1px solid var(--line);color:var(--muted);padding:1px 8px;border-radius:999px}
 
 /* bench panels */
@@ -475,6 +504,7 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
       <span class="eyebrow">Part 2</span>
       <h2>Six worked examples</h2>
       <p class="prose muted">Three from medicine and three from the chemistry lab. The statistics in each card are calculated live from the data shown. Use “Explore these numbers” to load a data set into the explorer and drag the points around. These data are realistic but made up for teaching. The two real cases that follow use published data.</p>
+      <p class="prose"><b>Click any result in a card</b> (the underlined numbers) to see the calculation worked out step by step.</p>
     </div>
     <div class="examples" id="exampleCards"></div>
 
@@ -829,6 +859,11 @@ footer{padding-block:48px 64px;color:var(--muted);font-size:.9rem}
 </section>
 </main>
 
+<dialog id="stepsDlg" class="stepsdlg" aria-labelledby="stepsTitle">
+  <div class="steps-head"><h3 id="stepsTitle">Steps</h3><button type="button" class="steps-x" aria-label="Close">×</button></div>
+  <div class="steps-body" id="stepsBody"></div>
+</dialog>
+
 <footer><div class="wrap">Every problem generated on this page uses random numbers, so each set is new. Calculated answers are rounded only for display; check answers allow for small rounding differences. · <a href="sigfigs.html">Significant figures</a> · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
 
 <script>
@@ -993,16 +1028,144 @@ const PRESETS = {
   qca:{label:'Serum Ca with a suspect value (mg/dL)',unit:'mg/dL',data:[9.42,9.47,9.45,9.44,9.71]},
   own:{label:'My own numbers',unit:'',data:null}
 };
-function miniStats(a,unit,known){
-  const d=describe(a), dec=decimalsOf(a), tc=tcrit(95,d.n-1), half=tc*d.sem;
-  const [cv,cu]=report(d.mean,half);
-  let rows=`<tr><td>n</td><td>${d.n}</td></tr><tr><td>Mean <span class="ov">x</span></td><td>${fmt(d.mean,dec+1)} ${unit}</td></tr><tr><td>Median</td><td>${fmt(d.median,dec)} ${unit}</td></tr>
-  <tr><td>Range</td><td>${fmt(d.range,dec)} ${unit}</td></tr><tr><td>Standard deviation s</td><td>${sg(d.s)} ${unit}</td></tr><tr><td>Variance s²</td><td>${sg(d.variance)}</td></tr>
-  <tr><td>RSD (CV)</td><td>${sig(d.rsd,2)}%${d.rsd<2?` = ${sig(d.rsd*10,2)} ppt`:''}</td></tr><tr><td>Std. error ${tx`s/\sqrt{n}`}</td><td>${sg(d.sem)} ${unit}</td></tr>
-  <tr><td>95% CI for μ (t = ${tc.toFixed(3)})</td><td>${cv} ± ${cu} ${unit}</td></tr>`;
-  if(known!==undefined) rows+=`<tr><td>Error vs. ${known} ${unit}</td><td>${minus(((d.mean-known)/known*100).toFixed(1))}%</td></tr>`;
-  return `<table class="st">${rows}</table>`;
+/* ---------- step-by-step popups for the worked examples ----------
+   Each results table registers its data in STEPSETS; every value in the table is a button that opens #stepsDlg
+   with the calculation worked through on those numbers. Values are carried unrounded and rounded only for display. */
+const STEPSETS = {};
+const tex = (s,...v) => String.raw({raw:s.raw}, ...v.map(x=>String(x).replace(/−/g,'-')));
+const stepBtn = (set,stat,label) => `<button type="button" class="stepbtn" data-set="${set}" data-stat="${stat}" aria-haspopup="dialog" title="Show the steps">${label}</button>`;
+/* One row per statistic: {label, u (carries the data's unit), v (value text, button when stat is set)}. */
+function statRows(a,unit,known,set,name){
+  STEPSETS[set]={kind:'data',a,unit,known,name};
+  const d=describe(a), dec=decimalsOf(a), tc=tcrit(95,d.n-1), half=tc*d.sem, [cv,cu]=report(d.mean,half);
+  const R=(label,stat,v,u)=>({label,stat,v,u,set});
+  const rows=[R('n',null,String(d.n)), R('Mean <span class="ov">x</span>','mean',fmt(d.mean,dec+1),'u'), R('Median','median',fmt(d.median,dec),'u'),
+    R('Range','range',fmt(d.range,dec),'u'), R('Standard deviation s','s',sg(d.s),'u'), R('Variance s²','var',sg(d.variance),'u2'),
+    R('RSD (CV)','rsd',`${sig(d.rsd,2)}%${d.rsd<2?` = ${sig(d.rsd*10,2)} ppt`:''}`), R(`Std. error ${tx`s/\sqrt{n}`}`,'sem',sg(d.sem),'u'),
+    R('95% CI for μ','ci',`${cv} ± ${cu}`,'u')];
+  if(known!==undefined) rows.push(R(`Error vs. ${known} ${unit}`,'err',minus(((d.mean-known)/known*100).toFixed(1))+'%'));
+  rows.tc=tc; return rows;
 }
+const cell = (r,U) => r.stat ? stepBtn(r.set,r.stat,r.v+U) : r.v+U;
+function miniStats(a,unit,known,set,name){
+  const rows=statRows(a,unit,known,set,name), U=unit?' '+unit:'';
+  return `<table class="st">${rows.map(r=>`<tr><td>${r.stat==='ci'?`${r.label} (t = ${rows.tc.toFixed(3)})`:r.label}</td><td>${cell(r,r.u==='u'?U:'')}</td></tr>`).join('')}</table>`;
+}
+/* Two data sets side by side (C2): units move into the row labels so the value columns stay plain numbers. */
+function compareStats(a,b,unit,known,sets,names,heads){
+  const ra=statRows(a,unit,known,sets[0],names[0]), rb=statRows(b,unit,known,sets[1],names[1]);
+  const lab=r=> r.u==='u'&&unit ? `${r.label} (${unit})` : r.u==='u2'&&unit ? `${r.label} (${unit})²` : r.label;
+  const sameT=Math.abs(ra.tc-rb.tc)<1e-9;
+  return `<div class="tblwrap"><table class="st cmp"><thead><tr><th scope="col">Statistic</th><th scope="col">${heads[0]}</th><th scope="col">${heads[1]}</th></tr></thead><tbody>${
+    ra.map((r,i)=>`<tr><th scope="row">${lab(r)}${r.stat==='ci'&&sameT?` <span class="muted">t = ${ra.tc.toFixed(3)}</span>`:''}</th><td>${cell(r,'')}</td><td>${cell(rb[i],'')}</td></tr>`).join('')}</tbody></table></div>`;
+}
+/* C3: propagation of uncertainty for a primary standard (mass and volume uncertainties combined). */
+const PROP_EX = {m:0.5106, um:0.0002, M:204.22, V:100.00, uV:0.08};
+function propCalc(p){
+  const VL=p.V/1000, c=p.m/(p.M*VL), rm=p.um/p.m, rv=p.uV/p.V, rc=Math.sqrt(rm*rm+rv*rv), uc=c*rc, [cr,ur]=report(c,uc);
+  return {VL,c,rm,rv,rc,uc,cr,ur,flask:rv*rv/(rc*rc)};
+}
+function propStats(set,name){
+  STEPSETS[set]={kind:'prop',p:PROP_EX,name};
+  const r=propCalc(PROP_EX), b=(stat,label)=>stepBtn(set,stat,label);
+  return `<table class="st"><tr><td>Concentration c</td><td>${b('c',r.c.toFixed(6)+' M')}</td></tr>
+  <tr><td>Relative uncertainty, mass</td><td>${b('rm',(r.rm*100).toFixed(3)+'%')}</td></tr>
+  <tr><td>Relative uncertainty, volume</td><td>${b('rv',(r.rv*100).toFixed(3)+'%')}</td></tr>
+  <tr><td>Combined relative uncertainty</td><td>${b('rc',(r.rc*100).toFixed(3)+'%')}</td></tr>
+  <tr><td>Absolute uncertainty u<sub>c</sub></td><td>${b('uc',r.uc.toFixed(6)+' M')}</td></tr>
+  <tr><td>Report as</td><td>${b('rep',`${r.cr} ± ${r.ur} M`)}</td></tr></table>`;
+}
+const D = m => `\\[ ${m} \\]`;
+function devTable(a,d,dec){
+  const dd=dec+3;
+  const rows=a.map((x,i)=>{ const dv=x-d.mean; return `<tr><td>${i+1}</td><td>${x.toFixed(dec)}</td><td>${fmt(dv,dd)}</td><td>${sg(dv*dv,4)}</td></tr>`; }).join('');
+  return `<div class="tblwrap"><table class="devtbl"><thead><tr><th>i</th><th>${tx`x_i`}</th><th>${tx`x_i - \bar{x}`}</th><th>${tx`(x_i - \bar{x})^2`}</th></tr></thead><tbody>${rows}</tbody>
+    <tfoot><tr><td colspan="2">Sum</td><td>${fmt(Math.abs(a.reduce((s,x)=>s+x-d.mean,0))<1e-9?0:a.reduce((s,x)=>s+x-d.mean,0),dd)}</td><td>${sg(d.ss,4)}</td></tr></tfoot></table></div>`;
+}
+function dataSteps(S,stat){
+  const a=S.a, d=describe(a), dec=decimalsOf(a), n=d.n, U=S.unit?' '+S.unit:'', TU=S.unit?`\\ \\text{${S.unit}}`:'';
+  const X=v=>fmt(v,dec), M4=fmt(d.mean,dec+3), sum=a.reduce((s,x)=>s+x,0);
+  const meanStep={t:`Add the ${n} values, then divide by n = ${n}.`, m:tex`\bar{x} = \frac{\sum x_i}{n} = \frac{${a.map(X).join(' + ')}}{${n}} = \frac{${fmt(sum,dec)}}{${n}} = ${M4}`};
+  const varSteps=[meanStep,
+    {t:'Subtract the mean from each value and square the result. The deviations add up to zero; the squares do not.', html:devTable(a,d,dec)},
+    {t:`Add the squared deviations and divide by n − 1 = ${n-1}. This is the variance.`, m:tex`s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1} = \frac{${sg(d.ss,4)}}{${n-1}} = ${sg(d.variance,4)}`}];
+  const sStep={t:'Take the square root of the variance.', m:tex`s = \sqrt{s^2} = \sqrt{${sg(d.variance,4)}} = ${sg(d.s,4)}`};
+  const sorted=d.sorted, mid=n%2?[(n+1)/2]:[n/2,n/2+1];
+  const sortedHTML=sorted.map((v,i)=>mid.includes(i+1)?`<b class="hl">${X(v)}</b>`:X(v)).join(', ');
+  const tc=tcrit(95,n-1), half=tc*d.sem, [cv,cu]=report(d.mean,half);
+  switch(stat){
+    case 'mean': return {title:'Mean', steps:[meanStep, {t:'Round for reporting: one more decimal place than the data.'}], ans:fmt(d.mean,dec+1)+U};
+    case 'median': return {title:'Median', steps:[
+      {t:`Sort the ${n} values from low to high: ${sortedHTML}.`},
+      n%2 ? {t:`n = ${n} is odd, so the median is the middle value, the ${ord(mid[0])} one.`, m:tex`\tilde{x} = x_{${mid[0]}} = ${X(d.median)}`}
+          : {t:`n = ${n} is even, so the median is the average of the two middle values, the ${ord(mid[0])} and ${ord(mid[1])}.`, m:tex`\tilde{x} = \frac{x_{${mid[0]}} + x_{${mid[1]}}}{2} = \frac{${X(sorted[mid[0]-1])} + ${X(sorted[mid[1]-1])}}{2} = ${fmt(d.median,dec+1)}`}],
+      ans:fmt(d.median,dec)+U};
+    case 'range': return {title:'Range', steps:[
+      {t:`Find the smallest and largest values: ${tx`x_{\min} = ${X(d.min)}`} and ${tx`x_{\max} = ${X(d.max)}`}.`},
+      {t:'Subtract.', m:tex`w = x_{\max} - x_{\min} = ${X(d.max)} - ${X(d.min)} = ${X(d.range)}`}], ans:X(d.range)+U};
+    case 'var': return {title:'Variance', steps:[...varSteps, {t:'Round for reporting: three significant figures. Variance has the units of the data squared.'}], ans:sg(d.variance)+(S.unit?` (${S.unit})²`:'')};
+    case 's': return {title:'Standard deviation', steps:[...varSteps, sStep, {t:'Round for reporting: three significant figures.'}], ans:sg(d.s)+U};
+    case 'rsd': {
+      const st=[{t:'Start from the standard deviation and the mean (click those values to see how they were found).', m:tex`s = ${sg(d.s,4)}, \qquad \bar{x} = ${M4}`},
+        {t:'Divide s by the mean and multiply by 100 to express it as a percentage.', m:tex`\text{RSD} = \frac{s}{\bar{x}} \times 100\% = \frac{${sg(d.s,4)}}{${M4}} \times 100\% = ${sig(d.rsd,3)}\%`}];
+      if(d.rsd<2) st.push({t:'For a small RSD, parts per thousand is easier to read: multiply by 1000 instead of 100.', m:tex`\text{RSD} = \frac{s}{\bar{x}} \times 1000 = ${sig(d.rsd*10,3)}\ \text{ppt}`});
+      st.push({t:'Round for reporting: two significant figures.'});
+      return {title:'Relative standard deviation', steps:st, ans:`${sig(d.rsd,2)}%${d.rsd<2?` = ${sig(d.rsd*10,2)} ppt`:''}`};
+    }
+    case 'sem': return {title:'Standard error of the mean', steps:[
+      {t:'Start from the standard deviation (click it in the table to see how it was found) and the number of values.', m:tex`s = ${sg(d.s,4)}, \qquad n = ${n}`},
+      {t:'Divide s by the square root of n.', m:tex`s_{\bar{x}} = \frac{s}{\sqrt{n}} = \frac{${sg(d.s,4)}}{\sqrt{${n}}} = \frac{${sg(d.s,4)}}{${Math.sqrt(n).toFixed(3)}} = ${sg(d.sem,4)}`},
+      {t:'Round for reporting: three significant figures.'}], ans:sg(d.sem)+U};
+    case 'ci': return {title:'95% confidence interval', steps:[
+      {t:'Find the degrees of freedom.', m:tex`\nu = n - 1 = ${n} - 1 = ${n-1}`},
+      {t:`Look up Student’s t for 95% confidence (two-tailed) and ν = ${n-1} in the t table in the Reference section.`, m:tex`t = ${tc.toFixed(3)}`},
+      {t:'Find the standard error of the mean.', m:tex`\frac{s}{\sqrt{n}} = \frac{${sg(d.s,4)}}{\sqrt{${n}}} = ${sg(d.sem,4)}`},
+      {t:'Multiply by t to get the half-width of the interval.', m:tex`\frac{t\,s}{\sqrt{n}} = ${tc.toFixed(3)} \times ${sg(d.sem,4)} = ${sg(half,4)}`},
+      {t:'Put the interval around the mean.', m:tex`\mu = \bar{x} \pm \frac{t\,s}{\sqrt{n}} = ${M4} \pm ${sg(half,4)}`},
+      {t:`Round the ± value to one significant figure (two if it starts with 1), giving ${cu}. Then round the mean to the same decimal place, giving ${cv}.`}],
+      ans:`${cv} ± ${cu}${U}`};
+    case 'err': { const e=(d.mean-S.known)/S.known*100; return {title:'Relative error', steps:[
+      {t:`Find the mean of the replicates.`, m:tex`\bar{x} = \frac{${fmt(sum,dec)}}{${n}} = ${M4}`},
+      {t:`Compare it with the certified value, ${S.known.toFixed(2)}${U}.`, m:tex`E_{\text{rel}} = \frac{\bar{x} - x_{\text{true}}}{x_{\text{true}}} \times 100\% = \frac{${M4} - ${S.known.toFixed(2)}}{${S.known.toFixed(2)}} \times 100\% = ${e.toFixed(2)}\%`},
+      {t:e<0?'The error is negative, so the result is low. Round to one decimal place.':'The error is positive, so the result is high. Round to one decimal place.'}],
+      ans:minus(e.toFixed(1))+'%'}; }
+  }
+}
+function propSteps(S,stat){
+  const p=S.p, r=propCalc(p);
+  const cStep={t:'Convert the volume to liters, then divide the mass by (molar mass × volume).', m:tex`c = \frac{m}{M\,V} = \frac{${p.m}\ \text{g}}{${p.M}\ \text{g/mol} \times ${r.VL.toFixed(5)}\ \text{L}} = ${r.c.toFixed(6)}\ \text{M}`};
+  const rmStep={t:'Relative uncertainty of the mass: the balance uncertainty divided by the mass.', m:tex`\frac{u_m}{m} = \frac{${p.um}}{${p.m}} = ${r.rm.toFixed(6)} = ${(r.rm*100).toFixed(3)}\%`};
+  const rvStep={t:'Relative uncertainty of the volume: the flask tolerance divided by the volume.', m:tex`\frac{u_V}{V} = \frac{${p.uV}}{${p.V.toFixed(2)}} = ${r.rv.toFixed(6)} = ${(r.rv*100).toFixed(3)}\%`};
+  const rcStep={t:'c is a quotient, so the relative uncertainties add in quadrature. (The molar mass is known so precisely that its uncertainty is negligible.)', m:tex`\frac{u_c}{c} = \sqrt{\left(\frac{u_m}{m}\right)^2 + \left(\frac{u_V}{V}\right)^2} = \sqrt{(${(r.rm*100).toFixed(3)}\%)^2 + (${(r.rv*100).toFixed(3)}\%)^2} = ${(r.rc*100).toFixed(3)}\%`};
+  const ucStep={t:'Multiply the relative uncertainty by c to get the absolute uncertainty.', m:tex`u_c = c \times \frac{u_c}{c} = ${r.c.toFixed(6)} \times ${r.rc.toFixed(6)} = ${texSci(r.uc,2)}\ \text{M}`};
+  switch(stat){
+    case 'c': return {title:'Concentration', steps:[{t:`Volume: ${p.V.toFixed(2)} mL = ${r.VL.toFixed(5)} L.`}, cStep], ans:r.c.toFixed(6)+' M'};
+    case 'rm': return {title:'Relative uncertainty of the mass', steps:[rmStep], ans:(r.rm*100).toFixed(3)+'%'};
+    case 'rv': return {title:'Relative uncertainty of the volume', steps:[rvStep], ans:(r.rv*100).toFixed(3)+'%'};
+    case 'rc': return {title:'Combined relative uncertainty', steps:[rmStep,rvStep,rcStep], ans:(r.rc*100).toFixed(3)+'%'};
+    case 'uc': return {title:'Absolute uncertainty', steps:[cStep,rmStep,rvStep,rcStep,ucStep], ans:r.uc.toFixed(6)+' M'};
+    case 'rep': return {title:'Reported result', steps:[cStep,rcStep,ucStep,
+      {t:`Round the uncertainty to one significant figure (two if it starts with 1): ${r.ur} M. Then round c to the same decimal place: ${r.cr} M.`},
+      {t:`The volume term is about ${Math.round(r.flask*100)}% of the variance, so a better flask would help more than a better balance.`}],
+      ans:`${r.cr} ± ${r.ur} M`};
+  }
+}
+const ord = k => k+(['th','st','nd','rd'][(k%100>10&&k%100<14)?0:Math.min(k%10,4)%4]||'th');
+function openSteps(set,stat){
+  const S=STEPSETS[set]; if(!S) return;
+  const r = S.kind==='prop' ? propSteps(S,stat) : dataSteps(S,stat); if(!r) return;
+  const dlg=$('#stepsDlg');
+  $('#stepsTitle').textContent = `${r.title} · ${S.name}`;
+  $('#stepsBody').innerHTML = `<ol class="steplist">${r.steps.map(s=>`<li>${s.t}${s.m?D(s.m):''}${s.html||''}</li>`).join('')}</ol><p class="steps-ans">Answer: ${r.ans}</p>`;
+  if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open','');
+  $('#stepsBody').scrollTop=0;
+}
+document.addEventListener('click',e=>{ const b=e.target.closest('.stepbtn'); if(b) openSteps(b.dataset.set,b.dataset.stat); });
+(function(){
+  const dlg=$('#stepsDlg'); const close=()=>{ if(typeof dlg.close==='function') dlg.close(); else dlg.removeAttribute('open'); };
+  dlg.querySelector('.steps-x').addEventListener('click',close);
+  dlg.addEventListener('click',e=>{ if(e.target===dlg) close(); });
+})();
 const EXAMPLES = [
  {f:'med',key:'m1',title:'M1 · How precise is a glucometer?',
   scene:'A nurse tests the same tube of blood six times on one glucometer to check its precision.',
@@ -1037,16 +1200,17 @@ const EXAMPLES = [
 ];
 function renderExamples(){
   $('#exampleCards').innerHTML = EXAMPLES.map(e=>{
+    e.id = e.title.split(' · ')[0];
     const tag = e.f==='med'?'<span class="chip med">Medical</span>':'<span class="chip chem">Chemistry</span>';
     let body='';
     if(e.data){
       body += `<div class="datarow"><span class="lbl">${e.data2?'Student A:':'Data:'}</span>${e.data.map(v=>`<span>${v}</span>`).join('')}</div>`;
       if(e.data2) body += `<div class="datarow"><span class="lbl">Student B:</span>${e.data2.map(v=>`<span>${v}</span>`).join('')}</div>`;
       if(e.data2){
-        body += `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px"><div><h4>Student A</h4>${miniStats(e.data,e.unit,e.known)}</div><div><h4>Student B</h4>${miniStats(e.data2,e.unit,e.known)}</div></div>`;
-      } else body += miniStats(e.data,e.unit,e.known);
+        body += compareStats(e.data,e.data2,e.unit,e.known,[e.key,e.key2],[e.id+' · Student A',e.id+' · Student B'],['Student A','Student B']);
+      } else body += miniStats(e.data,e.unit,e.known,e.key,e.id);
     } else {
-      body += `<div class="calcline">${tx`c = \dfrac{m}{M\,V}`}<br>${tx`\dfrac{u_c}{c} = \sqrt{\left(\dfrac{u_m}{m}\right)^2 + \left(\dfrac{u_V}{V}\right)^2}`}</div>`;
+      body += `<div class="calcline">${tx`c = \dfrac{m}{M\,V}`}<br>${tx`\dfrac{u_c}{c} = \sqrt{\left(\dfrac{u_m}{m}\right)^2 + \left(\dfrac{u_V}{V}\right)^2}`}</div>${propStats(e.key,e.id)}`;
     }
     const btns = e.key==='prop' ? `<button type="button" data-go="propagation" class="go">Open in the uncertainty calculator</button>`
       : `<button type="button" data-load="${e.key}">Explore ${e.data2?'student A':'these numbers'}</button>${e.key2?` <button type="button" data-load="${e.key2}">Explore student B</button>`:''}`;
